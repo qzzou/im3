@@ -1,0 +1,2245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Learning Hub</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: #eee;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Main content area */
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            padding-bottom: 80px; /* Space for tab bar */
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            font-size: 1.8em;
+            color: #00d4ff;
+            margin-bottom: 5px;
+        }
+        .header .course-name {
+            color: #00ff88;
+            font-size: 1.1em;
+        }
+        .header .subtitle {
+            color: #888;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        /* Progress bar */
+        .progress-container {
+            margin: 15px 0;
+        }
+        .progress-bar {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            height: 12px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00d4ff, #00ff88);
+            width: 0%;
+            transition: width 0.5s ease;
+            border-radius: 10px;
+        }
+        .progress-text {
+            text-align: center;
+            color: #888;
+            font-size: 0.85em;
+            margin-top: 5px;
+        }
+
+        /* Tab content areas */
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Bottom Tab Bar */
+        .tab-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(20, 20, 40, 0.98);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            z-index: 1000;
+        }
+        .tab-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 8px 20px;
+            cursor: pointer;
+            color: #666;
+            transition: all 0.3s ease;
+            border-radius: 10px;
+        }
+        .tab-item:hover {
+            color: #aaa;
+        }
+        .tab-item.active {
+            color: #00d4ff;
+        }
+        .tab-item .icon {
+            font-size: 1.5em;
+            margin-bottom: 4px;
+        }
+        .tab-item .label {
+            font-size: 0.75em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Review Tab Styles */
+        .unit-nav {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .unit-btn {
+            background: rgba(255,255,255,0.08);
+            border: 2px solid transparent;
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        .unit-btn:hover {
+            background: rgba(0,212,255,0.15);
+            border-color: #00d4ff;
+        }
+        .unit-btn.active {
+            border-color: #00ff88;
+            background: rgba(0,255,136,0.1);
+        }
+        .unit-btn h3 {
+            color: #00d4ff;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+        .unit-btn p {
+            color: #888;
+            font-size: 0.75em;
+        }
+
+        .lesson-content {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 20px;
+            display: none;
+        }
+        .lesson-content.active {
+            display: block;
+        }
+        .lesson-content h2 {
+            color: #00d4ff;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            border-bottom: 2px solid rgba(0,212,255,0.3);
+            padding-bottom: 10px;
+        }
+
+        .lesson {
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .lesson h3 {
+            color: #00ff88;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        .lesson p, .lesson li {
+            line-height: 1.7;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+        .lesson ul {
+            padding-left: 20px;
+        }
+
+        .formula-box {
+            background: rgba(0,212,255,0.1);
+            border-left: 4px solid #00d4ff;
+            padding: 12px 15px;
+            margin: 12px 0;
+            border-radius: 0 8px 8px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+        }
+
+        .example {
+            background: rgba(0,255,136,0.08);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 12px 0;
+        }
+        .example h4 {
+            color: #00ff88;
+            margin-bottom: 8px;
+            font-size: 1em;
+        }
+        .example .solution {
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px dashed rgba(255,255,255,0.2);
+        }
+
+        /* Practice Tab Styles */
+        .exercise {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #00d4ff;
+        }
+        .exercise.hard {
+            border-left-color: #ff5555;
+        }
+        .exercise .question {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        .exercise .unit-tag {
+            display: inline-block;
+            background: rgba(0,212,255,0.2);
+            color: #00d4ff;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.75em;
+            margin-bottom: 10px;
+        }
+
+        .answer-input {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+        .answer-input input {
+            flex: 1;
+            min-width: 180px;
+            padding: 12px 15px;
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            background: rgba(0,0,0,0.3);
+            color: #fff;
+            font-size: 1em;
+        }
+        .answer-input input:focus {
+            outline: none;
+            border-color: #00d4ff;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.95em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .btn-check {
+            background: #00d4ff;
+            color: #000;
+        }
+        .btn-check:hover {
+            background: #00a8cc;
+        }
+        .btn-hint {
+            background: rgba(255,170,0,0.3);
+            color: #ffaa00;
+        }
+        .btn-hint:hover {
+            background: rgba(255,170,0,0.5);
+        }
+        .btn-solution {
+            background: rgba(0,255,136,0.3);
+            color: #00ff88;
+        }
+        .btn-solution:hover {
+            background: rgba(0,255,136,0.5);
+        }
+        .btn-generate {
+            background: linear-gradient(135deg, #aa00ff, #00d4ff);
+            color: #fff;
+            padding: 12px 25px;
+            margin: 20px auto;
+            display: block;
+        }
+        .btn-generate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(170, 0, 255, 0.4);
+        }
+
+        .feedback {
+            margin-top: 10px;
+            padding: 12px;
+            border-radius: 8px;
+            display: none;
+        }
+        .feedback.correct {
+            display: block;
+            background: rgba(0,255,136,0.2);
+            color: #00ff88;
+        }
+        .feedback.incorrect {
+            display: block;
+            background: rgba(255,85,85,0.2);
+            color: #ff5555;
+        }
+
+        .hint-box, .solution-box {
+            margin-top: 10px;
+            padding: 12px;
+            border-radius: 8px;
+            display: none;
+            font-size: 0.95em;
+        }
+        .hint-box {
+            background: rgba(255,170,0,0.15);
+            border-left: 3px solid #ffaa00;
+        }
+        .solution-box {
+            background: rgba(0,255,136,0.1);
+            border-left: 3px solid #00ff88;
+        }
+        .hint-box.show, .solution-box.show {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Bookmark button */
+        .btn-heart {
+            background: none;
+            border: none;
+            font-size: 1.1em;
+            cursor: pointer;
+            padding: 5px;
+            color: #888;
+            transition: all 0.2s ease;
+        }
+        .btn-heart:hover {
+            color: #aaa;
+        }
+        .btn-heart.active {
+            color: #ff6b6b;
+        }
+
+        /* Export section */
+        .export-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+        }
+        .export-section h3 {
+            color: #00d4ff;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        .export-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .btn-export {
+            background: rgba(0,212,255,0.2);
+            color: #00d4ff;
+            padding: 10px 15px;
+            border: 1px solid rgba(0,212,255,0.3);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+        .btn-export:hover {
+            background: rgba(0,212,255,0.3);
+            border-color: #00d4ff;
+        }
+        .unit-export-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .unit-export-row:last-child {
+            border-bottom: none;
+        }
+        .unit-export-row span {
+            color: #ccc;
+        }
+        .btn-pdf-small {
+            background: rgba(255,100,100,0.2);
+            color: #ff6b6b;
+            padding: 6px 12px;
+            border: 1px solid rgba(255,100,100,0.3);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85em;
+            transition: all 0.3s ease;
+        }
+        .btn-pdf-small:hover {
+            background: rgba(255,100,100,0.3);
+            border-color: #ff6b6b;
+        }
+
+        /* Print styles */
+        @media print {
+            body { background: white; color: black; }
+            .tab-bar, .score-display, .btn, .answer-input, .filter-bar, .header, .btn-heart { display: none !important; }
+            .main-content { padding: 0; padding-bottom: 0; }
+            .exercise { border: 1px solid #ccc; margin-bottom: 15px; page-break-inside: avoid; }
+            .exercise.hard { border-left: 4px solid #ff5555; }
+            .hint-box, .solution-box, .feedback { display: none !important; }
+            .unit-tag { background: #eee !important; color: #333 !important; }
+            .page-break { page-break-before: always; }
+            .print-header { display: block !important; font-size: 1.5em; font-weight: bold; margin-bottom: 20px; }
+            .answer-key-section { display: block !important; }
+        }
+
+        /* Courses Tab Styles */
+        .course-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .course-item {
+            background: rgba(255,255,255,0.08);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .course-item:hover {
+            background: rgba(0,212,255,0.15);
+            border-color: #00d4ff;
+        }
+        .course-item.current {
+            border-color: #00ff88;
+            background: rgba(0,255,136,0.1);
+        }
+        .course-item h3 {
+            color: #00d4ff;
+            margin-bottom: 5px;
+        }
+        .course-item p {
+            color: #888;
+            font-size: 0.9em;
+        }
+        .course-item .status {
+            margin-top: 10px;
+            font-size: 0.85em;
+        }
+        .course-item .status .progress-mini {
+            background: rgba(255,255,255,0.1);
+            height: 6px;
+            border-radius: 3px;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+        .course-item .status .progress-mini-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00d4ff, #00ff88);
+            border-radius: 3px;
+        }
+
+        /* Settings Tab Styles */
+        .settings-section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+        .settings-section h3 {
+            color: #00d4ff;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        .setting-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .setting-item:last-child {
+            border-bottom: none;
+        }
+        .setting-item label {
+            color: #ccc;
+        }
+        .toggle {
+            width: 50px;
+            height: 26px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 13px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .toggle.on {
+            background: #00d4ff;
+        }
+        .toggle::after {
+            content: '';
+            position: absolute;
+            width: 22px;
+            height: 22px;
+            background: #fff;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: all 0.3s ease;
+        }
+        .toggle.on::after {
+            left: 26px;
+        }
+        .btn-reset {
+            background: rgba(255,85,85,0.3);
+            color: #ff5555;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .btn-reset:hover {
+            background: rgba(255,85,85,0.5);
+        }
+
+        /* Score display */
+        .score-display {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.8);
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: 2px solid #00d4ff;
+            font-size: 0.9em;
+            z-index: 100;
+        }
+        .score-display span {
+            color: #00ff88;
+            font-weight: bold;
+        }
+
+        /* Filter buttons */
+        .filter-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            border-radius: 20px;
+            color: #aaa;
+            cursor: pointer;
+            font-size: 0.85em;
+            transition: all 0.3s ease;
+        }
+        .filter-btn:hover {
+            background: rgba(255,255,255,0.2);
+            color: #fff;
+        }
+        .filter-btn.active {
+            background: #00d4ff;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-content" id="mainContent">
+        <!-- Score Display -->
+        <div class="score-display">
+            Score: <span id="totalScore">0</span> pts
+        </div>
+
+        <!-- REVIEW TAB -->
+        <div class="tab-content active" id="reviewTab">
+            <div class="header">
+                <h1 id="currentCourseName">IM3 - Integrated Math 3</h1>
+                <div class="subtitle">Review</div>
+            </div>
+
+            <div class="unit-nav" id="unitNav">
+                <!-- Units will be populated by JavaScript -->
+            </div>
+
+            <div id="lessonContainer">
+                <!-- Lesson content will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- PRACTICES TAB -->
+        <div class="tab-content" id="practicesTab">
+            <div class="header">
+                <h1 id="practiceCourseName">IM3 - Integrated Math 3</h1>
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="practiceProgress"></div>
+                    </div>
+                    <div class="progress-text"><span id="practiceProgressText">0</span>% Complete</div>
+                </div>
+            </div>
+
+            <div class="filter-bar" id="filterBar">
+                <!-- Filter buttons will be populated by JavaScript -->
+            </div>
+
+            <div id="exerciseContainer">
+                <!-- Exercises will be populated by JavaScript -->
+            </div>
+
+            <button class="btn btn-generate" id="generateBtn">
+                Generate More Problems
+            </button>
+        </div>
+
+        <!-- SAVED TAB -->
+        <div class="tab-content" id="favoritesTab">
+            <div class="header">
+                <h1 id="favCourseName">IM3 - Integrated Math 3</h1>
+                <div class="subtitle">Saved</div>
+            </div>
+
+            <div id="favoritesContainer">
+                <p style="color:#888; text-align:center; padding: 40px;">No saved problems yet. Click ☆ on any problem to save it here.</p>
+            </div>
+        </div>
+
+        <!-- COURSES TAB -->
+        <div class="tab-content" id="coursesTab">
+            <div class="header">
+                <h1>My Courses</h1>
+                <div class="subtitle">Select a course to continue learning</div>
+            </div>
+
+            <div class="course-list" id="courseList">
+                <!-- Courses will be populated by JavaScript -->
+            </div>
+
+            <div class="export-section">
+                <h3>Export</h3>
+                <div class="export-buttons" style="margin-bottom: 20px;">
+                    <button class="btn btn-export" onclick="exportToJSON()">Export Course to JSON</button>
+                </div>
+                <h4 style="color: #ccc; margin-bottom: 10px; font-size: 0.95em;">Print to PDF by Unit</h4>
+                <div id="unitExportList">
+                    <!-- Unit PDF buttons populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- SETTINGS TAB -->
+        <div class="tab-content" id="settingsTab">
+            <div class="header">
+                <h1>Settings</h1>
+            </div>
+
+            <div class="settings-section">
+                <h3>Display</h3>
+                <div class="setting-item">
+                    <label>Show Hints by Default</label>
+                    <div class="toggle" id="toggleHints" onclick="toggleSetting('showHints')"></div>
+                </div>
+                <div class="setting-item">
+                    <label>Sound Effects</label>
+                    <div class="toggle on" id="toggleSound" onclick="toggleSetting('soundOn')"></div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h3>Progress</h3>
+                <div class="setting-item">
+                    <label>Total Score</label>
+                    <span id="settingsScore">0 pts</span>
+                </div>
+                <div class="setting-item">
+                    <label>Problems Completed</label>
+                    <span id="settingsCompleted">0</span>
+                </div>
+                <button class="btn btn-reset" onclick="resetProgress()">Reset All Progress</button>
+            </div>
+
+            <div class="settings-section">
+                <h3>About</h3>
+                <div class="setting-item">
+                    <label>Version</label>
+                    <span>1.0.0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Tab Bar -->
+    <div class="tab-bar">
+        <div class="tab-item active" onclick="switchTab('review')">
+            <div class="icon">📚</div>
+            <div class="label">Review</div>
+        </div>
+        <div class="tab-item" onclick="switchTab('practices')">
+            <div class="icon">✏️</div>
+            <div class="label">Practices</div>
+        </div>
+        <div class="tab-item" onclick="switchTab('favorites')">
+            <div class="icon">★</div>
+            <div class="label">Saved</div>
+        </div>
+        <div class="tab-item" onclick="switchTab('courses')">
+            <div class="icon">📖</div>
+            <div class="label">Courses</div>
+        </div>
+        <div class="tab-item" onclick="switchTab('settings')">
+            <div class="icon">⚙️</div>
+            <div class="label">Settings</div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // APP STATE & DATA
+        // ============================================
+
+        const appState = {
+            currentCourse: 'im3',
+            currentTab: 'review',
+            currentUnit: 1,
+            score: 0,
+            completedProblems: new Set(),
+            favorites: new Set(), // saved problems
+            generatedProblems: [], // persisted generated problems
+            settings: {
+                showHints: false,
+                soundOn: true
+            },
+            bookmarks: {} // courseId -> { tab, unit, scrollPos }
+        };
+
+        // Course definitions
+        const courses = {
+            im3: {
+                id: 'im3',
+                name: 'IM3 - Integrated Math 3',
+                description: 'Polynomials, Rational Functions, Trigonometry, and more',
+                units: [
+                    { id: 1, name: 'Unit 1', title: 'Polynomials & Polynomial Functions' },
+                    { id: 2, name: 'Unit 2', title: 'Rational Functions & Expressions' },
+                    { id: 3, name: 'Unit 3', title: 'Radical Functions & Equations' },
+                    { id: 4, name: 'Unit 4', title: 'Exponentials & Logarithms' },
+                    { id: 5, name: 'Unit 5', title: 'Trigonometry & Unit Circle' },
+                    { id: 6, name: 'Unit 6', title: 'Trig Identities & Equations' },
+                    { id: 7, name: 'Unit 7', title: 'Statistics & Probability' },
+                    { id: 8, name: 'Unit 8', title: 'Sequences & Series' }
+                ],
+                progress: 0
+            },
+            algebra2: {
+                id: 'algebra2',
+                name: 'Algebra 2',
+                description: 'Quadratics, Complex Numbers, Polynomials',
+                units: [
+                    { id: 1, name: 'Unit 1', title: 'Equations & Inequalities' },
+                    { id: 2, name: 'Unit 2', title: 'Linear Functions' },
+                    { id: 3, name: 'Unit 3', title: 'Quadratic Functions' },
+                    { id: 4, name: 'Unit 4', title: 'Polynomial Functions' }
+                ],
+                progress: 0
+            },
+            precalc: {
+                id: 'precalc',
+                name: 'Pre-Calculus',
+                description: 'Functions, Trigonometry, Limits',
+                units: [
+                    { id: 1, name: 'Unit 1', title: 'Functions & Graphs' },
+                    { id: 2, name: 'Unit 2', title: 'Polynomial & Rational Functions' },
+                    { id: 3, name: 'Unit 3', title: 'Exponential & Logarithmic Functions' },
+                    { id: 4, name: 'Unit 4', title: 'Trigonometric Functions' }
+                ],
+                progress: 0
+            }
+        };
+
+        // IM3 Course Content
+        const im3Content = {
+            units: {
+                1: {
+                    title: 'Polynomials & Polynomial Functions',
+                    lessons: [
+                        {
+                            title: '1.1 Polynomial Basics & Operations',
+                            content: `
+                                <p>A <strong>polynomial</strong> is an expression with terms of the form ax^n where n is a non-negative integer.</p>
+                                <ul>
+                                    <li><strong>Degree:</strong> The highest power of x (e.g., x³ + 2x - 1 has degree 3)</li>
+                                    <li><strong>Leading coefficient:</strong> The coefficient of the highest degree term</li>
+                                    <li><strong>Standard form:</strong> Terms arranged from highest to lowest degree</li>
+                                </ul>
+                                <div class="formula-box">
+                                    <strong>Polynomial Operations:</strong><br>
+                                    • Add/Subtract: Combine like terms<br>
+                                    • Multiply: Use distributive property (FOIL for binomials)<br>
+                                    • (a + b)² = a² + 2ab + b²<br>
+                                    • (a - b)² = a² - 2ab + b²<br>
+                                    • (a + b)(a - b) = a² - b²
+                                </div>
+                            `
+                        },
+                        {
+                            title: '1.2 Factoring Polynomials',
+                            content: `
+                                <p>Key factoring techniques:</p>
+                                <ul>
+                                    <li><strong>GCF:</strong> Always factor out the greatest common factor first</li>
+                                    <li><strong>Grouping:</strong> For 4+ terms, group and factor each group</li>
+                                    <li><strong>Difference of squares:</strong> a² - b² = (a+b)(a-b)</li>
+                                    <li><strong>Sum/Difference of cubes:</strong><br>
+                                        a³ + b³ = (a+b)(a² - ab + b²)<br>
+                                        a³ - b³ = (a-b)(a² + ab + b²)</li>
+                                </ul>
+                                <div class="formula-box">
+                                    <strong>Remember SOAP for cubes:</strong><br>
+                                    S = Same sign, O = Opposite sign, AP = Always Positive<br>
+                                    a³ ± b³ = (a [S] b)(a² [O] ab [AP] b²)
+                                </div>
+                            `
+                        },
+                        {
+                            title: '1.3 Polynomial Division & Remainder Theorem',
+                            content: `
+                                <p><strong>Synthetic Division:</strong> Shortcut when dividing by (x - c).</p>
+                                <div class="formula-box">
+                                    <strong>Remainder Theorem:</strong><br>
+                                    When P(x) is divided by (x - c), the remainder equals P(c).<br><br>
+                                    <strong>Factor Theorem:</strong><br>
+                                    (x - c) is a factor of P(x) if and only if P(c) = 0.
+                                </div>
+                            `
+                        },
+                        {
+                            title: '1.4 Finding Zeros & Graphing',
+                            content: `
+                                <p><strong>Rational Root Theorem:</strong> Possible rational zeros = ±(factors of constant)/(factors of leading coeff)</p>
+                                <div class="formula-box">
+                                    <strong>End Behavior:</strong><br>
+                                    • Even degree, positive leading coeff: ↗ ... ↗<br>
+                                    • Even degree, negative leading coeff: ↘ ... ↘<br>
+                                    • Odd degree, positive leading coeff: ↘ ... ↗<br>
+                                    • Odd degree, negative leading coeff: ↗ ... ↘<br><br>
+                                    <strong>Multiplicity of zeros:</strong><br>
+                                    • Odd multiplicity: graph crosses x-axis<br>
+                                    • Even multiplicity: graph touches and bounces
+                                </div>
+                            `
+                        }
+                    ]
+                },
+                2: {
+                    title: 'Rational Functions & Expressions',
+                    lessons: [
+                        {
+                            title: '2.1 Simplifying Rational Expressions',
+                            content: `
+                                <p>A <strong>rational expression</strong> is a fraction where numerator and denominator are polynomials.</p>
+                                <div class="formula-box">
+                                    <strong>To simplify:</strong><br>
+                                    1. Factor numerator and denominator completely<br>
+                                    2. Cancel common factors<br>
+                                    3. State restrictions (values that make denominator = 0)
+                                </div>
+                            `
+                        },
+                        {
+                            title: '2.2 Operations with Rational Expressions',
+                            content: `
+                                <div class="formula-box">
+                                    <strong>Multiplication:</strong> (a/b) · (c/d) = ac/bd (then simplify)<br><br>
+                                    <strong>Division:</strong> (a/b) ÷ (c/d) = (a/b) · (d/c)<br><br>
+                                    <strong>Addition/Subtraction:</strong><br>
+                                    1. Find LCD (Least Common Denominator)<br>
+                                    2. Rewrite each fraction with LCD<br>
+                                    3. Add/subtract numerators, keep denominator<br>
+                                    4. Simplify
+                                </div>
+                            `
+                        },
+                        {
+                            title: '2.3 Graphing Rational Functions',
+                            content: `
+                                <div class="formula-box">
+                                    <strong>Key Features:</strong><br>
+                                    • <strong>Vertical Asymptotes:</strong> Where denominator = 0 (and factor doesn't cancel)<br>
+                                    • <strong>Holes:</strong> Where factor cancels<br>
+                                    • <strong>Horizontal Asymptote:</strong><br>
+                                    &nbsp;&nbsp;- deg(num) < deg(den): y = 0<br>
+                                    &nbsp;&nbsp;- deg(num) = deg(den): y = leading coeff ratio<br>
+                                    &nbsp;&nbsp;- deg(num) > deg(den): No HA
+                                </div>
+                            `
+                        },
+                        {
+                            title: '2.4 Solving Rational Equations',
+                            content: `
+                                <div class="formula-box">
+                                    <strong>Steps to solve:</strong><br>
+                                    1. Find LCD of all fractions<br>
+                                    2. Multiply both sides by LCD<br>
+                                    3. Solve the resulting polynomial equation<br>
+                                    4. CHECK solutions - exclude any that make original denominator = 0
+                                </div>
+                            `
+                        }
+                    ]
+                }
+            },
+            exercises: [
+                // Unit 1 Exercises
+                {
+                    id: 'u1-1',
+                    unit: 1,
+                    question: 'Expand and simplify: (3x - 2)² - (x + 4)²',
+                    answer: '8x²-20x-12',
+                    hint: 'Use the perfect square formulas: (a-b)² = a² - 2ab + b² and (a+b)² = a² + 2ab + b². Expand each separately, then subtract.',
+                    solution: `<strong>Step 1: Expand (3x - 2)²</strong><br>
+                        Using (a - b)² = a² - 2ab + b²:<br>
+                        (3x - 2)² = 9x² - 12x + 4<br><br>
+                        <strong>Step 2: Expand (x + 4)²</strong><br>
+                        Using (a + b)² = a² + 2ab + b²:<br>
+                        (x + 4)² = x² + 8x + 16<br><br>
+                        <strong>Step 3: Subtract (watch the signs!)</strong><br>
+                        9x² - 12x + 4 - (x² + 8x + 16)<br>
+                        = 9x² - 12x + 4 - x² - 8x - 16<br>
+                        = <strong>8x² - 20x - 12</strong>`,
+                    hard: false
+                },
+                {
+                    id: 'u1-2',
+                    unit: 1,
+                    question: 'Factor completely: x³ + 8',
+                    answer: '(x+2)(x²-2x+4)',
+                    hint: 'Recognize 8 = 2³, so this is a sum of cubes. Use: a³ + b³ = (a + b)(a² - ab + b²)',
+                    solution: `<strong>Step 1: Recognize the pattern</strong><br>
+                        x³ + 8 = x³ + 2³ (sum of cubes)<br><br>
+                        <strong>Step 2: Apply the formula</strong><br>
+                        a³ + b³ = (a + b)(a² - ab + b²)<br>
+                        where a = x and b = 2<br><br>
+                        <strong>Step 3: Substitute</strong><br>
+                        = (x + 2)(x² - 2x + 4)<br><br>
+                        <strong>Answer: (x + 2)(x² - 2x + 4)</strong>`,
+                    hard: false
+                },
+                {
+                    id: 'u1-3',
+                    unit: 1,
+                    question: 'Factor completely: 2x⁴ - 32',
+                    answer: '2(x-2)(x+2)(x²+4)',
+                    hint: 'First factor out GCF, then recognize the difference of squares pattern.',
+                    solution: `<strong>Step 1: Factor out GCF</strong><br>
+                        2x⁴ - 32 = 2(x⁴ - 16)<br><br>
+                        <strong>Step 2: Recognize difference of squares</strong><br>
+                        x⁴ - 16 = (x²)² - 4²<br>
+                        = (x² - 4)(x² + 4)<br><br>
+                        <strong>Step 3: Factor again</strong><br>
+                        x² - 4 = (x - 2)(x + 2)<br>
+                        x² + 4 cannot be factored over reals<br><br>
+                        <strong>Answer: 2(x - 2)(x + 2)(x² + 4)</strong>`,
+                    hard: true
+                },
+                {
+                    id: 'u1-4',
+                    unit: 1,
+                    question: 'Find the remainder when (3x³ - 2x² + x - 5) ÷ (x - 1)',
+                    answer: '-3',
+                    hint: 'By the Remainder Theorem, when dividing P(x) by (x - c), the remainder equals P(c).',
+                    solution: `<strong>Using Remainder Theorem:</strong><br>
+                        When dividing by (x - 1), c = 1<br>
+                        Remainder = P(1)<br><br>
+                        P(1) = 3(1)³ - 2(1)² + (1) - 5<br>
+                        = 3 - 2 + 1 - 5<br>
+                        = <strong>-3</strong>`,
+                    hard: false
+                },
+                {
+                    id: 'u1-5',
+                    unit: 1,
+                    question: 'Find all rational zeros of P(x) = x³ - 4x² - 7x + 10',
+                    answer: '-2,1,5',
+                    answerType: 'zeros',
+                    zeros: [-2, 1, 5],
+                    hint: 'Use Rational Root Theorem: possible zeros are ±(factors of 10)/(factors of 1). Test candidates.',
+                    solution: `<strong>Step 1: Find candidates</strong><br>
+                        Possible zeros: ±1, ±2, ±5, ±10<br><br>
+                        <strong>Step 2: Test x = 1</strong><br>
+                        P(1) = 1 - 4 - 7 + 10 = 0 ✓<br><br>
+                        <strong>Step 3: Factor out (x - 1)</strong><br>
+                        Using synthetic division, get x² - 3x - 10<br><br>
+                        <strong>Step 4: Factor quadratic</strong><br>
+                        x² - 3x - 10 = (x - 5)(x + 2)<br><br>
+                        <strong>Zeros: x = -2, 1, 5</strong>`,
+                    hard: true
+                },
+                {
+                    id: 'u1-6',
+                    unit: 1,
+                    question: 'If (x - 2) is a factor of x³ + kx² - 8x + 12, find the value of k.',
+                    answer: '-1',
+                    hint: 'If (x - 2) is a factor, then P(2) = 0 by the Factor Theorem.',
+                    solution: `<strong>Using Factor Theorem:</strong><br>
+                        If (x - 2) is a factor, then P(2) = 0<br><br>
+                        P(2) = (2)³ + k(2)² - 8(2) + 12 = 0<br>
+                        8 + 4k - 16 + 12 = 0<br>
+                        4k + 4 = 0<br>
+                        <strong>k = -1</strong>`,
+                    hard: true
+                },
+                // Unit 2 Exercises
+                {
+                    id: 'u2-1',
+                    unit: 2,
+                    question: 'Simplify: (x² - 4x - 5)/(x² - 1)',
+                    answer: '(x-5)/(x-1)',
+                    hint: 'Factor both numerator and denominator, then cancel common factors.',
+                    solution: `<strong>Step 1: Factor numerator</strong><br>
+                        x² - 4x - 5 = (x - 5)(x + 1)<br><br>
+                        <strong>Step 2: Factor denominator</strong><br>
+                        x² - 1 = (x - 1)(x + 1)<br><br>
+                        <strong>Step 3: Cancel</strong><br>
+                        (x - 5)(x + 1) / (x - 1)(x + 1)<br>
+                        = <strong>(x - 5)/(x - 1)</strong>, x ≠ -1`,
+                    hard: false
+                },
+                {
+                    id: 'u2-2',
+                    unit: 2,
+                    question: 'Find the vertical asymptote(s) of f(x) = (x+3)/(x² - 9)',
+                    answer: '3',
+                    hint: 'Factor the denominator. Holes occur where factors cancel, asymptotes where they don\'t.',
+                    solution: `<strong>Step 1: Factor</strong><br>
+                        f(x) = (x + 3)/[(x - 3)(x + 3)]<br><br>
+                        <strong>Step 2: Identify</strong><br>
+                        (x + 3) cancels → Hole at x = -3<br>
+                        (x - 3) doesn't cancel → <strong>VA at x = 3</strong>`,
+                    hard: false
+                },
+                {
+                    id: 'u2-3',
+                    unit: 2,
+                    question: 'Simplify: 3/(x+2) - 2/(x-1)',
+                    answer: '(x-7)/[(x+2)(x-1)]',
+                    hint: 'Find the LCD, rewrite each fraction, then subtract.',
+                    solution: `<strong>Step 1: LCD = (x + 2)(x - 1)</strong><br><br>
+                        <strong>Step 2: Rewrite</strong><br>
+                        3(x-1)/LCD - 2(x+2)/LCD<br><br>
+                        <strong>Step 3: Combine</strong><br>
+                        [3x - 3 - 2x - 4] / [(x+2)(x-1)]<br>
+                        = <strong>(x - 7)/[(x + 2)(x - 1)]</strong>`,
+                    hard: true
+                },
+                {
+                    id: 'u2-4',
+                    unit: 2,
+                    question: 'Solve: 2/x + 3/(x+2) = 1',
+                    answer: '-1,4',
+                    answerType: 'zeros',
+                    zeros: [-1, 4],
+                    hint: 'Multiply both sides by LCD = x(x+2), then solve the quadratic.',
+                    solution: `<strong>Step 1: LCD = x(x + 2)</strong><br><br>
+                        <strong>Step 2: Multiply through</strong><br>
+                        2(x + 2) + 3x = x(x + 2)<br>
+                        5x + 4 = x² + 2x<br>
+                        x² - 3x - 4 = 0<br><br>
+                        <strong>Step 3: Factor and solve</strong><br>
+                        (x - 4)(x + 1) = 0<br>
+                        <strong>x = -1, 4</strong>`,
+                    hard: true
+                },
+                {
+                    id: 'u2-5',
+                    unit: 2,
+                    question: 'Find the horizontal asymptote of f(x) = (3x² + 2x - 1)/(2x² - 5)',
+                    answer: 'y=3/2',
+                    hint: 'Compare degrees. When equal, HA = ratio of leading coefficients.',
+                    solution: `<strong>Step 1: Compare degrees</strong><br>
+                        deg(num) = 2, deg(den) = 2<br>
+                        Degrees are equal!<br><br>
+                        <strong>Step 2: Apply rule</strong><br>
+                        HA = (leading coeff of num)/(leading coeff of den)<br>
+                        <strong>y = 3/2</strong>`,
+                    hard: true
+                },
+                {
+                    id: 'u2-6',
+                    unit: 2,
+                    question: 'Solve: 1/(x-2) + 1/(x+2) = 4/(x²-4)',
+                    answer: 'nosolution',
+                    hint: 'Notice x² - 4 = (x-2)(x+2). Solve and check for extraneous solutions!',
+                    solution: `<strong>Step 1: Rewrite with LCD</strong><br>
+                        All denominators factor to (x-2)(x+2)<br><br>
+                        <strong>Step 2: Combine and solve</strong><br>
+                        (x+2 + x-2) = 4<br>
+                        2x = 4<br>
+                        x = 2<br><br>
+                        <strong>Step 3: Check</strong><br>
+                        x = 2 makes denominator = 0!<br>
+                        <strong>No solution</strong>`,
+                    hard: true
+                }
+            ]
+        };
+
+        // ============================================
+        // INITIALIZATION
+        // ============================================
+
+        function init() {
+            loadState();
+            renderCourseList();
+            renderUnitExportList();
+            loadCourse(appState.currentCourse);
+            updateScoreDisplay();
+            applySettings();
+        }
+
+        function loadState() {
+            const saved = localStorage.getItem('mathHubState');
+            if (saved) {
+                const parsed = JSON.parse(saved);
+                Object.assign(appState, parsed);
+                appState.completedProblems = new Set(parsed.completedProblems || []);
+                appState.favorites = new Set(parsed.favorites || []);
+                appState.generatedProblems = parsed.generatedProblems || [];
+
+                // Restore generated problems to exercises array
+                if (appState.generatedProblems.length > 0) {
+                    appState.generatedProblems.forEach(prob => {
+                        if (!im3Content.exercises.find(ex => ex.id === prob.id)) {
+                            im3Content.exercises.push(prob);
+                        }
+                    });
+                    generatedCount = appState.generatedProblems.length;
+                }
+            }
+        }
+
+        function saveState() {
+            const toSave = {
+                ...appState,
+                completedProblems: Array.from(appState.completedProblems),
+                favorites: Array.from(appState.favorites),
+                generatedProblems: appState.generatedProblems
+            };
+            localStorage.setItem('mathHubState', JSON.stringify(toSave));
+        }
+
+        // ============================================
+        // TAB NAVIGATION
+        // ============================================
+
+        function switchTab(tabName) {
+            // Save bookmark for current course/tab
+            saveBookmark();
+
+            // Update tab bar
+            document.querySelectorAll('.tab-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+
+            // Update content
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(tabName + 'Tab').classList.add('active');
+
+            // Render favorites when switching to that tab
+            if (tabName === 'favorites') {
+                renderFavorites();
+            }
+
+            appState.currentTab = tabName;
+            saveState();
+        }
+
+        // ============================================
+        // COURSE MANAGEMENT
+        // ============================================
+
+        function renderCourseList() {
+            const container = document.getElementById('courseList');
+            container.innerHTML = '';
+
+            Object.values(courses).forEach(course => {
+                const isCurrent = course.id === appState.currentCourse;
+                const div = document.createElement('div');
+                div.className = 'course-item' + (isCurrent ? ' current' : '');
+                div.onclick = () => selectCourse(course.id);
+                div.innerHTML = `
+                    <h3>${course.name}</h3>
+                    <p>${course.description}</p>
+                    <div class="status">
+                        ${isCurrent ? '<span style="color:#00ff88;">● Current Course</span>' : ''}
+                        <div class="progress-mini">
+                            <div class="progress-mini-fill" style="width: ${course.progress}%"></div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function selectCourse(courseId) {
+            if (courseId === appState.currentCourse) return;
+
+            // Save bookmark for current course
+            saveBookmark();
+
+            // Switch course
+            appState.currentCourse = courseId;
+            loadCourse(courseId);
+            renderCourseList();
+            renderUnitExportList();
+
+            // Restore bookmark if exists
+            restoreBookmark();
+
+            saveState();
+        }
+
+        function loadCourse(courseId) {
+            const course = courses[courseId];
+            if (!course) return;
+
+            // Update headers
+            document.getElementById('currentCourseName').textContent = course.name;
+            document.getElementById('practiceCourseName').textContent = course.name;
+
+            // Render units
+            renderUnitNav(course);
+
+            // Render lessons
+            if (courseId === 'im3') {
+                renderLessons(appState.currentUnit);
+                renderFilterBar();
+                renderExercises(1);
+            } else {
+                document.getElementById('lessonContainer').innerHTML =
+                    '<div class="lesson"><p style="color:#888;">Content coming soon for this course!</p></div>';
+                document.getElementById('exerciseContainer').innerHTML = '';
+            }
+        }
+
+        function renderUnitNav(course) {
+            const container = document.getElementById('unitNav');
+            container.innerHTML = '';
+
+            course.units.forEach(unit => {
+                const btn = document.createElement('div');
+                btn.className = 'unit-btn' + (unit.id === appState.currentUnit ? ' active' : '');
+                btn.onclick = () => selectUnit(unit.id);
+                btn.innerHTML = `
+                    <h3>${unit.name}</h3>
+                    <p>${unit.title}</p>
+                `;
+                container.appendChild(btn);
+            });
+        }
+
+        function selectUnit(unitId) {
+            appState.currentUnit = unitId;
+
+            // Update nav
+            document.querySelectorAll('.unit-btn').forEach((btn, i) => {
+                btn.classList.toggle('active', i + 1 === unitId);
+            });
+
+            // Update content
+            renderLessons(unitId);
+            saveState();
+        }
+
+        function renderLessons(unitId) {
+            const container = document.getElementById('lessonContainer');
+
+            if (appState.currentCourse !== 'im3' || !im3Content.units[unitId]) {
+                container.innerHTML = '<div class="lesson"><p style="color:#888;">Content coming soon!</p></div>';
+                return;
+            }
+
+            const unit = im3Content.units[unitId];
+            let html = `<div class="lesson-content active">
+                <h2>${unit.title}</h2>`;
+
+            unit.lessons.forEach(lesson => {
+                html += `<div class="lesson">
+                    <h3>${lesson.title}</h3>
+                    ${lesson.content}
+                </div>`;
+            });
+
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        // ============================================
+        // BOOKMARKS
+        // ============================================
+
+        function saveBookmark() {
+            appState.bookmarks[appState.currentCourse] = {
+                tab: appState.currentTab,
+                unit: appState.currentUnit,
+                scrollPos: document.getElementById('mainContent').scrollTop
+            };
+        }
+
+        function restoreBookmark() {
+            const bookmark = appState.bookmarks[appState.currentCourse];
+            if (bookmark) {
+                appState.currentUnit = bookmark.unit;
+
+                // Switch to bookmarked tab
+                const tabItems = document.querySelectorAll('.tab-item');
+                tabItems.forEach(item => item.classList.remove('active'));
+
+                const tabIndex = ['review', 'practices', 'courses', 'settings'].indexOf(bookmark.tab);
+                if (tabIndex >= 0) {
+                    tabItems[tabIndex].classList.add('active');
+                }
+
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                document.getElementById(bookmark.tab + 'Tab').classList.add('active');
+
+                appState.currentTab = bookmark.tab;
+
+                // Restore scroll position
+                setTimeout(() => {
+                    document.getElementById('mainContent').scrollTop = bookmark.scrollPos;
+                }, 100);
+            }
+        }
+
+        // ============================================
+        // EXERCISES / PRACTICES
+        // ============================================
+
+        function renderFilterBar() {
+            const container = document.getElementById('filterBar');
+            const course = courses[appState.currentCourse];
+
+            let html = '';
+            course.units.forEach((unit, index) => {
+                html += `<button class="filter-btn ${index === 0 ? 'active' : ''}" onclick="filterExercises(${unit.id})">${unit.name}</button>`;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function filterExercises(unitId) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                const btnUnitId = parseInt(btn.getAttribute('onclick').match(/\d+/)[0]);
+                btn.classList.toggle('active', btnUnitId === unitId);
+            });
+            renderExercises(unitId);
+        }
+
+        function renderExercises(filterUnit = null) {
+            const container = document.getElementById('exerciseContainer');
+
+            if (appState.currentCourse !== 'im3') {
+                container.innerHTML = '<p style="color:#888; text-align:center;">Exercises coming soon!</p>';
+                return;
+            }
+
+            let exercises = im3Content.exercises;
+            if (filterUnit) {
+                exercises = exercises.filter(ex => ex.unit === filterUnit);
+            }
+
+            // Shuffle for variety
+            exercises = [...exercises].sort(() => Math.random() - 0.5);
+
+            let html = '';
+            exercises.forEach((ex, index) => {
+                const isCompleted = appState.completedProblems.has(ex.id);
+                const isFavorite = appState.favorites.has(ex.id);
+                html += `
+                    <div class="exercise ${ex.hard ? 'hard' : ''}" id="ex-${ex.id}">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <span class="unit-tag">Unit ${ex.unit}</span>
+                            <div>
+                                ${isCompleted ? '<span style="color:#00ff88; margin-right: 10px;">✓ Completed</span>' : ''}
+                                <button class="btn-heart ${isFavorite ? 'active' : ''}" onclick="toggleFavorite('${ex.id}')" title="Add to favorites">
+                                    ${isFavorite ? '★' : '☆'}
+                                </button>
+                            </div>
+                        </div>
+                        <p class="question">${index + 1}. ${ex.question}</p>
+                        <div class="answer-input">
+                            <input type="text" id="ans-${ex.id}" placeholder="Enter your answer">
+                            <button class="btn btn-check" onclick="checkExercise('${ex.id}')">Check</button>
+                        </div>
+                        <button class="btn btn-hint" onclick="toggleHintEx('${ex.id}')">Hint</button>
+                        <button class="btn btn-solution" onclick="toggleSolutionEx('${ex.id}')">Solution</button>
+                        <div class="hint-box" id="hint-${ex.id}">${ex.hint}</div>
+                        <div class="solution-box" id="sol-${ex.id}">${ex.solution}</div>
+                        <div class="feedback" id="fb-${ex.id}"></div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+            updateProgress();
+        }
+
+        function checkExercise(id) {
+            const exercise = im3Content.exercises.find(ex => ex.id === id);
+            const input = document.getElementById('ans-' + id);
+            const feedback = document.getElementById('fb-' + id);
+
+            let isCorrect = false;
+
+            if (exercise.answerType === 'zeros') {
+                const userVals = input.value.split(',').map(v => parseFloat(v.trim())).filter(v => !isNaN(v)).sort((a,b) => a-b);
+                const correctVals = exercise.zeros.sort((a,b) => a-b);
+                isCorrect = userVals.length === correctVals.length &&
+                            userVals.every((v, i) => Math.abs(v - correctVals[i]) < 0.01);
+            } else {
+                const userAns = input.value.replace(/\s/g, '').toLowerCase();
+                const correctAns = exercise.answer.replace(/\s/g, '').toLowerCase();
+                isCorrect = userAns === correctAns;
+            }
+
+            if (isCorrect) {
+                feedback.className = 'feedback correct';
+                feedback.textContent = '✓ Correct! +10 points';
+                if (!appState.completedProblems.has(id)) {
+                    appState.completedProblems.add(id);
+                    appState.score += 10;
+                    updateScoreDisplay();
+                    updateProgress();
+                    saveState();
+                }
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = '✗ Not quite. Check your work and try again!';
+            }
+        }
+
+        function toggleHintEx(id) {
+            document.getElementById('hint-' + id).classList.toggle('show');
+        }
+
+        function toggleSolutionEx(id) {
+            document.getElementById('sol-' + id).classList.toggle('show');
+        }
+
+        function toggleFavorite(id) {
+            const btn = document.querySelector(`#ex-${id} .btn-heart`);
+
+            if (appState.favorites.has(id)) {
+                appState.favorites.delete(id);
+                if (btn) {
+                    btn.classList.remove('active');
+                    btn.textContent = '☆';
+                }
+            } else {
+                appState.favorites.add(id);
+                if (btn) {
+                    btn.classList.add('active');
+                    btn.textContent = '★';
+                }
+            }
+
+            saveState();
+
+            // If on favorites tab, re-render
+            if (appState.currentTab === 'favorites') {
+                renderFavorites();
+            }
+        }
+
+        function renderFavorites() {
+            const container = document.getElementById('favoritesContainer');
+
+            if (appState.favorites.size === 0) {
+                container.innerHTML = '<p style="color:#888; text-align:center; padding: 40px;">No saved problems yet. Click ☆ on any problem to save it here.</p>';
+                return;
+            }
+
+            const favoriteExercises = im3Content.exercises.filter(ex => appState.favorites.has(ex.id));
+
+            if (favoriteExercises.length === 0) {
+                container.innerHTML = '<p style="color:#888; text-align:center; padding: 40px;">No saved problems yet. Click ☆ on any problem to save it here.</p>';
+                return;
+            }
+
+            let html = '';
+            favoriteExercises.forEach((ex, index) => {
+                const isCompleted = appState.completedProblems.has(ex.id);
+                html += `
+                    <div class="exercise ${ex.hard ? 'hard' : ''}" id="ex-${ex.id}">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <span class="unit-tag">Unit ${ex.unit}</span>
+                            <div>
+                                ${isCompleted ? '<span style="color:#00ff88; margin-right: 10px;">✓ Completed</span>' : ''}
+                                <button class="btn-heart active" onclick="toggleFavorite('${ex.id}')" title="Remove from favorites">★</button>
+                            </div>
+                        </div>
+                        <p class="question">${index + 1}. ${ex.question}</p>
+                        <div class="answer-input">
+                            <input type="text" id="fav-ans-${ex.id}" placeholder="Enter your answer">
+                            <button class="btn btn-check" onclick="checkFavoriteExercise('${ex.id}')">Check</button>
+                        </div>
+                        <button class="btn btn-hint" onclick="toggleHintFav('${ex.id}')">Hint</button>
+                        <button class="btn btn-solution" onclick="toggleSolutionFav('${ex.id}')">Solution</button>
+                        <div class="hint-box" id="fav-hint-${ex.id}">${ex.hint}</div>
+                        <div class="solution-box" id="fav-sol-${ex.id}">${ex.solution}</div>
+                        <div class="feedback" id="fav-fb-${ex.id}"></div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function toggleHintFav(id) {
+            document.getElementById('fav-hint-' + id).classList.toggle('show');
+        }
+
+        function toggleSolutionFav(id) {
+            document.getElementById('fav-sol-' + id).classList.toggle('show');
+        }
+
+        function checkFavoriteExercise(id) {
+            const exercise = im3Content.exercises.find(ex => ex.id === id);
+            const input = document.getElementById('fav-ans-' + id);
+            const feedback = document.getElementById('fav-fb-' + id);
+
+            let isCorrect = false;
+
+            if (exercise.answerType === 'zeros') {
+                const userVals = input.value.split(',').map(v => parseFloat(v.trim())).filter(v => !isNaN(v)).sort((a,b) => a-b);
+                const correctVals = exercise.zeros.sort((a,b) => a-b);
+                isCorrect = userVals.length === correctVals.length &&
+                            userVals.every((v, i) => Math.abs(v - correctVals[i]) < 0.01);
+            } else {
+                const userAns = input.value.replace(/\s/g, '').toLowerCase();
+                const correctAns = exercise.answer.replace(/\s/g, '').toLowerCase();
+                isCorrect = userAns === correctAns;
+            }
+
+            if (isCorrect) {
+                feedback.className = 'feedback correct';
+                feedback.textContent = '✓ Correct! +10 points';
+                if (!appState.completedProblems.has(id)) {
+                    appState.completedProblems.add(id);
+                    appState.score += 10;
+                    updateScoreDisplay();
+                    updateProgress();
+                    saveState();
+                }
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = '✗ Not quite. Check your work and try again!';
+            }
+        }
+
+        // ============================================
+        // PROBLEM GENERATORS
+        // ============================================
+
+        let generatedCount = 0;
+
+        // Utility functions
+        function randInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function randChoice(arr) {
+            return arr[Math.floor(Math.random() * arr.length)];
+        }
+
+        // Generator registry - extensible for all courses/units
+        const problemGenerators = {
+            im3: {
+                1: [ // Unit 1: Polynomials
+                    // Type 1: Expand (ax + b)² - (cx + d)²
+                    function() {
+                        const a = randInt(2, 5);
+                        const b = randChoice([-4, -3, -2, 2, 3, 4]);
+                        const c = randInt(1, 3);
+                        const d = randChoice([-5, -4, -3, 3, 4, 5]);
+
+                        const x2 = a*a - c*c;
+                        const x1 = 2*a*b - 2*c*d;
+                        const x0 = b*b - d*d;
+
+                        const bSign = b > 0 ? '+' : '-';
+                        const dSign = d > 0 ? '+' : '-';
+
+                        return {
+                            unit: 1,
+                            question: `Expand and simplify: (${a}x ${bSign} ${Math.abs(b)})² - (${c === 1 ? '' : c}x ${dSign} ${Math.abs(d)})²`,
+                            answer: `${x2}x²${x1 >= 0 ? '+' : ''}${x1}x${x0 >= 0 ? '+' : ''}${x0}`,
+                            hint: `Use (a±b)² = a² ± 2ab + b² for each, then subtract carefully.`,
+                            solution: `<strong>Step 1: Expand (${a}x ${bSign} ${Math.abs(b)})²</strong><br>
+                                = ${a*a}x² ${2*a*b >= 0 ? '+' : '-'} ${Math.abs(2*a*b)}x + ${b*b}<br><br>
+                                <strong>Step 2: Expand (${c === 1 ? '' : c}x ${dSign} ${Math.abs(d)})²</strong><br>
+                                = ${c*c}x² ${2*c*d >= 0 ? '+' : '-'} ${Math.abs(2*c*d)}x + ${d*d}<br><br>
+                                <strong>Step 3: Subtract</strong><br>
+                                = ${a*a}x² ${2*a*b >= 0 ? '+' : '-'} ${Math.abs(2*a*b)}x + ${b*b} - (${c*c}x² ${2*c*d >= 0 ? '+' : '-'} ${Math.abs(2*c*d)}x + ${d*d})<br><br>
+                                <strong>Step 4: Combine like terms</strong><br>
+                                = <strong>${x2}x² ${x1 >= 0 ? '+' : '-'} ${Math.abs(x1)}x ${x0 >= 0 ? '+' : '-'} ${Math.abs(x0)}</strong>`,
+                            hard: false
+                        };
+                    },
+                    // Type 2: Factor sum/difference of cubes
+                    function() {
+                        const a = randChoice([1, 2, 3]);
+                        const b = randChoice([1, 2, 3, 4, 5]);
+                        const isSum = Math.random() > 0.5;
+                        const a3 = a * a * a;
+                        const b3 = b * b * b;
+
+                        const sign = isSum ? '+' : '-';
+                        const oppSign = isSum ? '-' : '+';
+
+                        return {
+                            unit: 1,
+                            question: `Factor completely: ${a === 1 ? '' : a3}x³ ${sign} ${b3}`,
+                            answer: `(${a === 1 ? '' : a}x${sign}${b})(${a === 1 ? '' : a*a}x²${oppSign}${a*b}x+${b*b})`,
+                            hint: `This is a ${isSum ? 'sum' : 'difference'} of cubes. Use: a³ ${sign} b³ = (a ${sign} b)(a² ${oppSign} ab + b²)`,
+                            solution: `<strong>Step 1: Recognize the pattern</strong><br>
+                                ${a === 1 ? '' : a3}x³ ${sign} ${b3} = (${a === 1 ? '' : a}x)³ ${sign} ${b}³<br><br>
+                                <strong>Step 2: Identify a and b</strong><br>
+                                a = ${a === 1 ? '' : a}x, b = ${b}<br><br>
+                                <strong>Step 3: Apply ${isSum ? 'sum' : 'difference'} of cubes formula</strong><br>
+                                a³ ${sign} b³ = (a ${sign} b)(a² ${oppSign} ab + b²)<br><br>
+                                <strong>Step 4: Substitute</strong><br>
+                                = <strong>(${a === 1 ? '' : a}x ${sign} ${b})(${a*a === 1 ? '' : a*a}x² ${oppSign} ${a*b}x + ${b*b})</strong>`,
+                            hard: false
+                        };
+                    },
+                    // Type 3: Factor with GCF and difference of squares
+                    function() {
+                        const gcf = randChoice([2, 3, 4]);
+                        const b = randChoice([2, 3, 4]);
+
+                        return {
+                            unit: 1,
+                            question: `Factor completely: ${gcf}x⁴ - ${gcf * b * b * b * b}`,
+                            answer: `${gcf}(x-${b})(x+${b})(x²+${b*b})`,
+                            hint: `First factor out the GCF, then recognize difference of squares pattern: a² - b² = (a-b)(a+b)`,
+                            solution: `<strong>Step 1: Factor out GCF</strong><br>
+                                ${gcf}x⁴ - ${gcf * b*b*b*b} = ${gcf}(x⁴ - ${b*b*b*b})<br><br>
+                                <strong>Step 2: Recognize x⁴ - ${b*b*b*b} as difference of squares</strong><br>
+                                x⁴ - ${b*b*b*b} = (x²)² - (${b*b})²<br>
+                                = (x² - ${b*b})(x² + ${b*b})<br><br>
+                                <strong>Step 3: Factor x² - ${b*b} further</strong><br>
+                                x² - ${b*b} = (x - ${b})(x + ${b})<br><br>
+                                <strong>Step 4: Note x² + ${b*b} cannot be factored over reals</strong><br><br>
+                                <strong>Answer: ${gcf}(x - ${b})(x + ${b})(x² + ${b*b})</strong>`,
+                            hard: true
+                        };
+                    },
+                    // Type 4: Remainder Theorem
+                    function() {
+                        const a = randInt(1, 4);
+                        const b = randChoice([-3, -2, -1, 1, 2, 3]);
+                        const c = randChoice([-4, -3, -2, 2, 3, 4]);
+                        const d = randChoice([-6, -5, -4, 4, 5, 6]);
+                        const r = randChoice([-2, -1, 1, 2, 3]);
+
+                        const remainder = a*r*r*r + b*r*r + c*r + d;
+
+                        const bSign = b >= 0 ? '+' : '-';
+                        const cSign = c >= 0 ? '+' : '-';
+                        const dSign = d >= 0 ? '+' : '-';
+
+                        return {
+                            unit: 1,
+                            question: `Find the remainder when P(x) = ${a === 1 ? '' : a}x³ ${bSign} ${Math.abs(b)}x² ${cSign} ${Math.abs(c)}x ${dSign} ${Math.abs(d)} is divided by (x ${r >= 0 ? '-' : '+'} ${Math.abs(r)})`,
+                            answer: `${remainder}`,
+                            hint: `By the Remainder Theorem, when dividing P(x) by (x - c), the remainder equals P(c). Here c = ${r}.`,
+                            solution: `<strong>Using Remainder Theorem:</strong><br>
+                                When dividing by (x ${r >= 0 ? '-' : '+'} ${Math.abs(r)}), c = ${r}<br>
+                                Remainder = P(${r})<br><br>
+                                <strong>Calculate P(${r}):</strong><br>
+                                P(${r}) = ${a}(${r})³ ${bSign} ${Math.abs(b)}(${r})² ${cSign} ${Math.abs(c)}(${r}) ${dSign} ${Math.abs(d)}<br>
+                                = ${a*r*r*r} ${b*r*r >= 0 ? '+' : '-'} ${Math.abs(b*r*r)} ${c*r >= 0 ? '+' : '-'} ${Math.abs(c*r)} ${dSign} ${Math.abs(d)}<br>
+                                = <strong>${remainder}</strong>`,
+                            hard: false
+                        };
+                    },
+                    // Type 5: Find k given factor
+                    function() {
+                        const r = randChoice([1, 2, 3, -1, -2]);
+                        const k = randChoice([-4, -3, -2, -1, 1, 2, 3, 4]);
+                        const b = randChoice([-5, -4, -3, 3, 4, 5]);
+                        const c = -(r*r*r + k*r*r + b*r);
+
+                        return {
+                            unit: 1,
+                            question: `If (x ${r >= 0 ? '-' : '+'} ${Math.abs(r)}) is a factor of x³ + kx² ${b >= 0 ? '+' : '-'} ${Math.abs(b)}x ${c >= 0 ? '+' : '-'} ${Math.abs(c)}, find k.`,
+                            answer: `${k}`,
+                            hint: `If (x ${r >= 0 ? '-' : '+'} ${Math.abs(r)}) is a factor, then P(${r}) = 0 by the Factor Theorem.`,
+                            solution: `<strong>Step 1: Apply Factor Theorem</strong><br>
+                                If (x ${r >= 0 ? '-' : '+'} ${Math.abs(r)}) is a factor, then P(${r}) = 0<br><br>
+                                <strong>Step 2: Substitute x = ${r}</strong><br>
+                                (${r})³ + k(${r})² ${b >= 0 ? '+' : '-'} ${Math.abs(b)}(${r}) ${c >= 0 ? '+' : '-'} ${Math.abs(c)} = 0<br>
+                                ${r*r*r} + ${r*r}k ${b*r >= 0 ? '+' : '-'} ${Math.abs(b*r)} ${c >= 0 ? '+' : '-'} ${Math.abs(c)} = 0<br><br>
+                                <strong>Step 3: Solve for k</strong><br>
+                                ${r*r}k = ${-(r*r*r + b*r + c)}<br>
+                                <strong>k = ${k}</strong>`,
+                            hard: true
+                        };
+                    },
+                    // Type 6: Find zeros of cubic
+                    function() {
+                        const r1 = randChoice([-3, -2, -1, 1, 2, 3]);
+                        let r2 = randChoice([-3, -2, -1, 1, 2, 3]);
+                        while (r2 === r1) r2 = randChoice([-3, -2, -1, 1, 2, 3]);
+                        let r3 = randChoice([-4, -3, -2, -1, 1, 2, 3, 4]);
+                        while (r3 === r1 || r3 === r2) r3 = randChoice([-4, -3, -2, -1, 1, 2, 3, 4]);
+
+                        const b = -(r1 + r2 + r3);
+                        const c = r1*r2 + r1*r3 + r2*r3;
+                        const d = -r1*r2*r3;
+
+                        const sortedRoots = [r1, r2, r3].sort((a,b) => a-b);
+
+                        return {
+                            unit: 1,
+                            question: `Find all rational zeros of P(x) = x³ ${b >= 0 ? '+' : '-'} ${Math.abs(b)}x² ${c >= 0 ? '+' : '-'} ${Math.abs(c)}x ${d >= 0 ? '+' : '-'} ${Math.abs(d)}`,
+                            answer: sortedRoots.join(','),
+                            answerType: 'zeros',
+                            zeros: sortedRoots,
+                            hint: `Use Rational Root Theorem: possible zeros are ±(factors of ${Math.abs(d)})/(factors of 1). Test candidates.`,
+                            solution: `<strong>Step 1: List possible rational zeros</strong><br>
+                                Factors of ${Math.abs(d)} over factors of 1<br>
+                                Possible: ±1, ±${Math.abs(d) > 1 ? Math.abs(d) : ''}, etc.<br><br>
+                                <strong>Step 2: Test candidates</strong><br>
+                                P(${r1}) = 0 ✓ Found one!<br><br>
+                                <strong>Step 3: Factor out (x ${r1 >= 0 ? '-' : '+'} ${Math.abs(r1)})</strong><br>
+                                Using synthetic division...<br><br>
+                                <strong>Step 4: Factor the resulting quadratic</strong><br>
+                                The remaining zeros are x = ${r2} and x = ${r3}<br><br>
+                                <strong>Zeros: x = ${sortedRoots.join(', ')}</strong>`,
+                            hard: true
+                        };
+                    }
+                ],
+                2: [ // Unit 2: Rational Functions
+                    // Type 1: Simplify rational expression
+                    function() {
+                        const a = randChoice([-5, -4, -3, -2, 2, 3, 4, 5]);
+                        let b = randChoice([-4, -3, -2, 2, 3, 4]);
+                        while (a === -b) b = randChoice([-4, -3, -2, 2, 3, 4]);
+                        let c = randChoice([-3, -2, -1, 1, 2, 3]);
+                        while (c === -b) c = randChoice([-3, -2, -1, 1, 2, 3]);
+
+                        return {
+                            unit: 2,
+                            question: `Simplify: (x² ${a+b >= 0 ? '+' : '-'} ${Math.abs(a+b)}x ${a*b >= 0 ? '+' : '-'} ${Math.abs(a*b)}) / (x² ${c+b >= 0 ? '+' : '-'} ${Math.abs(c+b)}x ${c*b >= 0 ? '+' : '-'} ${Math.abs(c*b)})`,
+                            answer: `(x${a >= 0 ? '+' : ''}${a})/(x${c >= 0 ? '+' : ''}${c})`,
+                            hint: `Factor both numerator and denominator, then cancel common factors.`,
+                            solution: `<strong>Step 1: Factor numerator</strong><br>
+                                x² ${a+b >= 0 ? '+' : '-'} ${Math.abs(a+b)}x ${a*b >= 0 ? '+' : '-'} ${Math.abs(a*b)} = (x ${a >= 0 ? '+' : '-'} ${Math.abs(a)})(x ${b >= 0 ? '+' : '-'} ${Math.abs(b)})<br><br>
+                                <strong>Step 2: Factor denominator</strong><br>
+                                x² ${c+b >= 0 ? '+' : '-'} ${Math.abs(c+b)}x ${c*b >= 0 ? '+' : '-'} ${Math.abs(c*b)} = (x ${c >= 0 ? '+' : '-'} ${Math.abs(c)})(x ${b >= 0 ? '+' : '-'} ${Math.abs(b)})<br><br>
+                                <strong>Step 3: Cancel common factor (x ${b >= 0 ? '+' : '-'} ${Math.abs(b)})</strong><br><br>
+                                <strong>Answer: (x ${a >= 0 ? '+' : '-'} ${Math.abs(a)})/(x ${c >= 0 ? '+' : '-'} ${Math.abs(c)})</strong>, x ≠ ${-b}`,
+                            hard: false
+                        };
+                    },
+                    // Type 2: Find vertical asymptote with hole
+                    function() {
+                        const a = randChoice([-4, -3, -2, 2, 3, 4]);
+                        let b = randChoice([-3, -2, -1, 1, 2, 3]);
+                        while (a === b) b = randChoice([-3, -2, -1, 1, 2, 3]);
+
+                        return {
+                            unit: 2,
+                            question: `Find the vertical asymptote of f(x) = (x ${a >= 0 ? '+' : '-'} ${Math.abs(a)}) / (x² ${-b+a >= 0 ? '+' : '-'} ${Math.abs(-b+a)}x ${-b*a >= 0 ? '+' : '-'} ${Math.abs(b*a)})`,
+                            answer: `${b}`,
+                            hint: `Factor the denominator. Factors that cancel create holes; factors that don't create vertical asymptotes.`,
+                            solution: `<strong>Step 1: Factor the denominator</strong><br>
+                                x² ${-b+a >= 0 ? '+' : '-'} ${Math.abs(-b+a)}x ${-b*a >= 0 ? '+' : '-'} ${Math.abs(b*a)} = (x ${-b >= 0 ? '+' : '-'} ${Math.abs(b)})(x ${a >= 0 ? '+' : '-'} ${Math.abs(a)})<br><br>
+                                <strong>Step 2: Write in factored form</strong><br>
+                                f(x) = (x ${a >= 0 ? '+' : '-'} ${Math.abs(a)}) / [(x ${-b >= 0 ? '+' : '-'} ${Math.abs(b)})(x ${a >= 0 ? '+' : '-'} ${Math.abs(a)})]<br><br>
+                                <strong>Step 3: Identify what cancels</strong><br>
+                                (x ${a >= 0 ? '+' : '-'} ${Math.abs(a)}) cancels → Hole at x = ${-a}<br>
+                                (x ${-b >= 0 ? '+' : '-'} ${Math.abs(b)}) doesn't cancel → <strong>VA at x = ${b}</strong>`,
+                            hard: false
+                        };
+                    },
+                    // Type 3: Add/subtract rational expressions
+                    function() {
+                        const a = randInt(1, 4);
+                        const b = randInt(1, 4);
+                        const c = randChoice([-3, -2, 2, 3]);
+                        let d = randChoice([-4, -3, 3, 4]);
+                        while (c === d) d = randChoice([-4, -3, 3, 4]);
+                        const isAdd = Math.random() > 0.5;
+
+                        const numX = isAdd ? a + b : a - b;
+                        const numConst = isAdd ? a*d + b*c : a*d - b*c;
+                        const op = isAdd ? '+' : '-';
+
+                        return {
+                            unit: 2,
+                            question: `Simplify: ${a}/(x ${c >= 0 ? '+' : '-'} ${Math.abs(c)}) ${op} ${b}/(x ${d >= 0 ? '+' : '-'} ${Math.abs(d)})`,
+                            answer: `(${numX}x${numConst >= 0 ? '+' : ''}${numConst})/[(x${c >= 0 ? '+' : ''}${c})(x${d >= 0 ? '+' : ''}${d})]`,
+                            hint: `Find the LCD, rewrite each fraction with the LCD, then ${isAdd ? 'add' : 'subtract'}.`,
+                            solution: `<strong>Step 1: Find LCD</strong><br>
+                                LCD = (x ${c >= 0 ? '+' : '-'} ${Math.abs(c)})(x ${d >= 0 ? '+' : '-'} ${Math.abs(d)})<br><br>
+                                <strong>Step 2: Rewrite with LCD</strong><br>
+                                ${a}(x ${d >= 0 ? '+' : '-'} ${Math.abs(d)})/LCD ${op} ${b}(x ${c >= 0 ? '+' : '-'} ${Math.abs(c)})/LCD<br><br>
+                                <strong>Step 3: Combine numerators</strong><br>
+                                [${a}x ${a*d >= 0 ? '+' : '-'} ${Math.abs(a*d)} ${op} ${b}x ${isAdd ? (b*c >= 0 ? '+' : '-') : (b*c >= 0 ? '-' : '+')} ${Math.abs(b*c)}] / LCD<br><br>
+                                <strong>Step 4: Simplify</strong><br>
+                                <strong>(${numX}x ${numConst >= 0 ? '+' : '-'} ${Math.abs(numConst)}) / [(x ${c >= 0 ? '+' : '-'} ${Math.abs(c)})(x ${d >= 0 ? '+' : '-'} ${Math.abs(d)})]</strong>`,
+                            hard: true
+                        };
+                    },
+                    // Type 4: Horizontal asymptote
+                    function() {
+                        const a = randInt(2, 5);
+                        const b = randInt(2, 5);
+                        const c = randChoice([-3, -2, 2, 3]);
+                        const d = randChoice([-4, -3, 3, 4]);
+
+                        return {
+                            unit: 2,
+                            question: `Find the horizontal asymptote of f(x) = (${a}x² ${c >= 0 ? '+' : '-'} ${Math.abs(c)}x + 1) / (${b}x² ${d >= 0 ? '+' : '-'} ${Math.abs(d)})`,
+                            answer: `y=${a}/${b}`,
+                            hint: `Compare degrees of numerator and denominator. When equal, HA = ratio of leading coefficients.`,
+                            solution: `<strong>Step 1: Find degrees</strong><br>
+                                Degree of numerator = 2<br>
+                                Degree of denominator = 2<br><br>
+                                <strong>Step 2: Apply the rule</strong><br>
+                                When degrees are equal:<br>
+                                HA = (leading coeff of num)/(leading coeff of den)<br><br>
+                                <strong>Step 3: Calculate</strong><br>
+                                HA: <strong>y = ${a}/${b}</strong>`,
+                            hard: true
+                        };
+                    },
+                    // Type 5: Extraneous solution
+                    function() {
+                        const a = randChoice([2, 3, 4]);
+
+                        return {
+                            unit: 2,
+                            question: `Solve: 1/(x - ${a}) + 1/(x + ${a}) = ${2*a}/(x² - ${a*a})`,
+                            answer: `nosolution`,
+                            hint: `Notice x² - ${a*a} = (x - ${a})(x + ${a}). Solve, then check if your answer is valid!`,
+                            solution: `<strong>Step 1: Note the relationship</strong><br>
+                                x² - ${a*a} = (x - ${a})(x + ${a})<br>
+                                Restrictions: x ≠ ${a}, x ≠ -${a}<br><br>
+                                <strong>Step 2: Rewrite with LCD</strong><br>
+                                (x + ${a})/LCD + (x - ${a})/LCD = ${2*a}/LCD<br><br>
+                                <strong>Step 3: Combine and solve</strong><br>
+                                x + ${a} + x - ${a} = ${2*a}<br>
+                                2x = ${2*a}<br>
+                                x = ${a}<br><br>
+                                <strong>Step 4: Check!</strong><br>
+                                x = ${a} makes denominator = 0!<br>
+                                <strong>No solution</strong> (extraneous)`,
+                            hard: true
+                        };
+                    }
+                ],
+                // Placeholder for other units
+                3: [], 4: [], 5: [], 6: [], 7: [], 8: []
+            },
+            // Placeholder for other courses
+            algebra2: { 1: [], 2: [], 3: [], 4: [] },
+            precalc: { 1: [], 2: [], 3: [], 4: [] }
+        };
+
+        function generateMoreProblems() {
+            const courseId = appState.currentCourse;
+
+            // Only IM3 has generators for now
+            if (courseId !== 'im3') {
+                alert('Problem generators coming soon for this course!');
+                return;
+            }
+
+            const generators = problemGenerators[courseId];
+
+            // Get current filter
+            const activeFilter = document.querySelector('.filter-btn.active');
+            let filterUnit = 0;
+            if (activeFilter) {
+                const text = activeFilter.textContent.trim();
+                if (text !== 'All') {
+                    filterUnit = parseInt(text.replace('Unit ', '')) || 0;
+                }
+            }
+
+            // Collect available generators
+            let availableGens = [];
+            if (filterUnit === 0) {
+                // All units - only include units with generators
+                Object.keys(generators).forEach(unitKey => {
+                    const unitNum = parseInt(unitKey);
+                    const unitGens = generators[unitKey];
+                    if (unitGens && unitGens.length > 0) {
+                        unitGens.forEach(gen => {
+                            availableGens.push({ gen, unit: unitNum });
+                        });
+                    }
+                });
+            } else {
+                // Specific unit
+                const unitGens = generators[filterUnit] || [];
+                unitGens.forEach(gen => {
+                    availableGens.push({ gen, unit: filterUnit });
+                });
+            }
+
+            if (availableGens.length === 0) {
+                alert('No problem generators available for this selection yet. Coming soon!');
+                return;
+            }
+
+            // Generate 3 new problems
+            const container = document.getElementById('exerciseContainer');
+            if (!container) return;
+
+            // Count existing problems in container to continue numbering
+            const existingProblems = container.querySelectorAll('.exercise').length;
+
+            const newProblemsHtml = [];
+
+            for (let i = 0; i < 3; i++) {
+                const { gen, unit } = randChoice(availableGens);
+                const problem = gen();
+                generatedCount++;
+                const id = `gen-${generatedCount}`;
+                const problemNumber = existingProblems + i + 1;
+
+                // Create problem object
+                const problemObj = {
+                    id: id,
+                    unit: problem.unit || unit,
+                    question: problem.question,
+                    answer: problem.answer,
+                    answerType: problem.answerType,
+                    zeros: problem.zeros,
+                    hint: problem.hint,
+                    solution: problem.solution,
+                    hard: problem.hard,
+                    generated: true
+                };
+
+                // Add to exercises array for checking
+                im3Content.exercises.push(problemObj);
+
+                // Also save to persistent storage
+                appState.generatedProblems.push(problemObj);
+
+                newProblemsHtml.push(`
+                    <div class="exercise ${problem.hard ? 'hard' : ''}" id="ex-${id}" style="border-color: #aa00ff; animation: fadeIn 0.5s ease;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <span class="unit-tag" style="background: linear-gradient(90deg, #aa00ff, #00d4ff);">Unit ${problem.unit || unit} - Generated</span>
+                            <button class="btn-heart" onclick="toggleFavorite('${id}')" title="Add to favorites">☆</button>
+                        </div>
+                        <p class="question">${problemNumber}. ${problem.question}</p>
+                        <div class="answer-input">
+                            <input type="text" id="ans-${id}" placeholder="Enter your answer">
+                            <button class="btn btn-check" onclick="checkExercise('${id}')">Check</button>
+                        </div>
+                        <button class="btn btn-hint" onclick="toggleHintEx('${id}')">Hint</button>
+                        <button class="btn btn-solution" onclick="toggleSolutionEx('${id}')">Solution</button>
+                        <div class="hint-box" id="hint-${id}">${problem.hint}</div>
+                        <div class="solution-box" id="sol-${id}">${problem.solution}</div>
+                        <div class="feedback" id="fb-${id}"></div>
+                    </div>
+                `);
+            }
+
+            // Append new problems to container (at the bottom)
+            container.insertAdjacentHTML('beforeend', newProblemsHtml.join(''));
+
+            // Scroll to show the new problems
+            const newProblem = document.getElementById('ex-' + `gen-${generatedCount}`);
+            if (newProblem) {
+                newProblem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+
+            // Save generated problems to localStorage
+            saveState();
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const total = im3Content.exercises.length;
+            const completed = Array.from(appState.completedProblems).filter(id =>
+                im3Content.exercises.some(ex => ex.id === id)
+            ).length;
+            const percent = Math.round((completed / total) * 100);
+
+            document.getElementById('practiceProgress').style.width = percent + '%';
+            document.getElementById('practiceProgressText').textContent = percent;
+
+            courses.im3.progress = percent;
+        }
+
+        // ============================================
+        // SETTINGS
+        // ============================================
+
+        function toggleSetting(setting) {
+            appState.settings[setting] = !appState.settings[setting];
+            applySettings();
+            saveState();
+        }
+
+        function applySettings() {
+            document.getElementById('toggleHints').classList.toggle('on', appState.settings.showHints);
+            document.getElementById('toggleSound').classList.toggle('on', appState.settings.soundOn);
+            document.getElementById('settingsScore').textContent = appState.score + ' pts';
+            document.getElementById('settingsCompleted').textContent = appState.completedProblems.size;
+        }
+
+        function resetProgress() {
+            if (confirm('Are you sure you want to reset all progress? This cannot be undone.')) {
+                appState.score = 0;
+                appState.completedProblems = new Set();
+                appState.bookmarks = {};
+                Object.values(courses).forEach(c => c.progress = 0);
+
+                updateScoreDisplay();
+                updateProgress();
+                renderExercises(1);
+                applySettings();
+                saveState();
+            }
+        }
+
+        function updateScoreDisplay() {
+            document.getElementById('totalScore').textContent = appState.score;
+        }
+
+        // ============================================
+        // EXPORT FUNCTIONS
+        // ============================================
+
+        function renderUnitExportList() {
+            const container = document.getElementById('unitExportList');
+            if (!container) return;
+
+            const course = courses[appState.currentCourse];
+            if (!course) return;
+
+            let html = '';
+            course.units.forEach(unit => {
+                const unitExercises = im3Content.exercises.filter(ex => ex.unit === unit.id);
+                const count = unitExercises.length;
+                html += `
+                    <div class="unit-export-row">
+                        <span>${unit.name}: ${unit.title} (${count} problems)</span>
+                        <button class="btn-pdf-small" onclick="printUnitToPDF(${unit.id})">PDF</button>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function exportToJSON() {
+            const course = courses[appState.currentCourse];
+            if (!course) {
+                alert('No course selected');
+                return;
+            }
+
+            // Build export data
+            const exportData = {
+                course: {
+                    id: course.id,
+                    name: course.name,
+                    description: course.description,
+                    units: course.units
+                },
+                exercises: im3Content.exercises.map(ex => ({
+                    id: ex.id,
+                    unit: ex.unit,
+                    question: ex.question,
+                    answer: ex.answer,
+                    answerType: ex.answerType,
+                    zeros: ex.zeros,
+                    hint: ex.hint,
+                    solution: ex.solution,
+                    hard: ex.hard || false,
+                    generated: ex.generated || false
+                })),
+                lessons: im3Content.units,
+                exportDate: new Date().toISOString(),
+                userProgress: {
+                    score: appState.score,
+                    completedProblems: Array.from(appState.completedProblems),
+                    savedProblems: Array.from(appState.favorites)
+                }
+            };
+
+            // Create and download file
+            const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${course.id}-export-${new Date().toISOString().split('T')[0]}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function printUnitToPDF(unitId) {
+            const course = courses[appState.currentCourse];
+            const unit = course.units.find(u => u.id === unitId);
+            if (!unit) return;
+
+            const unitExercises = im3Content.exercises.filter(ex => ex.unit === unitId);
+            if (unitExercises.length === 0) {
+                alert('No problems found for this unit.');
+                return;
+            }
+
+            // Create print window
+            const printWindow = window.open('', '_blank');
+
+            let problemsHtml = '';
+            let hintsHtml = '';
+            let answerKeyHtml = '';
+
+            unitExercises.forEach((ex, index) => {
+                // Problems section (no hints)
+                problemsHtml += `
+                    <div class="problem" style="margin-bottom: 25px; padding: 15px; border: 1px solid #ddd; border-radius: 8px; ${ex.hard ? 'border-left: 4px solid #ff5555;' : ''}">
+                        <div style="font-size: 0.85em; color: #666; margin-bottom: 5px;">Problem ${index + 1}${ex.hard ? ' (Challenge)' : ''}</div>
+                        <div style="font-size: 1.1em; line-height: 1.6;">${ex.question}</div>
+                    </div>
+                `;
+
+                // Hints section
+                hintsHtml += `
+                    <div style="margin-bottom: 15px; padding: 10px; background: #fff8e1; border-radius: 5px; border-left: 3px solid #ffaa00;">
+                        <strong>Problem ${index + 1}:</strong> <span style="color: #666;">${ex.hint}</span>
+                    </div>
+                `;
+
+                // Answer key section
+                answerKeyHtml += `
+                    <div class="answer" style="margin-bottom: 20px; padding: 10px; background: #f9f9f9; border-radius: 5px;">
+                        <div style="font-weight: bold; margin-bottom: 5px;">Problem ${index + 1}</div>
+                        <div style="margin-bottom: 10px;"><strong>Answer:</strong> ${ex.answer || (ex.zeros ? ex.zeros.join(', ') : 'N/A')}</div>
+                        <div style="font-size: 0.9em; line-height: 1.6;">${ex.solution}</div>
+                    </div>
+                `;
+            });
+
+            printWindow.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>${course.name} - ${unit.name}: ${unit.title}</title>
+                    <style>
+                        body { font-family: 'Segoe UI', Tahoma, sans-serif; padding: 30px; max-width: 800px; margin: 0 auto; }
+                        h1 { color: #333; border-bottom: 2px solid #00d4ff; padding-bottom: 10px; }
+                        h2 { color: #555; margin-top: 30px; }
+                        .page-break { page-break-before: always; }
+                        @media print {
+                            .no-print { display: none; }
+                            body { padding: 20px; }
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="no-print" style="margin-bottom: 20px; padding: 10px; background: #e3f2fd; border-radius: 5px;">
+                        <button onclick="window.print()" style="padding: 10px 20px; background: #00d4ff; border: none; border-radius: 5px; cursor: pointer; font-size: 1em;">Print / Save as PDF</button>
+                        <span style="margin-left: 10px; color: #666;">Click to print or save as PDF</span>
+                    </div>
+
+                    <h1>${course.name}</h1>
+                    <h2>${unit.name}: ${unit.title}</h2>
+                    <p style="color: #666;">${unitExercises.length} problems</p>
+
+                    <div class="problems-section">
+                        ${problemsHtml}
+                    </div>
+
+                    <div class="page-break"></div>
+
+                    <h1>Hints</h1>
+                    <h2>${unit.name}: ${unit.title}</h2>
+
+                    <div class="hints-section">
+                        ${hintsHtml}
+                    </div>
+
+                    <div class="page-break"></div>
+
+                    <h1>Answer Key</h1>
+                    <h2>${unit.name}: ${unit.title}</h2>
+
+                    <div class="answers-section">
+                        ${answerKeyHtml}
+                    </div>
+                <\/body>
+                <\/html>
+            `);
+            printWindow.document.close();
+        }
+
+        // Initialize on load
+        init();
+
+        // Attach click handler
+        document.getElementById('generateBtn').addEventListener('click', generateMoreProblems);
+    </script>
+</body>
+</html>
