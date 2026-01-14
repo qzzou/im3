@@ -281,7 +281,7 @@ const satReadingUnit1 = {
                 },
                 {
                     passage: `Iceland generates nearly 100% of its electricity from renewable sources, with geothermal energy providing about 25% and hydropower supplying most of the remainder. The country's unique geology, sitting atop the Mid-Atlantic Ridge, gives it access to abundant volcanic heat that most nations lack.`,
-                    question: 'According to the passage, what percentage of Iceland's electricity comes from geothermal energy?',
+                    question: 'According to the passage, what percentage of Iceland\'s electricity comes from geothermal energy?',
                     correct: 'A',
                     options: ['A) About 25%', 'B) Nearly 100%', 'C) About 50%', 'D) Less than 10%'],
                     explanation: 'The passage states "geothermal energy providing about 25%."'
