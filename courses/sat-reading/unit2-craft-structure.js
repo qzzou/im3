@@ -91,14 +91,14 @@ const satReadingUnit2 = {
                 <em>"The old house didn't just creak—it groaned, as if bearing the weight of a century's worth of secrets. Shadows pooled in corners that the afternoon light couldn't reach, and the wallpaper, once cheerful yellow, had faded to the color of old bones."</em><br><br>
                 The author's word choices create a tone that is primarily:`,
             answer: 'B',
+            options: ['A) Warm and nostalgic', 'B) Ominous and unsettling', 'C) Cheerful and bright', 'D) Coldly objective'],
             hint: 'Look at the specific words: "groaned," "secrets," "shadows," "old bones." What mood do they create?',
             solution: `<strong>Word Choice Analysis:</strong><br>
                 • "groaned" - suggests pain, burden<br>
                 • "secrets" - mystery, hidden things<br>
                 • "shadows pooled" - darkness gathering<br>
                 • "old bones" - death, decay<br><br>
-                <strong>Answer: B</strong> - Ominous and unsettling<br><br>
-                <em>Options: A) Warm and nostalgic B) Ominous and unsettling C) Cheerful and bright D) Coldly objective</em>`,
+                <strong>Answer: B</strong> - Ominous and unsettling`,
             hard: false
         },
         {
@@ -108,13 +108,13 @@ const satReadingUnit2 = {
                 <em>"First, the mixture must be heated to exactly 180 degrees. Next, add the catalyst slowly while stirring continuously. After the solution turns clear, reduce the heat and allow it to cool gradually. Finally, filter the result through cheesecloth to remove any remaining impurities."</em><br><br>
                 This passage is primarily organized using which structure?`,
             answer: 'A',
+            options: ['A) Chronological/Sequential', 'B) Compare and contrast', 'C) Cause and effect', 'D) Problem and solution'],
             hint: 'Notice the signal words: "First," "Next," "After," "Finally."',
             solution: `<strong>Structural Analysis:</strong><br>
                 Signal words indicate sequence:<br>
                 • "First" → "Next" → "After" → "Finally"<br><br>
                 This is a step-by-step process in time order.<br><br>
-                <strong>Answer: A</strong> - Chronological/Sequential<br><br>
-                <em>Options: A) Chronological/Sequential B) Compare and contrast C) Cause and effect D) Problem and solution</em>`,
+                <strong>Answer: A</strong> - Chronological/Sequential`,
             hard: false
         },
         {
@@ -124,14 +124,14 @@ const satReadingUnit2 = {
                 <em>"Some argue that artificial intelligence poses an existential threat to humanity—a view I find both overblown and counterproductive. Yes, AI will disrupt certain industries, just as previous technologies have. But rather than fearing our creations, we should focus on developing ethical guidelines that ensure AI serves human flourishing."</em><br><br>
                 The author's primary purpose in this passage is to:`,
             answer: 'C',
+            options: ['A) Explain how AI technology works', 'B) Warn readers about the dangers of AI', 'C) Argue against fears of AI while proposing a constructive approach', 'D) Compare different types of artificial intelligence'],
             hint: 'The author presents a view they disagree with, then offers their own position. What are they trying to do?',
             solution: `<strong>Purpose Analysis:</strong><br>
                 • Author acknowledges opposing view ("Some argue...")<br>
                 • Dismisses it ("overblown and counterproductive")<br>
                 • Proposes alternative ("should focus on...")<br><br>
                 This is persuasive writing—arguing for a specific position.<br><br>
-                <strong>Answer: C</strong> - Argue against fears of AI while proposing a constructive approach<br><br>
-                <em>Options: A) Explain how AI technology works B) Warn readers about the dangers of AI C) Argue against fears of AI while proposing a constructive approach D) Compare different types of artificial intelligence</em>`,
+                <strong>Answer: C</strong> - Argue against fears of AI while proposing a constructive approach`,
             hard: false
         },
         {
@@ -141,14 +141,14 @@ const satReadingUnit2 = {
                 <em>"The candidate described her opponent's tax plan as 'reckless' and 'irresponsible,' warning it would 'devastate working families.' Her opponent, meanwhile, characterized his proposal as 'bold' and 'necessary,' promising it would 'unleash economic growth.'"</em><br><br>
                 The contrasting word choices of the two candidates primarily serve to:`,
             answer: 'B',
+            options: ['A) Prove that one candidate is lying', 'B) Show how word choice can frame the same proposal positively or negatively', 'C) Explain the details of the tax plan', 'D) Demonstrate that both candidates agree'],
             hint: 'Both describe the same plan but use very different words. What does this show about language?',
             solution: `<strong>Analysis:</strong><br>
                 Same plan, different descriptions:<br>
                 • Candidate 1: "reckless," "irresponsible," "devastate"<br>
                 • Opponent: "bold," "necessary," "unleash"<br><br>
                 This shows how word choice shapes perception of the same reality.<br><br>
-                <strong>Answer: B</strong> - Show how word choice can frame the same proposal positively or negatively<br><br>
-                <em>Options: A) Prove that one candidate is lying B) Show how word choice can frame the same proposal positively or negatively C) Explain the details of the tax plan D) Demonstrate that both candidates agree</em>`,
+                <strong>Answer: B</strong> - Show how word choice can frame the same proposal positively or negatively`,
             hard: false
         },
         {
@@ -158,6 +158,7 @@ const satReadingUnit2 = {
                 <em>"We hold these truths to be self-evident, that all men are created equal, that they are endowed by their Creator with certain unalienable Rights, that among these are Life, Liberty and the pursuit of Happiness."</em><br><br>
                 The formal, elevated diction in this passage serves to:`,
             answer: 'D',
+            options: ['A) Make the text difficult to understand', 'B) Show off the author\'s vocabulary', 'C) Appeal only to educated readers', 'D) Lend gravity and authority to the ideas expressed'],
             hint: 'Consider why the authors chose such grand, formal language instead of simple words.',
             solution: `<strong>Diction Analysis:</strong><br>
                 Formal, elevated language:<br>
@@ -165,8 +166,7 @@ const satReadingUnit2 = {
                 • "endowed" (not "given")<br>
                 • "unalienable" (not "permanent")<br><br>
                 This language gives the ideas weight and authority, suggesting they are timeless principles.<br><br>
-                <strong>Answer: D</strong> - Lend gravity and authority to the ideas expressed<br><br>
-                <em>Options: A) Make the text difficult to understand B) Show off the author's vocabulary C) Appeal only to educated readers D) Lend gravity and authority to the ideas expressed</em>`,
+                <strong>Answer: D</strong> - Lend gravity and authority to the ideas expressed`,
             hard: true
         },
         {
@@ -176,14 +176,14 @@ const satReadingUnit2 = {
                 <em>"Traditional medicine dismissed the claims of acupuncture practitioners for decades. However, recent clinical trials have shown measurable effects on chronic pain relief. Although the mechanism remains unclear, researchers now acknowledge that dismissing the practice entirely was premature. Nevertheless, significant questions about efficacy for specific conditions remain unanswered."</em><br><br>
                 The structure of this passage can best be described as:`,
             answer: 'C',
+            options: ['A) A list of facts in random order', 'B) A simple problem and solution', 'C) A progression from initial dismissal to qualified acceptance', 'D) A comparison of two equal viewpoints'],
             hint: 'Notice the transition words: "However," "Although," "Nevertheless." What kind of relationship do they show?',
             solution: `<strong>Structural Analysis:</strong><br>
                 • "However" - introduces contrast<br>
                 • "Although... now acknowledge" - shift in view<br>
                 • "Nevertheless" - introduces continued complexity<br><br>
                 The passage shows evolving understanding with nuance.<br><br>
-                <strong>Answer: C</strong> - A progression from initial dismissal to qualified acceptance<br><br>
-                <em>Options: A) A list of facts in random order B) A simple problem and solution C) A progression from initial dismissal to qualified acceptance D) A comparison of two equal viewpoints</em>`,
+                <strong>Answer: C</strong> - A progression from initial dismissal to qualified acceptance`,
             hard: true
         }
     ],
@@ -220,8 +220,9 @@ const satReadingUnit2 = {
                 unit: 2,
                 question: `Read the passage and answer:<br><br><em>"${topic.passage}"</em><br><br>${topic.question}`,
                 answer: topic.correct,
+                options: topic.options,
                 hint: 'Pay attention to specific word choices and the feelings they evoke.',
-                solution: `<strong>Word Choice Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong><br><br><em>Options: ${topic.options.join(' ')}</em>`,
+                solution: `<strong>Word Choice Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong>`,
                 hard: false
             };
         },
@@ -256,8 +257,9 @@ const satReadingUnit2 = {
                 unit: 2,
                 question: `Read the passage and answer:<br><br><em>"${topic.passage}"</em><br><br>${topic.question}`,
                 answer: topic.correct,
+                options: topic.options,
                 hint: 'Look for signal words that indicate the relationship between ideas.',
-                solution: `<strong>Structure Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong><br><br><em>Options: ${topic.options.join(' ')}</em>`,
+                solution: `<strong>Structure Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong>`,
                 hard: false
             };
         },
@@ -292,8 +294,9 @@ const satReadingUnit2 = {
                 unit: 2,
                 question: `Read the passage and answer:<br><br><em>"${topic.passage}"</em><br><br>${topic.question}`,
                 answer: topic.correct,
+                options: topic.options,
                 hint: 'Ask: Is the author trying to inform, persuade, entertain, or explain?',
-                solution: `<strong>Purpose Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong><br><br><em>Options: ${topic.options.join(' ')}</em>`,
+                solution: `<strong>Purpose Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong>`,
                 hard: false
             };
         },
@@ -328,8 +331,9 @@ const satReadingUnit2 = {
                 unit: 2,
                 question: `Read the passage and answer:<br><br><em>"${topic.passage}"</em><br><br>${topic.question}`,
                 answer: topic.correct,
+                options: topic.options,
                 hint: 'Look at the pronouns used: I/we (first person), you (second), he/she/they (third).',
-                solution: `<strong>Point of View Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong><br><br><em>Options: ${topic.options.join(' ')}</em>`,
+                solution: `<strong>Point of View Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong>`,
                 hard: false
             };
         },
@@ -364,8 +368,9 @@ const satReadingUnit2 = {
                 unit: 2,
                 question: `Read the passage and answer:<br><br><em>"${topic.passage}"</em><br><br>${topic.question}`,
                 answer: topic.correct,
+                options: topic.options,
                 hint: 'Consider: What EFFECT does the author\'s technique have on the reader?',
-                solution: `<strong>Rhetorical Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong><br><br><em>Options: ${topic.options.join(' ')}</em>`,
+                solution: `<strong>Rhetorical Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong>`,
                 hard: true
             };
         },
@@ -400,8 +405,9 @@ const satReadingUnit2 = {
                 unit: 2,
                 question: `Read the passage and answer:<br><br><em>"${topic.passage}"</em><br><br>${topic.question}`,
                 answer: topic.correct,
+                options: topic.options,
                 hint: 'Analyze the structure of the argument: claim, evidence, and reasoning.',
-                solution: `<strong>Argument Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong><br><br><em>Options: ${topic.options.join(' ')}</em>`,
+                solution: `<strong>Argument Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong>`,
                 hard: true
             };
         }

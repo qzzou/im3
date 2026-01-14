@@ -82,13 +82,13 @@ const satReadingUnit3 = {
             question: `Choose the best transition for the blank:<br><br>
                 <em>"The city invested millions in its new subway system. _______, ridership has remained lower than projected, with many residents still preferring to drive."</em>`,
             answer: 'B',
+            options: ['A) Therefore', 'B) However', 'C) Furthermore', 'D) For example'],
             hint: 'The first sentence describes an investment (positive action). The second describes disappointing results. What relationship is this?',
             solution: `<strong>Analysis:</strong><br>
                 • Sentence 1: Positive action (investment)<br>
                 • Sentence 2: Unexpected/disappointing result (low ridership)<br><br>
                 This is a CONTRAST relationship—the result doesn't match expectations.<br><br>
-                <strong>Answer: B</strong> - However<br><br>
-                <em>Options: A) Therefore B) However C) Furthermore D) For example</em>`,
+                <strong>Answer: B</strong> - However`,
             hard: false
         },
         {
@@ -97,13 +97,13 @@ const satReadingUnit3 = {
             question: `Choose the best transition for the blank:<br><br>
                 <em>"Sleep deprivation impairs judgment and slows reaction time. _______, studies show that drowsy driving causes as many accidents as drunk driving."</em>`,
             answer: 'C',
+            options: ['A) On the other hand', 'B) Nevertheless', 'C) In fact', 'D) Meanwhile'],
             hint: 'The second sentence provides specific evidence supporting the first. What kind of transition introduces evidence?',
             solution: `<strong>Analysis:</strong><br>
                 • Sentence 1: General claim (sleep deprivation impairs)<br>
                 • Sentence 2: Specific evidence (drowsy driving statistics)<br><br>
                 The second sentence shows a RESULT/CONSEQUENCE of the first.<br><br>
-                <strong>Answer: C</strong> - In fact<br><br>
-                <em>Options: A) On the other hand B) Nevertheless C) In fact D) Meanwhile</em>`,
+                <strong>Answer: C</strong> - In fact`,
             hard: false
         },
         {
@@ -112,6 +112,7 @@ const satReadingUnit3 = {
             question: `Which sentence should be DELETED to improve focus?<br><br>
                 <em>"(1) Urban gardens provide fresh produce to food-insecure neighborhoods. (2) The first community garden in the US was established in 1893. (3) These spaces also create opportunities for neighbors to connect and build community. (4) Research shows that access to green space improves mental health."</em>`,
             answer: 'B',
+            options: ['A) Sentence 1', 'B) Sentence 2', 'C) Sentence 3', 'D) Sentence 4'],
             hint: 'Which sentence doesn\'t connect to the main point about benefits of urban gardens?',
             solution: `<strong>Analysis:</strong><br>
                 Main point: Benefits of urban gardens<br>
@@ -119,8 +120,7 @@ const satReadingUnit3 = {
                 • Sentence 2: Historical fact (not a benefit) ✗<br>
                 • Sentence 3: Benefit (community building) ✓<br>
                 • Sentence 4: Benefit (mental health) ✓<br><br>
-                <strong>Answer: B</strong> - Sentence 2 (historical tangent doesn't support the theme of benefits)<br><br>
-                <em>Options: A) Sentence 1 B) Sentence 2 C) Sentence 3 D) Sentence 4</em>`,
+                <strong>Answer: B</strong> - Sentence 2 (historical tangent doesn't support the theme of benefits)`,
             hard: false
         },
         {
@@ -129,12 +129,12 @@ const satReadingUnit3 = {
             question: `Choose the most concise option that maintains meaning:<br><br>
                 <em>"The scientist made the important discovery that was significant of the fact that the virus could mutate rapidly."</em>`,
             answer: 'A',
+            options: ['A) The scientist discovered that the virus could mutate rapidly', 'B) The scientist made the discovery of the virus\'s rapid mutation', 'C) The important discovery made by the scientist was that the virus mutated rapidly', 'D) The scientist made the important and significant discovery about rapid mutation'],
             hint: 'Eliminate redundant words while keeping the essential meaning.',
             solution: `<strong>Original Problems:</strong><br>
                 • "important discovery that was significant" - redundant<br>
                 • "the fact that" - wordy filler<br><br>
-                <strong>Answer: A</strong> - "The scientist discovered that the virus could mutate rapidly."<br><br>
-                <em>Options: A) The scientist discovered that the virus could mutate rapidly B) The scientist made the discovery of the virus's rapid mutation C) The important discovery made by the scientist was that the virus mutated rapidly D) The scientist made the important and significant discovery about rapid mutation</em>`,
+                <strong>Answer: A</strong> - "The scientist discovered that the virus could mutate rapidly."`,
             hard: false
         },
         {
@@ -144,6 +144,7 @@ const satReadingUnit3 = {
                 <strong>Sentence to add:</strong> "This technique, known as 'spaced repetition,' has been validated by numerous cognitive studies."<br><br>
                 <em>"(A) Memory research suggests that we retain information better when we review it at increasing intervals. (B) Rather than cramming all at once, students should revisit material after one day, then three days, then a week. (C) Many language-learning apps now incorporate this approach into their design. (D)"</em>`,
             answer: 'C',
+            options: ['A) Position A', 'B) Position B', 'C) Position C', 'D) Position D'],
             hint: 'The sentence refers to "this technique." Where has the technique been described?',
             solution: `<strong>Analysis:</strong><br>
                 The sentence mentions "this technique" - needs to follow the technique's description.<br><br>
@@ -151,8 +152,7 @@ const satReadingUnit3 = {
                 • Position B: Technique just described (increasing intervals) ✓<br>
                 • Position C: Possible, but B is better since "this technique" directly references the description<br><br>
                 Wait - the sentence NAMES the technique. It should come after the description but before the apps example.<br><br>
-                <strong>Answer: C</strong> - After position B (after the technique is described, before moving to applications)<br><br>
-                <em>Options: A) Position A B) Position B C) Position C D) Position D</em>`,
+                <strong>Answer: C</strong> - After position B (after the technique is described, before moving to applications)`,
             hard: true
         },
         {
@@ -161,13 +161,13 @@ const satReadingUnit3 = {
             question: `Which choice most precisely describes the action?<br><br>
                 <em>"The detective _______ the crime scene, noting every detail from the position of the furniture to the angle of the shadows."</em>`,
             answer: 'D',
+            options: ['A) looked at', 'B) saw', 'C) checked', 'D) scrutinized'],
             hint: 'The context shows careful, thorough attention to detail. Which word best captures that?',
             solution: `<strong>Context Clues:</strong><br>
                 • "noting every detail"<br>
                 • Specific observations (furniture position, shadow angles)<br><br>
                 This suggests careful, methodical examination.<br><br>
-                <strong>Answer: D</strong> - scrutinized (means examined very carefully)<br><br>
-                <em>Options: A) looked at B) saw C) checked D) scrutinized</em>`,
+                <strong>Answer: D</strong> - scrutinized (means examined very carefully)`,
             hard: false
         }
     ],
@@ -215,8 +215,9 @@ const satReadingUnit3 = {
                 unit: 3,
                 question: `Choose the best transition for the blank:<br><br><em>"${topic.before} _______, ${topic.after}"</em>`,
                 answer: topic.correct,
+                options: topic.options,
                 hint: `Identify the relationship between the sentences: addition, contrast, cause/effect, or example?`,
-                solution: `<strong>Relationship:</strong> ${topic.relationship}<br><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong><br><br><em>Options: ${topic.options.join(' ')}</em>`,
+                solution: `<strong>Relationship:</strong> ${topic.relationship}<br><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong>`,
                 hard: false
             };
         },
@@ -251,8 +252,9 @@ const satReadingUnit3 = {
                 unit: 3,
                 question: `Read the passage and answer:<br><br><em>"${topic.passage}"</em><br><br>${topic.question}`,
                 answer: topic.correct,
+                options: topic.options,
                 hint: 'Identify the main topic and find the sentence that doesn\'t support it.',
-                solution: `<strong>Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong><br><br><em>Options: ${topic.options.join(' ')}</em>`,
+                solution: `<strong>Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong>`,
                 hard: false
             };
         },
@@ -287,8 +289,9 @@ const satReadingUnit3 = {
                 unit: 3,
                 question: `Original sentence: <em>"${topic.wordy}"</em><br><br>${topic.question}`,
                 answer: topic.correct,
+                options: topic.options,
                 hint: 'Look for the option that says the same thing with fewer words.',
-                solution: `<strong>Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong><br><br><em>Options: ${topic.options.join(' ')}</em>`,
+                solution: `<strong>Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong>`,
                 hard: false
             };
         },
@@ -323,8 +326,9 @@ const satReadingUnit3 = {
                 unit: 3,
                 question: `Where should this sentence be placed?<br><br><strong>Sentence:</strong> "${topic.sentence}"<br><br><em>"${topic.passage}"</em>`,
                 answer: topic.correct,
+                options: topic.options,
                 hint: 'Look for reference words ("this," "these," "however") that connect to surrounding content.',
-                solution: `<strong>Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong><br><br><em>Options: ${topic.options.join(' ')}</em>`,
+                solution: `<strong>Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong>`,
                 hard: true
             };
         },
@@ -356,8 +360,9 @@ const satReadingUnit3 = {
                 unit: 3,
                 question: `Choose the most precise word for the context:<br><br><em>"${topic.context}"</em>`,
                 answer: topic.correct,
+                options: topic.options,
                 hint: 'Which word most specifically fits the situation described?',
-                solution: `<strong>Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong><br><br><em>Options: ${topic.options.join(' ')}</em>`,
+                solution: `<strong>Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong>`,
                 hard: false
             };
         },
@@ -395,8 +400,9 @@ const satReadingUnit3 = {
                 unit: 3,
                 question: `Read the passage:<br><br><em>"${topic.passage}"</em><br><br><strong>Proposed addition:</strong> "${topic.proposed}"<br><br>${topic.question}`,
                 answer: topic.correct,
+                options: topic.options,
                 hint: 'Ask: Does the proposed sentence support the main point of the passage?',
-                solution: `<strong>Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong><br><br><em>Options: ${topic.options.join(' ')}</em>`,
+                solution: `<strong>Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong>`,
                 hard: true
             };
         }

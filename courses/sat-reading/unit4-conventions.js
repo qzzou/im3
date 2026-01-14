@@ -98,13 +98,13 @@ const satReadingUnit4 = {
             question: `Choose the correct verb form:<br><br>
                 <em>"The collection of rare stamps _______ donated to the museum last year."</em>`,
             answer: 'A',
+            options: ['A) was', 'B) were', 'C) have been', 'D) are being'],
             hint: 'Find the subject. Is it "collection" (singular) or "stamps" (plural)?',
             solution: `<strong>Analysis:</strong><br>
                 Subject = "collection" (singular)<br>
                 "of rare stamps" is a prepositional phrase—NOT the subject<br><br>
                 Singular subject → singular verb<br><br>
-                <strong>Answer: A</strong> - was<br><br>
-                <em>Options: A) was B) were C) have been D) are being</em>`,
+                <strong>Answer: A</strong> - was`,
             hard: false
         },
         {
@@ -113,13 +113,13 @@ const satReadingUnit4 = {
             question: `Choose the correct pronoun:<br><br>
                 <em>"Each of the students must submit _______ assignment by Friday."</em>`,
             answer: 'B',
+            options: ['A) its', 'B) their', 'C) our', 'D) your'],
             hint: '"Each" is always singular, even when followed by "of the students."',
             solution: `<strong>Analysis:</strong><br>
                 "Each" is a singular indefinite pronoun<br>
                 It takes singular pronouns<br><br>
                 <strong>Answer: B</strong> - their (modern accepted singular "their")<br><br>
-                Note: While traditionally "his or her" was required, "their" as a singular pronoun is now widely accepted.<br><br>
-                <em>Options: A) its B) their C) our D) your</em>`,
+                Note: While traditionally "his or her" was required, "their" as a singular pronoun is now widely accepted.`,
             hard: false
         },
         {
@@ -127,14 +127,14 @@ const satReadingUnit4 = {
             unit: 4,
             question: `Which version is correctly punctuated?`,
             answer: 'C',
+            options: ['A) The experiment failed, the researchers tried again.', 'B) The experiment failed; because the temperature was wrong.', 'C) The experiment failed; the researchers tried again.', 'D) The experiment failed and, the researchers tried again.'],
             hint: 'A semicolon joins two complete sentences. Check if both parts can stand alone.',
             solution: `<strong>Analysis:</strong><br>
                 A) Run-on (comma splice) ✗<br>
                 B) "Because" clause isn't a complete sentence ✗<br>
                 C) Two complete sentences joined by semicolon ✓<br>
                 D) Comma after "and" is incorrect ✗<br><br>
-                <strong>Answer: C</strong><br><br>
-                <em>Options: A) The experiment failed, the researchers tried again. B) The experiment failed; because the temperature was wrong. C) The experiment failed; the researchers tried again. D) The experiment failed and, the researchers tried again.</em>`,
+                <strong>Answer: C</strong>`,
             hard: false
         },
         {
@@ -142,14 +142,14 @@ const satReadingUnit4 = {
             unit: 4,
             question: `Which sentence demonstrates correct parallel structure?`,
             answer: 'D',
+            options: ['A) The job requires writing, to edit, and publishing.', 'B) The job requires to write, editing, and to publish.', 'C) The job requires writing, edited, and publishing.', 'D) The job requires writing, editing, and publishing.'],
             hint: 'Items in a list should have the same grammatical form.',
             solution: `<strong>Analysis:</strong><br>
                 A) "writing" (gerund), "to edit" (infinitive), "publishing" (gerund) - NOT parallel ✗<br>
                 B) "write" (verb), "editing" (gerund), "to publish" (infinitive) - NOT parallel ✗<br>
                 C) "writing" (gerund), "edited" (past tense), "publishing" (gerund) - NOT parallel ✗<br>
                 D) "writing" (gerund), "editing" (gerund), "publishing" (gerund) - PARALLEL ✓<br><br>
-                <strong>Answer: D</strong><br><br>
-                <em>Options: A) The job requires writing, to edit, and publishing. B) The job requires to write, editing, and to publish. C) The job requires writing, edited, and publishing. D) The job requires writing, editing, and publishing.</em>`,
+                <strong>Answer: D</strong>`,
             hard: false
         },
         {
@@ -158,12 +158,12 @@ const satReadingUnit4 = {
             question: `Which revision corrects the dangling modifier?<br><br>
                 <em>Original: "Running through the park, the fountain came into view."</em>`,
             answer: 'B',
+            options: ['A) Running through the park, the fountain was beautiful.', 'B) Running through the park, I saw the fountain come into view.', 'C) The fountain came into view, running through the park.', 'D) Running through the park, there was a fountain.'],
             hint: 'Who is running? The subject after the comma should be the one doing the action.',
             solution: `<strong>Problem:</strong><br>
                 "Running through the park" modifies "fountain" - but fountains can't run!<br><br>
                 The person running must be the subject of the main clause.<br><br>
-                <strong>Answer: B</strong> - "Running through the park, I saw the fountain come into view."<br><br>
-                <em>Options: A) Running through the park, the fountain was beautiful. B) Running through the park, I saw the fountain come into view. C) The fountain came into view, running through the park. D) Running through the park, there was a fountain.</em>`,
+                <strong>Answer: B</strong> - "Running through the park, I saw the fountain come into view."`,
             hard: true
         },
         {
@@ -171,6 +171,7 @@ const satReadingUnit4 = {
             unit: 4,
             question: `Choose the option that correctly uses a colon:<br><br>`,
             answer: 'A',
+            options: ['A) She had three goals: graduate, travel, and start a business.', 'B) Her goals included: such as graduating and traveling.', 'C) Her goals were: to graduate, travel, and start a business.', 'D) She had goals including: graduation, travel, and business.'],
             hint: 'A colon must come after a complete sentence and introduce what follows.',
             solution: `<strong>Colon Rules:</strong><br>
                 • Must follow a complete sentence<br>
@@ -179,8 +180,7 @@ const satReadingUnit4 = {
                 B) "Such as" makes colon unnecessary ✗<br>
                 C) "goals were" is not complete before colon ✗<br>
                 D) "including" makes colon unnecessary ✗<br><br>
-                <strong>Answer: A</strong><br><br>
-                <em>Options: A) She had three goals: graduate, travel, and start a business. B) Her goals included: such as graduating and traveling. C) Her goals were: to graduate, travel, and start a business. D) She had goals including: graduation, travel, and business.</em>`,
+                <strong>Answer: A</strong>`,
             hard: true
         }
     ],
@@ -220,8 +220,9 @@ const satReadingUnit4 = {
                 unit: 4,
                 question: `Choose the correct verb:<br><br><em>"${topic.sentence}"</em>`,
                 answer: topic.correct,
+                options: topic.options,
                 hint: 'Find the true subject and determine if it\'s singular or plural.',
-                solution: `<strong>Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong><br><br><em>Options: ${topic.options.join(' ')}</em>`,
+                solution: `<strong>Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong>`,
                 hard: false
             };
         },
@@ -259,8 +260,9 @@ const satReadingUnit4 = {
                 unit: 4,
                 question: `Choose the correct pronoun:<br><br><em>"${topic.sentence}"</em>`,
                 answer: topic.correct,
+                options: topic.options,
                 hint: 'Make sure the pronoun agrees with its antecedent in number.',
-                solution: `<strong>Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong><br><br><em>Options: ${topic.options.join(' ')}</em>`,
+                solution: `<strong>Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong>`,
                 hard: false
             };
         },
@@ -298,8 +300,9 @@ const satReadingUnit4 = {
                 unit: 4,
                 question: topic.question,
                 answer: topic.correct,
+                options: topic.options,
                 hint: 'Apply the specific punctuation rule being tested.',
-                solution: `<strong>Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong><br><br><em>Options: ${topic.options.join(' ')}</em>`,
+                solution: `<strong>Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong>`,
                 hard: false
             };
         },
@@ -331,8 +334,9 @@ const satReadingUnit4 = {
                 unit: 4,
                 question: topic.question,
                 answer: topic.correct,
+                options: topic.options,
                 hint: 'Look for the option where all list items have the same grammatical form.',
-                solution: `<strong>Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong><br><br><em>Options: ${topic.options.join(' ')}</em>`,
+                solution: `<strong>Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong>`,
                 hard: false
             };
         },
@@ -367,8 +371,9 @@ const satReadingUnit4 = {
                 unit: 4,
                 question: `Original: <em>"${topic.original}"</em><br><br>${topic.question}`,
                 answer: topic.correct,
+                options: topic.options,
                 hint: 'The subject after a modifying phrase should be the one doing the action.',
-                solution: `<strong>Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong><br><br><em>Options: ${topic.options.join(' ')}</em>`,
+                solution: `<strong>Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong>`,
                 hard: true
             };
         },
@@ -400,8 +405,9 @@ const satReadingUnit4 = {
                 unit: 4,
                 question: topic.question,
                 answer: topic.correct,
+                options: topic.options,
                 hint: 'A complete sentence needs a subject and a verb that express a complete thought.',
-                solution: `<strong>Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong><br><br><em>Options: ${topic.options.join(' ')}</em>`,
+                solution: `<strong>Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong>`,
                 hard: false
             };
         }

@@ -83,6 +83,7 @@ const satReadingUnit1 = {
                 <em>"The discovery of penicillin in 1928 marked a turning point in medical history. Before antibiotics, even minor infections could prove fatal. Alexander Fleming's accidental observation of mold killing bacteria led to medicines that have saved countless lives. Today, antibiotic resistance threatens to undo these gains, as overuse has allowed bacteria to evolve defenses."</em><br><br>
                 The central idea of this passage is that:`,
             answer: 'C',
+            options: ['A) Fleming was a careless scientist', 'B) Antibiotic resistance is inevitable', 'C) Antibiotics revolutionized medicine but face new challenges', 'D) Mold is the best source of medicine'],
             hint: 'Look for the main point that encompasses the entire passage, not just one detail.',
             solution: `<strong>Analysis:</strong><br>
                 The passage covers: discovery → impact → current threat<br><br>
@@ -90,8 +91,7 @@ const satReadingUnit1 = {
                 A) Too narrow (only about Fleming)<br>
                 B) Too narrow (only about resistance)<br>
                 D) Not mentioned in passage<br><br>
-                <strong>Answer: C</strong> - The passage traces antibiotics from discovery through current challenges, showing both their importance and current threats.<br><br>
-                <em>Options: A) Fleming was a careless scientist B) Antibiotic resistance is inevitable C) Antibiotics revolutionized medicine but face new challenges D) Mold is the best source of medicine</em>`,
+                <strong>Answer: C</strong> - The passage traces antibiotics from discovery through current challenges, showing both their importance and current threats.`,
             hard: false
         },
         {
@@ -101,14 +101,14 @@ const satReadingUnit1 = {
                 <em>"Unlike her contemporaries who painted idealized portraits, Artemisia Gentileschi depicted women as powerful figures in dramatic scenes. Her 'Judith Slaying Holofernes' shows remarkable anatomical accuracy and emotional intensity. Art historians note that her work challenged the passive female roles typical of 17th-century art."</em><br><br>
                 Based on the passage, Gentileschi's work was distinctive because it:`,
             answer: 'B',
+            options: ['A) Used brighter colors than others', 'B) Portrayed women as strong, active figures', 'C) Focused only on religious subjects', 'D) Was more popular than male artists'],
             hint: 'What made her DIFFERENT from other artists of her time?',
             solution: `<strong>Key phrase:</strong> "Unlike her contemporaries"<br><br>
                 <strong>The passage states she:</strong><br>
                 • Depicted women as powerful (not passive)<br>
                 • Created dramatic scenes<br>
                 • Challenged typical female roles<br><br>
-                <strong>Answer: B</strong> - Portrayed women as strong, active figures<br><br>
-                <em>Options: A) Used brighter colors than others B) Portrayed women as strong, active figures C) Focused only on religious subjects D) Was more popular than male artists</em>`,
+                <strong>Answer: B</strong> - Portrayed women as strong, active figures`,
             hard: false
         },
         {
@@ -118,6 +118,7 @@ const satReadingUnit1 = {
                 <em>"The octopus has long fascinated scientists with its intelligence. These creatures can solve puzzles, use tools, and even recognize individual human faces. Most remarkably, two-thirds of an octopus's neurons are located in its arms, allowing each arm to act somewhat independently while still coordinating with the central brain."</em><br><br>
                 It can be inferred from the passage that:`,
             answer: 'A',
+            options: ['A) Octopus intelligence is organized differently than most animals', 'B) Octopuses are smarter than all other sea creatures', 'C) Scientists fully understand octopus cognition', 'D) Octopus arms can survive without the brain'],
             hint: 'What can you LOGICALLY conclude from the information given?',
             solution: `<strong>What the passage tells us:</strong><br>
                 • Octopuses are intelligent<br>
@@ -125,8 +126,7 @@ const satReadingUnit1 = {
                 • Arms act "somewhat independently"<br><br>
                 <strong>Valid inference:</strong><br>
                 If most neurons are in the arms and arms can act independently, then octopus intelligence is distributed differently than in most animals.<br><br>
-                <strong>Answer: A</strong> - Octopus intelligence is organized differently than most animals<br><br>
-                <em>Options: A) Octopus intelligence is organized differently than most animals B) Octopuses are smarter than all other sea creatures C) Scientists fully understand octopus cognition D) Octopus arms can survive without the brain</em>`,
+                <strong>Answer: A</strong> - Octopus intelligence is organized differently than most animals`,
             hard: false
         },
         {
@@ -136,14 +136,14 @@ const satReadingUnit1 = {
                 <em>"The city council's new recycling program has seen mixed results. While participation rates have increased by 40%, contamination of recyclable materials remains a significant problem. Council member Torres noted, 'Education is key—many residents still don't know what can actually be recycled.' The program's success ultimately depends on changing daily habits."</em><br><br>
                 According to the passage, the main obstacle to the recycling program's success is:`,
             answer: 'B',
+            options: ['A) Low participation rates', 'B) Residents\' lack of knowledge about recycling rules', 'C) Council member disagreements', 'D) Insufficient funding'],
             hint: 'What does the passage identify as the problem that needs to be solved?',
             solution: `<strong>Identify the problem:</strong><br>
                 • "contamination... remains a significant problem"<br>
                 • "many residents still don't know what can actually be recycled"<br>
                 • "depends on changing daily habits"<br><br>
                 <strong>The obstacle is:</strong> lack of knowledge/education about proper recycling<br><br>
-                <strong>Answer: B</strong> - Residents' lack of knowledge about recycling rules<br><br>
-                <em>Options: A) Low participation rates B) Residents' lack of knowledge about recycling rules C) Council member disagreements D) Insufficient funding</em>`,
+                <strong>Answer: B</strong> - Residents' lack of knowledge about recycling rules`,
             hard: false
         },
         {
@@ -153,6 +153,7 @@ const satReadingUnit1 = {
                 <em>"Dr. Chen's research on sleep patterns revealed surprising findings. Participants who reported sleeping 'poorly' often showed normal brain wave patterns during monitored sleep, while those claiming to sleep 'well' sometimes exhibited signs of disruption. This disconnect between perception and reality, Chen argues, suggests that our subjective experience of sleep quality may not reflect its actual restorative value."</em><br><br>
                 Which statement best captures Chen's main argument?`,
             answer: 'D',
+            options: ['A) Everyone should sleep more hours', 'B) Brain wave monitoring is unreliable', 'C) Poor sleepers are actually well-rested', 'D) How people perceive their sleep may differ from its actual quality'],
             hint: 'What is Chen arguing about the relationship between how we FEEL about sleep and what actually happens?',
             solution: `<strong>Chen's finding:</strong><br>
                 • "Poor" sleepers → normal patterns<br>
@@ -160,8 +161,7 @@ const satReadingUnit1 = {
                 • "disconnect between perception and reality"<br><br>
                 <strong>Chen's argument:</strong><br>
                 How we think we slept ≠ actual sleep quality<br><br>
-                <strong>Answer: D</strong> - How people perceive their sleep may differ from its actual quality<br><br>
-                <em>Options: A) Everyone should sleep more hours B) Brain wave monitoring is unreliable C) Poor sleepers are actually well-rested D) How people perceive their sleep may differ from its actual quality</em>`,
+                <strong>Answer: D</strong> - How people perceive their sleep may differ from its actual quality`,
             hard: true
         },
         {
@@ -171,14 +171,14 @@ const satReadingUnit1 = {
                 <em>"The debate over year-round schooling continues to divide educators. Proponents argue that shorter, more frequent breaks prevent 'summer slide'—the learning loss that occurs during long vacations. Critics counter that extended breaks allow for valuable experiences outside the classroom and give families flexibility. Research on academic outcomes remains inconclusive, with studies showing benefits in some districts but not others."</em><br><br>
                 The author's tone toward year-round schooling can best be described as:`,
             answer: 'C',
+            options: ['A) Strongly supportive', 'B) Harshly critical', 'C) Neutral and balanced', 'D) Dismissively skeptical'],
             hint: 'Does the author take a side, or present multiple viewpoints fairly?',
             solution: `<strong>Analyze the tone:</strong><br>
                 • Presents proponents' view fairly<br>
                 • Presents critics' view fairly<br>
                 • Notes research is "inconclusive"<br>
                 • No clear bias toward either side<br><br>
-                <strong>Answer: C</strong> - Neutral and balanced<br><br>
-                <em>Options: A) Strongly supportive B) Harshly critical C) Neutral and balanced D) Dismissively skeptical</em>`,
+                <strong>Answer: C</strong> - Neutral and balanced`,
             hard: false
         }
     ],
@@ -236,8 +236,9 @@ const satReadingUnit1 = {
                 unit: 1,
                 question: `Read the passage and answer:<br><br><em>"${topic.passage}"</em><br><br>${topic.question}`,
                 answer: topic.correct,
+                options: topic.options,
                 hint: 'Look for the answer that encompasses the ENTIRE passage, not just one part.',
-                solution: `<strong>Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong><br><br><em>Options: ${topic.options.join(' ')}</em>`,
+                solution: `<strong>Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong>`,
                 hard: false
             };
         },
@@ -293,8 +294,9 @@ const satReadingUnit1 = {
                 unit: 1,
                 question: `Read the passage and answer:<br><br><em>"${topic.passage}"</em><br><br>${topic.question}`,
                 answer: topic.correct,
+                options: topic.options,
                 hint: 'Find the specific detail in the passage that answers this question.',
-                solution: `<strong>Locate the detail:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong><br><br><em>Options: ${topic.options.join(' ')}</em>`,
+                solution: `<strong>Locate the detail:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong>`,
                 hard: false
             };
         },
@@ -350,8 +352,9 @@ const satReadingUnit1 = {
                 unit: 1,
                 question: `Read the passage and answer:<br><br><em>"${topic.passage}"</em><br><br>${topic.question}`,
                 answer: topic.correct,
+                options: topic.options,
                 hint: 'What can you LOGICALLY conclude from the information given? Don\'t go beyond what the text supports.',
-                solution: `<strong>Reasoning:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong><br><br><em>Options: ${topic.options.join(' ')}</em>`,
+                solution: `<strong>Reasoning:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong>`,
                 hard: true
             };
         },
@@ -407,8 +410,9 @@ const satReadingUnit1 = {
                 unit: 1,
                 question: `Read the passage and answer:<br><br><em>"${topic.passage}"</em><br><br>${topic.question}`,
                 answer: topic.correct,
+                options: topic.options,
                 hint: 'Ask yourself: WHY did the author include this specific detail or example?',
-                solution: `<strong>Purpose analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong><br><br><em>Options: ${topic.options.join(' ')}</em>`,
+                solution: `<strong>Purpose analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong>`,
                 hard: false
             };
         },
@@ -464,8 +468,9 @@ const satReadingUnit1 = {
                 unit: 1,
                 question: `Read the passage and answer:<br><br><em>"${topic.passage}"</em><br><br>${topic.question}`,
                 answer: topic.correct,
+                options: topic.options,
                 hint: 'Look for word choices that reveal the author\'s attitude—positive, negative, or neutral?',
-                solution: `<strong>Tone analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong><br><br><em>Options: ${topic.options.join(' ')}</em>`,
+                solution: `<strong>Tone analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong>`,
                 hard: false
             };
         },
@@ -521,8 +526,9 @@ const satReadingUnit1 = {
                 unit: 1,
                 question: `Read the passage and answer:<br><br><em>"${topic.passage}"</em><br><br>${topic.question}`,
                 answer: topic.correct,
+                options: topic.options,
                 hint: 'Replace the word with each answer choice—which one makes sense in context?',
-                solution: `<strong>Context clues:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong><br><br><em>Options: ${topic.options.join(' ')}</em>`,
+                solution: `<strong>Context clues:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong>`,
                 hard: false
             };
         }

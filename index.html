@@ -341,6 +341,49 @@
             display: block;
         }
 
+        /* Multiple choice options */
+        .mc-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin: 15px 0;
+        }
+        .mc-option {
+            display: flex;
+            align-items: flex-start;
+            padding: 12px 15px;
+            background: rgba(255,255,255,0.05);
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            line-height: 1.5;
+        }
+        .mc-option:hover {
+            background: rgba(0,212,255,0.1);
+            border-color: rgba(0,212,255,0.3);
+        }
+        .mc-option.selected {
+            background: rgba(0,212,255,0.15);
+            border-color: #00d4ff;
+        }
+        .mc-option.correct {
+            background: rgba(0,255,136,0.15);
+            border-color: #00ff88;
+        }
+        .mc-option.incorrect {
+            background: rgba(255,85,85,0.15);
+            border-color: #ff5555;
+        }
+        .mc-option input[type="radio"] {
+            margin-right: 10px;
+            margin-top: 3px;
+            accent-color: #00d4ff;
+        }
+        .mc-option span {
+            flex: 1;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -1014,7 +1057,23 @@
             }
         }
 
-        function saveState() {
+        // Debounced save system for optimization
+        let saveTimeout;
+        let pendingSave = false;
+
+        function saveState(immediate = false) {
+            pendingSave = true;
+            if (immediate) {
+                doSave();
+            } else {
+                clearTimeout(saveTimeout);
+                saveTimeout = setTimeout(doSave, 1000); // Wait 1 second of inactivity
+            }
+        }
+
+        function doSave() {
+            if (!pendingSave) return;
+            pendingSave = false;
             const toSave = {
                 ...appState,
                 completedProblems: Array.from(appState.completedProblems),
@@ -1023,6 +1082,12 @@
             };
             localStorage.setItem('mathHubState', JSON.stringify(toSave));
         }
+
+        // Save when user leaves page or app goes to background
+        window.addEventListener('beforeunload', doSave);
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'hidden') doSave();
+        });
 
         // ============================================
         // TAB NAVIGATION
@@ -1050,7 +1115,7 @@
             }
 
             appState.currentTab = tabName;
-            saveState();
+            // Skip immediate save for navigation - will save on exit or next important action
         }
 
         // ============================================
@@ -1094,8 +1159,7 @@
 
             // Restore bookmark if exists
             restoreBookmark();
-
-            saveState();
+            // Skip immediate save for navigation - will save on exit or next important action
         }
 
         function loadCourse(courseId) {
@@ -1148,7 +1212,7 @@
 
             // Update content
             renderLessons(unitId);
-            saveState();
+            // Skip immediate save for navigation - will save on exit or next important action
         }
 
         function renderLessons(unitId) {
@@ -1258,6 +1322,31 @@
             exercises.forEach((ex, index) => {
                 const isCompleted = appState.completedProblems.has(ex.id);
                 const isFavorite = appState.favorites.has(ex.id);
+                const hasOptions = ex.options && ex.options.length > 0;
+
+                // Build answer input - either multiple choice or text input
+                let answerHtml = '';
+                if (hasOptions) {
+                    answerHtml = `<div class="mc-options" id="opts-${ex.id}">`;
+                    ex.options.forEach((opt, optIndex) => {
+                        const optLetter = opt.charAt(0); // Get A, B, C, D from "A) text"
+                        answerHtml += `
+                            <label class="mc-option" onclick="selectOption('${ex.id}', '${optLetter}')">
+                                <input type="radio" name="mc-${ex.id}" value="${optLetter}">
+                                <span>${opt}</span>
+                            </label>
+                        `;
+                    });
+                    answerHtml += `</div>
+                        <button class="btn btn-check" onclick="checkExercise('${ex.id}')" style="margin-top: 10px;">Check Answer</button>`;
+                } else {
+                    answerHtml = `
+                        <div class="answer-input">
+                            <input type="text" id="ans-${ex.id}" placeholder="Enter your answer">
+                            <button class="btn btn-check" onclick="checkExercise('${ex.id}')">Check</button>
+                        </div>`;
+                }
+
                 html += `
                     <div class="exercise ${ex.hard ? 'hard' : ''}" id="ex-${ex.id}">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
@@ -1270,10 +1359,7 @@
                             </div>
                         </div>
                         <p class="question">${index + 1}. ${ex.question}</p>
-                        <div class="answer-input">
-                            <input type="text" id="ans-${ex.id}" placeholder="Enter your answer">
-                            <button class="btn btn-check" onclick="checkExercise('${ex.id}')">Check</button>
-                        </div>
+                        ${answerHtml}
                         <button class="btn btn-hint" onclick="toggleHintEx('${ex.id}')">Hint</button>
                         <button class="btn btn-solution" onclick="toggleSolutionEx('${ex.id}')">Solution</button>
                         <div class="hint-box" id="hint-${ex.id}">${ex.hint}</div>
@@ -1287,21 +1373,68 @@
             updateProgress();
         }
 
+        // Select multiple choice option
+        function selectOption(exerciseId, letter) {
+            const container = document.getElementById('opts-' + exerciseId);
+            if (!container) return;
+
+            // Remove selected class from all options
+            container.querySelectorAll('.mc-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+
+            // Add selected class to clicked option
+            const selectedRadio = container.querySelector(`input[value="${letter}"]`);
+            if (selectedRadio) {
+                selectedRadio.checked = true;
+                selectedRadio.closest('.mc-option').classList.add('selected');
+            }
+        }
+
         function checkExercise(id) {
             const courseContent = getCurrentCourseContent();
             const exercise = courseContent.exercises.find(ex => ex.id === id);
-            const input = document.getElementById('ans-' + id);
             const feedback = document.getElementById('fb-' + id);
 
             let isCorrect = false;
+            let userAns = '';
 
-            if (exercise.answerType === 'zeros') {
+            // Check if this is a multiple choice question
+            const hasOptions = exercise.options && exercise.options.length > 0;
+
+            if (hasOptions) {
+                // Get selected radio button
+                const selectedRadio = document.querySelector(`input[name="mc-${id}"]:checked`);
+                if (!selectedRadio) {
+                    feedback.className = 'feedback incorrect';
+                    feedback.textContent = 'Please select an answer.';
+                    return;
+                }
+                userAns = selectedRadio.value.toUpperCase();
+                const correctAns = exercise.answer.toUpperCase();
+                isCorrect = userAns === correctAns;
+
+                // Highlight correct/incorrect options
+                const container = document.getElementById('opts-' + id);
+                container.querySelectorAll('.mc-option').forEach(opt => {
+                    const radio = opt.querySelector('input[type="radio"]');
+                    const optLetter = radio.value.toUpperCase();
+                    opt.classList.remove('selected');
+                    if (optLetter === correctAns) {
+                        opt.classList.add('correct');
+                    } else if (radio.checked && !isCorrect) {
+                        opt.classList.add('incorrect');
+                    }
+                });
+            } else if (exercise.answerType === 'zeros') {
+                const input = document.getElementById('ans-' + id);
                 const userVals = input.value.split(',').map(v => parseFloat(v.trim())).filter(v => !isNaN(v)).sort((a,b) => a-b);
                 const correctVals = exercise.zeros.sort((a,b) => a-b);
                 isCorrect = userVals.length === correctVals.length &&
                             userVals.every((v, i) => Math.abs(v - correctVals[i]) < 0.01);
             } else {
-                const userAns = input.value.replace(/\s/g, '').toLowerCase();
+                const input = document.getElementById('ans-' + id);
+                userAns = input.value.replace(/\s/g, '').toLowerCase();
                 const correctAns = exercise.answer.replace(/\s/g, '').toLowerCase();
                 isCorrect = userAns === correctAns;
             }
@@ -1384,6 +1517,31 @@
             favoriteExercises.forEach((ex, index) => {
                 const isCompleted = appState.completedProblems.has(ex.id);
                 const courseName = getExerciseCourse(ex.id);
+                const hasOptions = ex.options && ex.options.length > 0;
+
+                // Build answer input - either multiple choice or text input
+                let answerHtml = '';
+                if (hasOptions) {
+                    answerHtml = `<div class="mc-options" id="fav-opts-${ex.id}">`;
+                    ex.options.forEach((opt) => {
+                        const optLetter = opt.charAt(0);
+                        answerHtml += `
+                            <label class="mc-option" onclick="selectFavOption('${ex.id}', '${optLetter}')">
+                                <input type="radio" name="fav-mc-${ex.id}" value="${optLetter}">
+                                <span>${opt}</span>
+                            </label>
+                        `;
+                    });
+                    answerHtml += `</div>
+                        <button class="btn btn-check" onclick="checkFavoriteExercise('${ex.id}')" style="margin-top: 10px;">Check Answer</button>`;
+                } else {
+                    answerHtml = `
+                        <div class="answer-input">
+                            <input type="text" id="fav-ans-${ex.id}" placeholder="Enter your answer">
+                            <button class="btn btn-check" onclick="checkFavoriteExercise('${ex.id}')">Check</button>
+                        </div>`;
+                }
+
                 html += `
                     <div class="exercise ${ex.hard ? 'hard' : ''}" id="ex-${ex.id}">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
@@ -1397,10 +1555,7 @@
                             </div>
                         </div>
                         <p class="question">${index + 1}. ${ex.question}</p>
-                        <div class="answer-input">
-                            <input type="text" id="fav-ans-${ex.id}" placeholder="Enter your answer">
-                            <button class="btn btn-check" onclick="checkFavoriteExercise('${ex.id}')">Check</button>
-                        </div>
+                        ${answerHtml}
                         <button class="btn btn-hint" onclick="toggleHintFav('${ex.id}')">Hint</button>
                         <button class="btn btn-solution" onclick="toggleSolutionFav('${ex.id}')">Solution</button>
                         <div class="hint-box" id="fav-hint-${ex.id}">${ex.hint}</div>
@@ -1411,6 +1566,22 @@
             });
 
             container.innerHTML = html;
+        }
+
+        // Select multiple choice option in favorites
+        function selectFavOption(exerciseId, letter) {
+            const container = document.getElementById('fav-opts-' + exerciseId);
+            if (!container) return;
+
+            container.querySelectorAll('.mc-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+
+            const selectedRadio = container.querySelector(`input[value="${letter}"]`);
+            if (selectedRadio) {
+                selectedRadio.checked = true;
+                selectedRadio.closest('.mc-option').classList.add('selected');
+            }
         }
 
         function toggleHintFav(id) {
@@ -1424,18 +1595,46 @@
         function checkFavoriteExercise(id) {
             const allExercises = [...im3Content.exercises, ...satMathContent.exercises, ...satReadingContent.exercises];
             const exercise = allExercises.find(ex => ex.id === id);
-            const input = document.getElementById('fav-ans-' + id);
             const feedback = document.getElementById('fav-fb-' + id);
 
             let isCorrect = false;
+            let userAns = '';
 
-            if (exercise.answerType === 'zeros') {
+            // Check if this is a multiple choice question
+            const hasOptions = exercise.options && exercise.options.length > 0;
+
+            if (hasOptions) {
+                const selectedRadio = document.querySelector(`input[name="fav-mc-${id}"]:checked`);
+                if (!selectedRadio) {
+                    feedback.className = 'feedback incorrect';
+                    feedback.textContent = 'Please select an answer.';
+                    return;
+                }
+                userAns = selectedRadio.value.toUpperCase();
+                const correctAns = exercise.answer.toUpperCase();
+                isCorrect = userAns === correctAns;
+
+                // Highlight correct/incorrect options
+                const container = document.getElementById('fav-opts-' + id);
+                container.querySelectorAll('.mc-option').forEach(opt => {
+                    const radio = opt.querySelector('input[type="radio"]');
+                    const optLetter = radio.value.toUpperCase();
+                    opt.classList.remove('selected');
+                    if (optLetter === correctAns) {
+                        opt.classList.add('correct');
+                    } else if (radio.checked && !isCorrect) {
+                        opt.classList.add('incorrect');
+                    }
+                });
+            } else if (exercise.answerType === 'zeros') {
+                const input = document.getElementById('fav-ans-' + id);
                 const userVals = input.value.split(',').map(v => parseFloat(v.trim())).filter(v => !isNaN(v)).sort((a,b) => a-b);
                 const correctVals = exercise.zeros.sort((a,b) => a-b);
                 isCorrect = userVals.length === correctVals.length &&
                             userVals.every((v, i) => Math.abs(v - correctVals[i]) < 0.01);
             } else {
-                const userAns = input.value.replace(/\s/g, '').toLowerCase();
+                const input = document.getElementById('fav-ans-' + id);
+                userAns = input.value.replace(/\s/g, '').toLowerCase();
                 const correctAns = exercise.answer.replace(/\s/g, '').toLowerCase();
                 isCorrect = userAns === correctAns;
             }
@@ -1527,7 +1726,7 @@
                 const id = `gen-${generatedCount}`;
                 const problemNumber = existingProblems + i + 1;
 
-                // Create problem object
+                // Create problem object (include options if present)
                 const problemObj = {
                     id: id,
                     unit: problem.unit || unit,
@@ -1535,6 +1734,7 @@
                     answer: problem.answer,
                     answerType: problem.answerType,
                     zeros: problem.zeros,
+                    options: problem.options || null,
                     hint: problem.hint,
                     solution: problem.solution,
                     hard: problem.hard,
@@ -1552,6 +1752,29 @@
                     ? { border: '#ff5555', gradient: 'linear-gradient(90deg, #ff5555, #ff8800)', label: 'Challenge' }
                     : { border: '#00d4ff', gradient: 'linear-gradient(90deg, #00d4ff, #00ff88)', label: 'Standard' };
 
+                // Build answer input - either multiple choice or text input
+                let answerHtml = '';
+                if (problem.options && problem.options.length > 0) {
+                    answerHtml = `<div class="mc-options" id="opts-${id}">`;
+                    problem.options.forEach((opt) => {
+                        const optLetter = opt.charAt(0);
+                        answerHtml += `
+                            <label class="mc-option" onclick="selectOption('${id}', '${optLetter}')">
+                                <input type="radio" name="mc-${id}" value="${optLetter}">
+                                <span>${opt}</span>
+                            </label>
+                        `;
+                    });
+                    answerHtml += `</div>
+                        <button class="btn btn-check" onclick="checkExercise('${id}')" style="margin-top: 10px;">Check Answer</button>`;
+                } else {
+                    answerHtml = `
+                        <div class="answer-input">
+                            <input type="text" id="ans-${id}" placeholder="Enter your answer">
+                            <button class="btn btn-check" onclick="checkExercise('${id}')">Check</button>
+                        </div>`;
+                }
+
                 newProblemsHtml.push(`
                     <div class="exercise ${problem.hard ? 'hard' : ''}" id="ex-${id}" style="border-color: ${difficultyColors.border}; animation: fadeIn 0.5s ease;">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
@@ -1562,10 +1785,7 @@
                             <button class="btn-heart" onclick="toggleFavorite('${id}')" title="Add to favorites">☆</button>
                         </div>
                         <p class="question">${problemNumber}. ${problem.question}</p>
-                        <div class="answer-input">
-                            <input type="text" id="ans-${id}" placeholder="Enter your answer">
-                            <button class="btn btn-check" onclick="checkExercise('${id}')">Check</button>
-                        </div>
+                        ${answerHtml}
                         <button class="btn btn-hint" onclick="toggleHintEx('${id}')">Hint</button>
                         <button class="btn btn-solution" onclick="toggleSolutionEx('${id}')">Solution</button>
                         <div class="hint-box" id="hint-${id}">${problem.hint}</div>
