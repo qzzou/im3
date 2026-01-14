@@ -599,7 +599,7 @@
             return arr[Math.floor(Math.random() * arr.length)];
         }
         // Unit registration system
-        const courseUnits = { im3: {}, 'sat-math': {} };
+        const courseUnits = { im3: {}, 'sat-math': {}, 'sat-reading': {} };
         function registerUnit(courseId, unitData) {
             if (!courseUnits[courseId]) courseUnits[courseId] = {};
             courseUnits[courseId][unitData.id] = unitData;
@@ -619,6 +619,11 @@
     <script src="courses/sat-math/unit2-problem-solving.js"></script>
     <script src="courses/sat-math/unit3-advanced-math.js"></script>
     <script src="courses/sat-math/unit4-geometry-trig.js"></script>
+    <!-- Load SAT Reading unit files -->
+    <script src="courses/sat-reading/unit1-information-ideas.js"></script>
+    <script src="courses/sat-reading/unit2-craft-structure.js"></script>
+    <script src="courses/sat-reading/unit3-expression-ideas.js"></script>
+    <script src="courses/sat-reading/unit4-conventions.js"></script>
     <div class="main-content" id="mainContent">
         <!-- Score Display -->
         <div class="score-display">
@@ -839,12 +844,25 @@
                     { id: 4, name: 'Unit 4', title: 'Geometry & Trigonometry' }
                 ],
                 progress: 0
+            },
+            'sat-reading': {
+                id: 'sat-reading',
+                name: 'SAT Reading & Writing',
+                description: 'Information & Ideas, Craft & Structure, Expression of Ideas, Conventions',
+                units: [
+                    { id: 1, name: 'Unit 1', title: 'Information & Ideas' },
+                    { id: 2, name: 'Unit 2', title: 'Craft & Structure' },
+                    { id: 3, name: 'Unit 3', title: 'Expression of Ideas' },
+                    { id: 4, name: 'Unit 4', title: 'Standard English Conventions' }
+                ],
+                progress: 0
             }
         };
 
         // Course Content - built from loaded unit files
         const im3Content = { units: {}, exercises: [] };
         const satMathContent = { units: {}, exercises: [] };
+        const satReadingContent = { units: {}, exercises: [] };
 
         // Build content from loaded unit files
         function buildCourseContent() {
@@ -887,10 +905,30 @@
                     }
                 }
             }
+
+            // Build SAT Reading content
+            if (courseUnits['sat-reading']) {
+                for (let i = 1; i <= 4; i++) {
+                    const unit = courseUnits['sat-reading'][i];
+                    if (unit) {
+                        satReadingContent.units[i] = {
+                            title: unit.title,
+                            lessons: unit.lessons
+                        };
+                        if (unit.exercises) {
+                            unit.exercises.forEach(ex => {
+                                if (!satReadingContent.exercises.find(e => e.id === ex.id)) {
+                                    satReadingContent.exercises.push(ex);
+                                }
+                            });
+                        }
+                    }
+                }
+            }
         }
 
         // Build problem generators registry from loaded units
-        const problemGenerators = { im3: {}, 'sat-math': {} };
+        const problemGenerators = { im3: {}, 'sat-math': {}, 'sat-reading': {} };
         function buildGenerators() {
             // IM3 generators
             if (courseUnits.im3) {
@@ -911,12 +949,23 @@
                     }
                 }
             }
+
+            // SAT Reading generators
+            if (courseUnits['sat-reading']) {
+                for (let i = 1; i <= 4; i++) {
+                    const unit = courseUnits['sat-reading'][i];
+                    if (unit && unit.generators) {
+                        problemGenerators['sat-reading'][i] = unit.generators;
+                    }
+                }
+            }
         }
 
         // Helper to get current course content
         function getCurrentCourseContent() {
             if (appState.currentCourse === 'im3') return im3Content;
             if (appState.currentCourse === 'sat-math') return satMathContent;
+            if (appState.currentCourse === 'sat-reading') return satReadingContent;
             return { units: {}, exercises: [] };
         }
 
@@ -950,7 +999,12 @@
                 // Restore generated problems to exercises array
                 if (appState.generatedProblems.length > 0) {
                     appState.generatedProblems.forEach(prob => {
-                        const content = prob.id.startsWith('sat') ? satMathContent : im3Content;
+                        let content = im3Content;
+                        if (prob.id.startsWith('satr')) {
+                            content = satReadingContent;
+                        } else if (prob.id.startsWith('sat')) {
+                            content = satMathContent;
+                        }
                         if (!content.exercises.find(ex => ex.id === prob.id)) {
                             content.exercises.push(prob);
                         }
@@ -1056,7 +1110,7 @@
             renderUnitNav(course);
 
             // Render lessons - supported courses have content
-            const supportedCourses = ['im3', 'sat-math'];
+            const supportedCourses = ['im3', 'sat-math', 'sat-reading'];
             if (supportedCourses.includes(courseId)) {
                 renderLessons(appState.currentUnit);
                 renderFilterBar();
@@ -1310,7 +1364,7 @@
             }
 
             // Get favorites from all courses
-            const allExercises = [...im3Content.exercises, ...satMathContent.exercises];
+            const allExercises = [...im3Content.exercises, ...satMathContent.exercises, ...satReadingContent.exercises];
             const favoriteExercises = allExercises.filter(ex => appState.favorites.has(ex.id));
 
             if (favoriteExercises.length === 0) {
@@ -1321,7 +1375,8 @@
             // Helper to determine which course an exercise belongs to
             function getExerciseCourse(exId) {
                 if (im3Content.exercises.find(e => e.id === exId)) return 'IM3';
-                if (satMathContent.exercises.find(e => e.id === exId)) return 'SAT';
+                if (satMathContent.exercises.find(e => e.id === exId)) return 'SAT Math';
+                if (satReadingContent.exercises.find(e => e.id === exId)) return 'SAT R&W';
                 return '';
             }
 
@@ -1333,7 +1388,7 @@
                     <div class="exercise ${ex.hard ? 'hard' : ''}" id="ex-${ex.id}">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                             <div>
-                                <span class="unit-tag" style="background: ${courseName === 'SAT' ? 'rgba(170,0,255,0.3)' : 'rgba(0,212,255,0.2)'}; color: ${courseName === 'SAT' ? '#aa00ff' : '#00d4ff'};">${courseName}</span>
+                                <span class="unit-tag" style="background: ${courseName.startsWith('SAT') ? 'rgba(170,0,255,0.3)' : 'rgba(0,212,255,0.2)'}; color: ${courseName.startsWith('SAT') ? '#aa00ff' : '#00d4ff'};">${courseName}</span>
                                 <span class="unit-tag" style="margin-left: 5px;">Unit ${ex.unit}</span>
                             </div>
                             <div>
@@ -1367,7 +1422,7 @@
         }
 
         function checkFavoriteExercise(id) {
-            const allExercises = [...im3Content.exercises, ...satMathContent.exercises];
+            const allExercises = [...im3Content.exercises, ...satMathContent.exercises, ...satReadingContent.exercises];
             const exercise = allExercises.find(ex => ex.id === id);
             const input = document.getElementById('fav-ans-' + id);
             const feedback = document.getElementById('fav-fb-' + id);
@@ -1411,8 +1466,9 @@
         function generateMoreProblems() {
             const courseId = appState.currentCourse;
 
-            // Only IM3 has generators for now
-            if (courseId !== 'im3') {
+            // Courses with generators
+            const coursesWithGenerators = ['im3', 'sat-math', 'sat-reading'];
+            if (!coursesWithGenerators.includes(courseId)) {
                 alert('Problem generators coming soon for this course!');
                 return;
             }
