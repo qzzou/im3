@@ -484,6 +484,47 @@ const satUnit2 = {
                     <strong>Be careful:</strong> The question asks for the TAX ($${tax}), not the total ($${total})!`,
                 hard: true
             };
+        },
+        // Type 9: Margin of error / Confidence interval (MC) - SAT statistics
+        function() {
+            // Generate estimate and margin of error
+            const estimate = randChoice([0.32, 0.41, 0.45, 0.49, 0.52, 0.55, 0.61, 0.68]);
+            const marginOfError = randChoice([0.02, 0.03, 0.04, 0.05, 0.06]);
+
+            const lowerBound = (estimate - marginOfError).toFixed(2);
+            const upperBound = (estimate + marginOfError).toFixed(2);
+
+            // Correct answer: plausible between lower and upper bound
+            const correctAnswer = `It is plausible that the proportion is between ${lowerBound} and ${upperBound}.`;
+
+            // Wrong answers test common misconceptions
+            const wrongAnswers = [
+                `It is plausible that the proportion is less than ${lowerBound}.`,
+                `The proportion is exactly ${estimate}.`,
+                `It is plausible that the proportion is greater than ${upperBound}.`
+            ];
+
+            const options = [correctAnswer, ...wrongAnswers];
+            // Don't shuffle - keep in logical order A, B, C, D
+            const letters = ['A', 'B', 'C', 'D'];
+
+            return {
+                unit: 2,
+                question: `To estimate the proportion of a population that has a certain characteristic, a random sample was selected. Based on the sample, it is estimated that the proportion is ${estimate}, with an associated margin of error of ${marginOfError}. Based on this estimate and margin of error, which of the following is the most appropriate conclusion?`,
+                answer: 'A',
+                options: options.map((val, i) => `${letters[i]}) ${val}`),
+                hint: 'Margin of error creates an interval: estimate ± margin of error. The true value plausibly lies within this range.',
+                solution: `<strong>Confidence Interval:</strong><br>
+                    Estimate ± Margin of Error<br>
+                    = ${estimate} ± ${marginOfError}<br>
+                    = <strong>(${lowerBound}, ${upperBound})</strong><br><br>
+                    <strong>Interpretation:</strong><br>
+                    The true proportion plausibly falls within this interval.<br><br>
+                    <strong>Why other answers are wrong:</strong><br>
+                    • B & D: Values outside the interval are NOT plausible<br>
+                    • C: We can't say the proportion is EXACTLY the estimate—that's why we have a margin of error!`,
+                hard: false
+            };
         }
     ]
 };

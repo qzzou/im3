@@ -500,6 +500,152 @@ const satUnit4 = {
                     <strong>Trap:</strong> Don't confuse with sector AREA (which uses πr²)!`,
                 hard: true
             };
+        },
+        // Type 8: Central angle = Arc measure (MC) - Classic SAT concept
+        function() {
+            const arcMeasure = randInt(20, 170);
+            const giveArc = Math.random() > 0.5;
+
+            // Points on circle
+            const points = ['R', 'S', 'T', 'P', 'Q', 'M', 'N'];
+            const p1 = randChoice(points);
+            let p2 = randChoice(points);
+            while (p2 === p1) p2 = randChoice(points);
+
+            const answer = arcMeasure; // Central angle = arc measure
+
+            // Common traps:
+            // - Half the arc (confusing with inscribed angle theorem)
+            // - 180 - arc (thinking supplementary)
+            // - 360 - arc (thinking reflex/major arc)
+            const wrongAnswers = [
+                Math.round(arcMeasure / 2),      // Inscribed angle trap
+                180 - arcMeasure,                 // Supplementary trap
+                360 - arcMeasure                  // Major arc trap
+            ].filter(w => w > 0 && w < 360 && w !== answer);
+
+            while (wrongAnswers.length < 3) {
+                const wrong = arcMeasure + randInt(-30, 30);
+                if (wrong > 0 && wrong < 360 && wrong !== answer && !wrongAnswers.includes(wrong)) {
+                    wrongAnswers.push(wrong);
+                }
+            }
+
+            const allAnswers = [answer, ...wrongAnswers.slice(0, 3)].sort((a, b) => a - b);
+            const correctIndex = allAnswers.indexOf(answer);
+            const letters = ['A', 'B', 'C', 'D'];
+
+            if (giveArc) {
+                return {
+                    unit: 4,
+                    question: `Point O is the center of a circle. The measure of arc ${p1}${p2} on this circle is ${arcMeasure}°. What is the measure, in degrees, of its associated angle ${p1}O${p2}?`,
+                    answer: letters[correctIndex],
+                    options: allAnswers.map((val, i) => `${letters[i]}) ${val}`),
+                    hint: 'A central angle (vertex at the center) equals the measure of its intercepted arc.',
+                    solution: `<strong>Key Property:</strong><br>
+                        Central angle = Arc measure<br><br>
+                        <strong>Given:</strong> Arc ${p1}${p2} = ${arcMeasure}°<br>
+                        <strong>Therefore:</strong> Angle ${p1}O${p2} = <strong>${answer}°</strong><br><br>
+                        <strong>Trap:</strong> ${Math.round(arcMeasure/2)}° would be an INSCRIBED angle (vertex on the circle), not a central angle!`,
+                    hard: false
+                };
+            } else {
+                return {
+                    unit: 4,
+                    question: `Point O is the center of a circle, and points ${p1} and ${p2} lie on the circle. If angle ${p1}O${p2} measures ${arcMeasure}°, what is the measure, in degrees, of arc ${p1}${p2}?`,
+                    answer: letters[correctIndex],
+                    options: allAnswers.map((val, i) => `${letters[i]}) ${val}`),
+                    hint: 'A central angle (vertex at the center) equals the measure of its intercepted arc.',
+                    solution: `<strong>Key Property:</strong><br>
+                        Central angle = Arc measure<br><br>
+                        <strong>Given:</strong> Angle ${p1}O${p2} = ${arcMeasure}°<br>
+                        <strong>Therefore:</strong> Arc ${p1}${p2} = <strong>${answer}°</strong><br><br>
+                        <strong>Note:</strong> This is the minor arc. The major arc would be ${360 - arcMeasure}°.`,
+                    hard: false
+                };
+            }
+        },
+        // Type 9: Special right triangle perimeter (MC) - SAT classic
+        function() {
+            const is45 = Math.random() > 0.5;
+
+            if (is45) {
+                // 45-45-90 triangle: legs = x, hypotenuse = x√2
+                // Given hypotenuse, find perimeter
+                const hyp = randChoice([10, 12, 14, 16, 18, 20, 24, 30, 40, 50, 58]);
+                // Each leg = hyp / √2 = hyp√2 / 2
+                // Perimeter = 2 * (hyp√2/2) + hyp = hyp√2 + hyp = hyp + hyp√2
+
+                const correctAnswer = `${hyp} + ${hyp}√2`;
+
+                // Common traps
+                const wrongAnswers = [
+                    `${hyp / 2}√2`,                    // Just one leg
+                    `${hyp}√2`,                        // Just the two legs, forgot hypotenuse
+                    `${hyp} + ${hyp * 2}√2`            // Doubled incorrectly
+                ];
+
+                const options = [correctAnswer, ...wrongAnswers];
+                options.sort(() => Math.random() - 0.5);
+                const correctIndex = options.indexOf(correctAnswer);
+                const letters = ['A', 'B', 'C', 'D'];
+
+                return {
+                    unit: 4,
+                    question: `An isosceles right triangle has a hypotenuse of length ${hyp} inches. What is the perimeter, in inches, of this triangle?`,
+                    answer: letters[correctIndex],
+                    options: options.map((val, i) => `${letters[i]}) ${val}`),
+                    hint: 'An isosceles right triangle is a 45-45-90 triangle. Find each leg first, then add all three sides.',
+                    solution: `<strong>45-45-90 Triangle:</strong> sides in ratio 1 : 1 : √2<br><br>
+                        <strong>Given:</strong> Hypotenuse = ${hyp}<br><br>
+                        <strong>Find each leg:</strong><br>
+                        leg = ${hyp} / √2 = ${hyp}√2 / 2 = ${hyp/2}√2<br><br>
+                        <strong>Perimeter:</strong><br>
+                        = leg + leg + hypotenuse<br>
+                        = ${hyp/2}√2 + ${hyp/2}√2 + ${hyp}<br>
+                        = <strong>${hyp} + ${hyp}√2</strong><br><br>
+                        <strong>Trap:</strong> ${hyp}√2 is just the two legs—don't forget the hypotenuse!`,
+                    hard: true
+                };
+            } else {
+                // 30-60-90 triangle: short = x, medium = x√3, hypotenuse = 2x
+                // Given hypotenuse, find perimeter
+                const x = randChoice([5, 6, 7, 8, 10, 12, 15]);
+                const hyp = x * 2;
+                // Perimeter = x + x√3 + 2x = 3x + x√3
+
+                const correctAnswer = `${3 * x} + ${x}√3`;
+
+                // Common traps
+                const wrongAnswers = [
+                    `${x} + ${x}√3`,                   // Forgot the hypotenuse
+                    `${2 * x} + ${x}√3`,               // Only added short + medium
+                    `${3 * x}√3`                       // Multiplied incorrectly
+                ];
+
+                const options = [correctAnswer, ...wrongAnswers];
+                options.sort(() => Math.random() - 0.5);
+                const correctIndex = options.indexOf(correctAnswer);
+                const letters = ['A', 'B', 'C', 'D'];
+
+                return {
+                    unit: 4,
+                    question: `A 30-60-90 triangle has a hypotenuse of length ${hyp}. What is the perimeter of this triangle?`,
+                    answer: letters[correctIndex],
+                    options: options.map((val, i) => `${letters[i]}) ${val}`),
+                    hint: 'In a 30-60-90 triangle, sides are in ratio 1 : √3 : 2. Find all three sides, then add them.',
+                    solution: `<strong>30-60-90 Triangle:</strong> sides in ratio 1 : √3 : 2<br><br>
+                        <strong>Given:</strong> Hypotenuse = ${hyp}<br><br>
+                        <strong>Find all sides:</strong><br>
+                        • Shortest (opposite 30°) = ${hyp} / 2 = ${x}<br>
+                        • Middle (opposite 60°) = ${x}√3<br>
+                        • Hypotenuse = ${hyp}<br><br>
+                        <strong>Perimeter:</strong><br>
+                        = ${x} + ${x}√3 + ${hyp}<br>
+                        = <strong>${3 * x} + ${x}√3</strong>`,
+                    hard: true
+                };
+            }
         }
     ]
 };

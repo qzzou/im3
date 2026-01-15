@@ -455,6 +455,202 @@ const satUnit1 = {
                     <strong>Number of items:</strong> $${total - tip} ÷ $${ctx.rate} = <strong>${quantity}</strong>`,
                 hard: false
             };
+        },
+        // Type 9: Interpret slope/y-intercept in context (MC) - Classic SAT question type
+        function() {
+            const contexts = [
+                {
+                    scenario: 'bank account',
+                    variable: 't',
+                    varMeaning: 'monthly deposits',
+                    initial: randInt(50, 200),
+                    rate: randInt(15, 50),
+                    functionDesc: 'amount, in dollars, in the account after',
+                    rateInterpret: 'With each monthly deposit, the amount in the account increased by',
+                    initialInterpret: 'Before any monthly deposits, the amount in the account was'
+                },
+                {
+                    scenario: 'water tank',
+                    variable: 't',
+                    varMeaning: 'minutes',
+                    initial: randInt(100, 500),
+                    rate: randInt(5, 20),
+                    functionDesc: 'amount of water, in gallons, in the tank after',
+                    rateInterpret: 'Each minute, the amount of water in the tank increased by',
+                    initialInterpret: 'The tank initially contained'
+                },
+                {
+                    scenario: 'phone plan',
+                    variable: 'g',
+                    varMeaning: 'gigabytes of data used',
+                    initial: randInt(20, 60),
+                    rate: randInt(5, 15),
+                    functionDesc: 'monthly cost, in dollars, for using',
+                    rateInterpret: 'For each additional gigabyte used, the cost increased by',
+                    initialInterpret: 'The base monthly cost (before any data usage) was'
+                },
+                {
+                    scenario: 'taxi ride',
+                    variable: 'm',
+                    varMeaning: 'miles traveled',
+                    initial: randInt(2, 5),
+                    rate: randInt(2, 4),
+                    functionDesc: 'cost, in dollars, of a taxi ride of',
+                    rateInterpret: 'For each mile traveled, the cost increased by',
+                    initialInterpret: 'The initial fee (before any distance) was'
+                }
+            ];
+
+            const ctx = randChoice(contexts);
+            const askAboutRate = Math.random() > 0.5;
+            const numberToAsk = askAboutRate ? ctx.rate : ctx.initial;
+
+            // Build the function string
+            const funcString = `f(${ctx.variable}) = ${ctx.initial} + ${ctx.rate}${ctx.variable}`;
+
+            // Generate options based on what we're asking about
+            let options, correctAnswer;
+            if (askAboutRate) {
+                options = [
+                    `A) ${ctx.rateInterpret} $${ctx.rate}.`,
+                    `B) ${ctx.initialInterpret} $${ctx.rate}.`,
+                    `C) After 1 ${ctx.varMeaning.split(' ')[0]}, the amount was $${ctx.rate}.`,
+                    `D) The total after all ${ctx.varMeaning} was $${ctx.rate}.`
+                ];
+                correctAnswer = 'A';
+            } else {
+                options = [
+                    `A) ${ctx.rateInterpret} $${ctx.initial}.`,
+                    `B) ${ctx.initialInterpret} $${ctx.initial}.`,
+                    `C) After ${ctx.initial} ${ctx.varMeaning}, the total was $${ctx.initial}.`,
+                    `D) The maximum amount was $${ctx.initial}.`
+                ];
+                correctAnswer = 'B';
+            }
+
+            return {
+                unit: 1,
+                question: `The function ${funcString} gives the ${ctx.functionDesc} ${ctx.variable} ${ctx.varMeaning}. What is the best interpretation of ${numberToAsk} in this context?`,
+                answer: correctAnswer,
+                options: options,
+                hint: `In f(${ctx.variable}) = b + m${ctx.variable}, the number multiplied by ${ctx.variable} is the rate of change (slope), and the constant is the starting value (y-intercept).`,
+                solution: `<strong>Linear Function Form:</strong> f(${ctx.variable}) = initial + rate × ${ctx.variable}<br><br>
+                    <strong>In ${funcString}:</strong><br>
+                    • ${ctx.initial} = y-intercept (starting value)<br>
+                    • ${ctx.rate} = slope (rate of change per ${ctx.varMeaning.split(' ')[0]})<br><br>
+                    <strong>${numberToAsk} represents:</strong><br>
+                    ${askAboutRate ? ctx.rateInterpret : ctx.initialInterpret} $${numberToAsk}.<br><br>
+                    <strong>Answer: ${correctAnswer}</strong>`,
+                hard: false
+            };
+        },
+        // Type 10: Maximum items inequality word problem (MC) - Classic SAT gotcha
+        function() {
+            // Generate scenario with fixed cost + per-item cost ≤ limit
+            const scenarios = [
+                { vehicle: 'truck', container: 'trailer', item: 'boxes', unit: 'pounds' },
+                { vehicle: 'elevator', container: 'elevator', item: 'people', unit: 'pounds' },
+                { vehicle: 'boat', container: 'boat', item: 'crates', unit: 'pounds' },
+                { vehicle: 'van', container: 'van', item: 'packages', unit: 'pounds' }
+            ];
+            const scenario = randChoice(scenarios);
+
+            // Generate values that DON'T divide evenly (creates the gotcha)
+            const maxWeight = randChoice([2000, 2500, 3000, 4000, 4500, 4600, 5000]);
+            const containerWeight = randChoice([300, 400, 500, 600, 800]);
+            const itemWeight = randChoice([80, 100, 120, 150, 175]);
+
+            const remainingCapacity = maxWeight - containerWeight;
+            const exactAnswer = remainingCapacity / itemWeight;
+            const answer = Math.floor(exactAnswer); // Must round DOWN
+
+            // Skip if it divides evenly (no gotcha) or answer is too small/large
+            if (Number.isInteger(exactAnswer) || answer < 10 || answer > 50) {
+                return satUnit1.generators[9]();
+            }
+
+            const roundUpTrap = answer + 1; // Common mistake: rounding up
+
+            const wrongAnswers = [
+                roundUpTrap,
+                Math.floor(maxWeight / itemWeight), // Forgot to subtract container weight
+                answer + randInt(3, 6)
+            ].filter(w => w !== answer);
+
+            const allAnswers = [answer, ...wrongAnswers.slice(0, 3)].sort((a, b) => a - b);
+            const correctIndex = allAnswers.indexOf(answer);
+            const letters = ['A', 'B', 'C', 'D'];
+
+            return {
+                unit: 1,
+                question: `A ${scenario.vehicle} can carry a ${scenario.container} if the combined weight of the ${scenario.container} and the ${scenario.item} it contains is no more than ${maxWeight.toLocaleString()} ${scenario.unit}. What is the maximum number of ${scenario.item} this ${scenario.vehicle} can carry in a ${scenario.container} with a weight of ${containerWeight} ${scenario.unit} if each ${scenario.item.slice(0, -1)} weighs ${itemWeight} ${scenario.unit}?`,
+                answer: letters[correctIndex],
+                options: allAnswers.map((val, i) => `${letters[i]}) ${val}`),
+                hint: 'Set up an inequality: container + (items × weight per item) ≤ limit. Solve, then round DOWN since you can\'t exceed the limit.',
+                solution: `<strong>Set up the inequality:</strong><br>
+                    ${containerWeight} + ${itemWeight}x ≤ ${maxWeight}<br><br>
+                    <strong>Solve:</strong><br>
+                    ${itemWeight}x ≤ ${remainingCapacity}<br>
+                    x ≤ ${exactAnswer.toFixed(2)}...<br><br>
+                    <strong>Round DOWN (not up!):</strong><br>
+                    x = <strong>${answer}</strong><br><br>
+                    <strong>Why not ${roundUpTrap}?</strong><br>
+                    ${roundUpTrap} ${scenario.item} would weigh ${containerWeight + roundUpTrap * itemWeight} ${scenario.unit}, which EXCEEDS the ${maxWeight} limit!`,
+                hard: true
+            };
+        },
+        // Type 11: Ratio + Difference system word problem (MC) - Classic SAT
+        function() {
+            // "X times as many" + "Y more than" → system of equations
+            const scenarios = [
+                { context: 'election', groupA: 'voted in favor', groupB: 'voted against', item: 'people' },
+                { context: 'survey', groupA: 'agreed', groupB: 'disagreed', item: 'respondents' },
+                { context: 'competition', groupA: 'passed', groupB: 'failed', item: 'contestants' },
+                { context: 'store', groupA: 'bought product A', groupB: 'bought product B', item: 'customers' }
+            ];
+            const scenario = randChoice(scenarios);
+
+            // Generate multiplier and difference that give nice answer
+            const multiplier = randChoice([2, 3, 4, 5]);
+            const smallGroup = randChoice([5000, 6000, 7500, 8000, 10000, 12000]);
+            const largeGroup = smallGroup * multiplier;
+            const difference = largeGroup - smallGroup;
+
+            // Answer is the smaller group (what they usually ask for)
+            const answer = smallGroup;
+            const total = smallGroup + largeGroup;
+
+            // Common traps
+            const wrongAnswers = [
+                difference,      // Just the difference given in problem
+                largeGroup,      // The OTHER group (not what was asked)
+                total            // Total of both groups
+            ].filter(w => w !== answer);
+
+            const allAnswers = [answer, ...wrongAnswers.slice(0, 3)].sort((a, b) => a - b);
+            const correctIndex = allAnswers.indexOf(answer);
+            const letters = ['A', 'B', 'C', 'D'];
+
+            return {
+                unit: 1,
+                question: `A report stated that ${multiplier} times as many ${scenario.item} ${scenario.groupA} as ${scenario.groupB}. Another source reported that ${difference.toLocaleString()} more ${scenario.item} ${scenario.groupA} than ${scenario.groupB}. Based on these data, how many ${scenario.item} ${scenario.groupB}?`,
+                answer: letters[correctIndex],
+                options: allAnswers.map((val, i) => `${letters[i]}) ${val.toLocaleString()}`),
+                hint: `Let x = ${scenario.item} who ${scenario.groupB}. Then ${multiplier}x = ${scenario.item} who ${scenario.groupA}. Use the difference to solve.`,
+                solution: `<strong>Set up variables:</strong><br>
+                    Let x = ${scenario.item} who ${scenario.groupB}<br>
+                    Then ${multiplier}x = ${scenario.item} who ${scenario.groupA}<br><br>
+                    <strong>Use the difference:</strong><br>
+                    ${multiplier}x - x = ${difference.toLocaleString()}<br>
+                    ${multiplier - 1}x = ${difference.toLocaleString()}<br>
+                    x = ${difference.toLocaleString()} ÷ ${multiplier - 1}<br>
+                    x = <strong>${answer.toLocaleString()}</strong><br><br>
+                    <strong>Common traps:</strong><br>
+                    • ${difference.toLocaleString()} is the difference, not the answer<br>
+                    • ${largeGroup.toLocaleString()} is how many ${scenario.groupA} (not what was asked)<br>
+                    • ${total.toLocaleString()} is the total of both groups`,
+                hard: true
+            };
         }
     ]
 };
