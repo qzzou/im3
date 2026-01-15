@@ -662,6 +662,7 @@
     <script src="courses/sat-math/unit2-problem-solving.js"></script>
     <script src="courses/sat-math/unit3-advanced-math.js"></script>
     <script src="courses/sat-math/unit4-geometry-trig.js"></script>
+    <script src="courses/sat-math/unit5-gotchas.js"></script>
     <!-- Load SAT Reading unit files -->
     <script src="courses/sat-reading/unit1-information-ideas.js"></script>
     <script src="courses/sat-reading/unit2-craft-structure.js"></script>
@@ -879,12 +880,13 @@
             'sat-math': {
                 id: 'sat-math',
                 name: 'SAT Math',
-                description: 'Heart of Algebra, Problem Solving, Advanced Math, Geometry',
+                description: 'Heart of Algebra, Problem Solving, Advanced Math, Geometry, Gotchas',
                 units: [
                     { id: 1, name: 'Unit 1', title: 'Heart of Algebra' },
                     { id: 2, name: 'Unit 2', title: 'Problem Solving & Data Analysis' },
                     { id: 3, name: 'Unit 3', title: 'Passport to Advanced Math' },
-                    { id: 4, name: 'Unit 4', title: 'Geometry & Trigonometry' }
+                    { id: 4, name: 'Unit 4', title: 'Geometry & Trigonometry' },
+                    { id: 5, name: 'Unit 5', title: 'Gotchas & Tricky Problems' }
                 ],
                 progress: 0
             },
@@ -908,20 +910,23 @@
         const satReadingContent = { units: {}, exercises: [] };
 
         // Build content from loaded unit files
+        // Uses courses[].units.length as the source of truth for unit counts
         function buildCourseContent() {
-            // Build IM3 content
-            if (courseUnits.im3) {
-                for (let i = 1; i <= 8; i++) {
-                    const unit = courseUnits.im3[i];
+            // Helper to build content for a course
+            function buildForCourse(courseId, contentObj) {
+                if (!courseUnits[courseId]) return;
+                const unitCount = courses[courseId].units.length;
+                for (let i = 1; i <= unitCount; i++) {
+                    const unit = courseUnits[courseId][i];
                     if (unit) {
-                        im3Content.units[i] = {
+                        contentObj.units[i] = {
                             title: unit.title,
                             lessons: unit.lessons
                         };
                         if (unit.exercises) {
                             unit.exercises.forEach(ex => {
-                                if (!im3Content.exercises.find(e => e.id === ex.id)) {
-                                    im3Content.exercises.push(ex);
+                                if (!contentObj.exercises.find(e => e.id === ex.id)) {
+                                    contentObj.exercises.push(ex);
                                 }
                             });
                         }
@@ -929,79 +934,30 @@
                 }
             }
 
-            // Build SAT Math content
-            if (courseUnits['sat-math']) {
-                for (let i = 1; i <= 4; i++) {
-                    const unit = courseUnits['sat-math'][i];
-                    if (unit) {
-                        satMathContent.units[i] = {
-                            title: unit.title,
-                            lessons: unit.lessons
-                        };
-                        if (unit.exercises) {
-                            unit.exercises.forEach(ex => {
-                                if (!satMathContent.exercises.find(e => e.id === ex.id)) {
-                                    satMathContent.exercises.push(ex);
-                                }
-                            });
-                        }
-                    }
-                }
-            }
-
-            // Build SAT Reading content
-            if (courseUnits['sat-reading']) {
-                for (let i = 1; i <= 4; i++) {
-                    const unit = courseUnits['sat-reading'][i];
-                    if (unit) {
-                        satReadingContent.units[i] = {
-                            title: unit.title,
-                            lessons: unit.lessons
-                        };
-                        if (unit.exercises) {
-                            unit.exercises.forEach(ex => {
-                                if (!satReadingContent.exercises.find(e => e.id === ex.id)) {
-                                    satReadingContent.exercises.push(ex);
-                                }
-                            });
-                        }
-                    }
-                }
-            }
+            buildForCourse('im3', im3Content);
+            buildForCourse('sat-math', satMathContent);
+            buildForCourse('sat-reading', satReadingContent);
         }
 
         // Build problem generators registry from loaded units
+        // Uses courses[].units.length as the source of truth for unit counts
         const problemGenerators = { im3: {}, 'sat-math': {}, 'sat-reading': {} };
         function buildGenerators() {
-            // IM3 generators
-            if (courseUnits.im3) {
-                for (let i = 1; i <= 8; i++) {
-                    const unit = courseUnits.im3[i];
+            // Helper to build generators for a course
+            function buildForCourse(courseId) {
+                if (!courseUnits[courseId]) return;
+                const unitCount = courses[courseId].units.length;
+                for (let i = 1; i <= unitCount; i++) {
+                    const unit = courseUnits[courseId][i];
                     if (unit && unit.generators) {
-                        problemGenerators.im3[i] = unit.generators;
+                        problemGenerators[courseId][i] = unit.generators;
                     }
                 }
             }
 
-            // SAT Math generators
-            if (courseUnits['sat-math']) {
-                for (let i = 1; i <= 4; i++) {
-                    const unit = courseUnits['sat-math'][i];
-                    if (unit && unit.generators) {
-                        problemGenerators['sat-math'][i] = unit.generators;
-                    }
-                }
-            }
-
-            // SAT Reading generators
-            if (courseUnits['sat-reading']) {
-                for (let i = 1; i <= 4; i++) {
-                    const unit = courseUnits['sat-reading'][i];
-                    if (unit && unit.generators) {
-                        problemGenerators['sat-reading'][i] = unit.generators;
-                    }
-                }
-            }
+            buildForCourse('im3');
+            buildForCourse('sat-math');
+            buildForCourse('sat-reading');
         }
 
         // Helper to get current course content
@@ -1115,7 +1071,8 @@
             }
 
             appState.currentTab = tabName;
-            // Skip immediate save for navigation - will save on exit or next important action
+            // Save state to ensure tab persists on refresh
+            saveState(true);
         }
 
         // ============================================
@@ -1159,7 +1116,8 @@
 
             // Restore bookmark if exists
             restoreBookmark();
-            // Skip immediate save for navigation - will save on exit or next important action
+            // Save immediately when switching courses to ensure state persists on refresh
+            saveState(true);
         }
 
         function loadCourse(courseId) {

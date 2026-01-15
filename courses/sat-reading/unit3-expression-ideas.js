@@ -89,7 +89,7 @@ const satReadingUnit3 = {
                 • Sentence 2: Unexpected/disappointing result (low ridership)<br><br>
                 This is a CONTRAST relationship—the result doesn't match expectations.<br><br>
                 <strong>Answer: B</strong> - However`,
-            hard: false
+            hard: true
         },
         {
             id: 'satr3-2',
@@ -104,7 +104,7 @@ const satReadingUnit3 = {
                 • Sentence 2: Specific evidence (drowsy driving statistics)<br><br>
                 The second sentence shows a RESULT/CONSEQUENCE of the first.<br><br>
                 <strong>Answer: C</strong> - In fact`,
-            hard: false
+            hard: true
         },
         {
             id: 'satr3-3',
@@ -121,7 +121,7 @@ const satReadingUnit3 = {
                 • Sentence 3: Benefit (community building) ✓<br>
                 • Sentence 4: Benefit (mental health) ✓<br><br>
                 <strong>Answer: B</strong> - Sentence 2 (historical tangent doesn't support the theme of benefits)`,
-            hard: false
+            hard: true
         },
         {
             id: 'satr3-4',
@@ -135,7 +135,7 @@ const satReadingUnit3 = {
                 • "important discovery that was significant" - redundant<br>
                 • "the fact that" - wordy filler<br><br>
                 <strong>Answer: A</strong> - "The scientist discovered that the virus could mutate rapidly."`,
-            hard: false
+            hard: true
         },
         {
             id: 'satr3-5',
@@ -168,7 +168,7 @@ const satReadingUnit3 = {
                 • Specific observations (furniture position, shadow angles)<br><br>
                 This suggests careful, methodical examination.<br><br>
                 <strong>Answer: D</strong> - scrutinized (means examined very carefully)`,
-            hard: false
+            hard: true
         }
     ],
 
@@ -218,7 +218,7 @@ const satReadingUnit3 = {
                 options: topic.options,
                 hint: `Identify the relationship between the sentences: addition, contrast, cause/effect, or example?`,
                 solution: `<strong>Relationship:</strong> ${topic.relationship}<br><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong>`,
-                hard: false
+                hard: true
             };
         },
         // Type 2: Relevance/Delete questions
@@ -255,7 +255,7 @@ const satReadingUnit3 = {
                 options: topic.options,
                 hint: 'Identify the main topic and find the sentence that doesn\'t support it.',
                 solution: `<strong>Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong>`,
-                hard: false
+                hard: true
             };
         },
         // Type 3: Concision questions
@@ -292,7 +292,7 @@ const satReadingUnit3 = {
                 options: topic.options,
                 hint: 'Look for the option that says the same thing with fewer words.',
                 solution: `<strong>Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong>`,
-                hard: false
+                hard: true
             };
         },
         // Type 4: Sentence placement questions
@@ -363,7 +363,7 @@ const satReadingUnit3 = {
                 options: topic.options,
                 hint: 'Which word most specifically fits the situation described?',
                 solution: `<strong>Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong>`,
-                hard: false
+                hard: true
             };
         },
         // Type 6: Add/Keep questions

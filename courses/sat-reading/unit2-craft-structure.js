@@ -99,7 +99,7 @@ const satReadingUnit2 = {
                 • "shadows pooled" - darkness gathering<br>
                 • "old bones" - death, decay<br><br>
                 <strong>Answer: B</strong> - Ominous and unsettling`,
-            hard: false
+            hard: true
         },
         {
             id: 'satr2-2',
@@ -132,7 +132,7 @@ const satReadingUnit2 = {
                 • Proposes alternative ("should focus on...")<br><br>
                 This is persuasive writing—arguing for a specific position.<br><br>
                 <strong>Answer: C</strong> - Argue against fears of AI while proposing a constructive approach`,
-            hard: false
+            hard: true
         },
         {
             id: 'satr2-4',
@@ -149,7 +149,7 @@ const satReadingUnit2 = {
                 • Opponent: "bold," "necessary," "unleash"<br><br>
                 This shows how word choice shapes perception of the same reality.<br><br>
                 <strong>Answer: B</strong> - Show how word choice can frame the same proposal positively or negatively`,
-            hard: false
+            hard: true
         },
         {
             id: 'satr2-5',
@@ -223,7 +223,7 @@ const satReadingUnit2 = {
                 options: topic.options,
                 hint: 'Pay attention to specific word choices and the feelings they evoke.',
                 solution: `<strong>Word Choice Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong>`,
-                hard: false
+                hard: true
             };
         },
         // Type 2: Text structure questions
@@ -260,7 +260,7 @@ const satReadingUnit2 = {
                 options: topic.options,
                 hint: 'Look for signal words that indicate the relationship between ideas.',
                 solution: `<strong>Structure Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong>`,
-                hard: false
+                hard: true
             };
         },
         // Type 3: Author's purpose questions

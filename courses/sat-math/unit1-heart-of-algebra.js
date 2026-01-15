@@ -88,7 +88,8 @@ const satUnit1 = {
             id: 'sat1-1',
             unit: 1,
             question: 'If 4(x - 3) + 2 = 3x + 5, what is the value of x?',
-            answer: '15',
+            answer: 'C',
+            options: ['A) 7', 'B) 11', 'C) 15', 'D) 19'],
             hint: 'Distribute the 4, combine like terms, then isolate x.',
             solution: `<strong>Step 1: Distribute</strong><br>
                 4x - 12 + 2 = 3x + 5<br>
@@ -102,7 +103,8 @@ const satUnit1 = {
             id: 'sat1-2',
             unit: 1,
             question: 'A line passes through points (2, 5) and (4, 11). What is the slope of this line?',
-            answer: '3',
+            answer: 'B',
+            options: ['A) 2', 'B) 3', 'C) 4', 'D) 6'],
             hint: 'Use the slope formula: m = (y₂ - y₁) / (x₂ - x₁)',
             solution: `<strong>Slope Formula:</strong><br>
                 m = (y₂ - y₁) / (x₂ - x₁)<br>
@@ -115,7 +117,8 @@ const satUnit1 = {
             id: 'sat1-3',
             unit: 1,
             question: 'If 2x + 3y = 12 and x - y = 1, what is the value of x + y?',
-            answer: '5',
+            answer: 'C',
+            options: ['A) 3', 'B) 4', 'C) 5', 'D) 6'],
             hint: 'Use elimination or substitution to find x and y, then add them.',
             solution: `<strong>Method: Elimination</strong><br>
                 From x - y = 1: x = y + 1<br><br>
@@ -132,7 +135,8 @@ const satUnit1 = {
             id: 'sat1-4',
             unit: 1,
             question: 'What is the y-intercept of the line 3x - 2y = 8?',
-            answer: '-4',
+            answer: 'A',
+            options: ['A) -4', 'B) -2', 'C) 2', 'D) 4'],
             hint: 'Rewrite in slope-intercept form (y = mx + b) and identify b.',
             solution: `<strong>Convert to slope-intercept form:</strong><br>
                 3x - 2y = 8<br>
@@ -145,7 +149,8 @@ const satUnit1 = {
             id: 'sat1-5',
             unit: 1,
             question: 'For what value of k will the system have no solution?<br>2x + 3y = 7<br>4x + ky = 10',
-            answer: '6',
+            answer: 'C',
+            options: ['A) 3', 'B) 4', 'C) 6', 'D) 8'],
             hint: 'For no solution, the lines must be parallel (same slope, different y-intercept).',
             solution: `<strong>For no solution, lines must be parallel (same slope).</strong><br><br>
                 <strong>Rewrite first equation:</strong><br>
@@ -162,8 +167,9 @@ const satUnit1 = {
         {
             id: 'sat1-6',
             unit: 1,
-            question: 'If -3x + 7 ≥ 22, which of the following represents all possible values of x?<br>(Enter as: x<=n or x>=n)',
-            answer: 'x<=-5',
+            question: 'If -3x + 7 ≥ 22, which of the following represents all possible values of x?',
+            answer: 'A',
+            options: ['A) x ≤ -5', 'B) x ≥ -5', 'C) x ≤ 5', 'D) x ≥ 5'],
             hint: 'Solve like an equation, but remember to flip the sign when dividing by a negative.',
             solution: `<strong>Step 1: Isolate the x term</strong><br>
                 -3x + 7 ≥ 22<br>
@@ -171,32 +177,42 @@ const satUnit1 = {
                 <strong>Step 2: Divide by -3 (FLIP the inequality!)</strong><br>
                 x ≤ -5<br><br>
                 <strong>Answer: x ≤ -5</strong>`,
-            hard: false
+            hard: true
         }
     ],
 
     generators: [
-        // Type 1: Linear equation solving
+        // Type 1: Linear equation solving (MC)
         function() {
             const a = randInt(2, 5);
             const b = randInt(1, 10);
             const c = randInt(1, 5);
             const d = randInt(1, 15);
 
-            // a(x - b) = cx + d
-            // ax - ab = cx + d
-            // ax - cx = d + ab
-            // x(a - c) = d + ab
             const answer = (d + a * b) / (a - c);
 
-            if (!Number.isInteger(answer) || a === c) {
-                return satUnit1.generators[0](); // Retry
+            if (!Number.isInteger(answer) || a === c || answer < 1 || answer > 30) {
+                return satUnit1.generators[0]();
             }
+
+            // Generate plausible wrong answers
+            const wrongAnswers = [answer - 3, answer + 2, answer - 5].filter(w => w > 0 && w !== answer);
+            while (wrongAnswers.length < 3) {
+                const wrong = answer + randInt(-8, 8);
+                if (wrong > 0 && wrong !== answer && !wrongAnswers.includes(wrong)) {
+                    wrongAnswers.push(wrong);
+                }
+            }
+
+            const allAnswers = [answer, ...wrongAnswers.slice(0, 3)].sort((a, b) => a - b);
+            const correctIndex = allAnswers.indexOf(answer);
+            const letters = ['A', 'B', 'C', 'D'];
 
             return {
                 unit: 1,
                 question: `If ${a}(x - ${b}) = ${c}x + ${d}, what is the value of x?`,
-                answer: `${answer}`,
+                answer: letters[correctIndex],
+                options: allAnswers.map((val, i) => `${letters[i]}) ${val}`),
                 hint: `Distribute ${a}, then collect x terms on one side.`,
                 solution: `<strong>Step 1: Distribute</strong><br>
                     ${a}x - ${a * b} = ${c}x + ${d}<br><br>
@@ -208,7 +224,7 @@ const satUnit1 = {
                 hard: false
             };
         },
-        // Type 2: Slope calculation
+        // Type 2: Slope calculation (MC)
         function() {
             const x1 = randInt(-5, 5);
             const y1 = randInt(-5, 5);
@@ -219,10 +235,23 @@ const satUnit1 = {
             const x2 = x1 + dx;
             const y2 = y1 + m * dx;
 
+            const wrongAnswers = [m + 1, m - 1, -m].filter(w => w !== m);
+            while (wrongAnswers.length < 3) {
+                const wrong = randInt(-5, 5);
+                if (wrong !== m && wrong !== 0 && !wrongAnswers.includes(wrong)) {
+                    wrongAnswers.push(wrong);
+                }
+            }
+
+            const allAnswers = [m, ...wrongAnswers.slice(0, 3)].sort((a, b) => a - b);
+            const correctIndex = allAnswers.indexOf(m);
+            const letters = ['A', 'B', 'C', 'D'];
+
             return {
                 unit: 1,
                 question: `A line passes through points (${x1}, ${y1}) and (${x2}, ${y2}). What is the slope of this line?`,
-                answer: `${m}`,
+                answer: letters[correctIndex],
+                options: allAnswers.map((val, i) => `${letters[i]}) ${val}`),
                 hint: 'Use the slope formula: m = (y₂ - y₁) / (x₂ - x₁)',
                 solution: `<strong>Slope Formula:</strong><br>
                     m = (y₂ - y₁) / (x₂ - x₁)<br>
@@ -232,7 +261,7 @@ const satUnit1 = {
                 hard: false
             };
         },
-        // Type 3: System of equations
+        // Type 3: System of equations (MC) - Medium difficulty
         function() {
             const x = randInt(1, 6);
             const y = randInt(1, 6);
@@ -244,20 +273,33 @@ const satUnit1 = {
             const c1 = a1 * x + b1 * y;
             const c2 = a2 * x + b2 * y;
 
+            const wrongAnswers = [x + 1, x - 1, y].filter(w => w > 0 && w !== x);
+            while (wrongAnswers.length < 3) {
+                const wrong = randInt(1, 8);
+                if (wrong !== x && !wrongAnswers.includes(wrong)) {
+                    wrongAnswers.push(wrong);
+                }
+            }
+
+            const allAnswers = [x, ...wrongAnswers.slice(0, 3)].sort((a, b) => a - b);
+            const correctIndex = allAnswers.indexOf(x);
+            const letters = ['A', 'B', 'C', 'D'];
+
             return {
                 unit: 1,
                 question: `If ${a1}x + ${b1}y = ${c1} and ${a2}x ${b2 >= 0 ? '+' : '-'} ${Math.abs(b2)}y = ${c2}, what is the value of x?`,
-                answer: `${x}`,
+                answer: letters[correctIndex],
+                options: allAnswers.map((val, i) => `${letters[i]}) ${val}`),
                 hint: 'Use elimination: multiply equations to make coefficients match, then add/subtract.',
                 solution: `<strong>System:</strong><br>
                     ${a1}x + ${b1}y = ${c1}<br>
                     ${a2}x ${b2 >= 0 ? '+' : '-'} ${Math.abs(b2)}y = ${c2}<br><br>
                     <strong>Using elimination or substitution:</strong><br>
                     x = <strong>${x}</strong>, y = ${y}`,
-                hard: false
+                hard: true
             };
         },
-        // Type 4: Y-intercept from standard form
+        // Type 4: Y-intercept from standard form (MC)
         function() {
             const a = randInt(2, 6);
             const b = randInt(2, 6) * (Math.random() > 0.5 ? 1 : -1);
@@ -268,10 +310,23 @@ const satUnit1 = {
 
             const bSign = b >= 0 ? '+' : '-';
 
+            const wrongAnswers = [-yInt, yInt + 2, yInt - 2].filter(w => w !== yInt);
+            while (wrongAnswers.length < 3) {
+                const wrong = randInt(-10, 10);
+                if (wrong !== yInt && !wrongAnswers.includes(wrong)) {
+                    wrongAnswers.push(wrong);
+                }
+            }
+
+            const allAnswers = [yInt, ...wrongAnswers.slice(0, 3)].sort((a, b) => a - b);
+            const correctIndex = allAnswers.indexOf(yInt);
+            const letters = ['A', 'B', 'C', 'D'];
+
             return {
                 unit: 1,
                 question: `What is the y-intercept of the line ${a}x ${bSign} ${Math.abs(b)}y = ${c}?`,
-                answer: `${yInt}`,
+                answer: letters[correctIndex],
+                options: allAnswers.map((val, i) => `${letters[i]}) ${val}`),
                 hint: 'Convert to slope-intercept form (y = mx + b) by solving for y.',
                 solution: `<strong>Solve for y:</strong><br>
                     ${a}x ${bSign} ${Math.abs(b)}y = ${c}<br>
@@ -281,7 +336,7 @@ const satUnit1 = {
                 hard: false
             };
         },
-        // Type 5: Inequality solving (with sign flip)
+        // Type 5: Inequality solving (MC) - Hard
         function() {
             const a = randInt(-5, -2);
             const b = randInt(1, 10);
@@ -290,10 +345,18 @@ const satUnit1 = {
             const solution = (c - b) / a;
             if (!Number.isInteger(solution)) return satUnit1.generators[4]();
 
+            const options = [
+                `A) x ≤ ${solution}`,
+                `B) x ≥ ${solution}`,
+                `C) x ≤ ${-solution}`,
+                `D) x ≥ ${-solution}`
+            ];
+
             return {
                 unit: 1,
-                question: `If ${a}x + ${b} ≥ ${c}, which represents all possible values of x? (Enter as: x<=n or x>=n)`,
-                answer: `x<=${solution}`,
+                question: `If ${a}x + ${b} ≥ ${c}, which represents all possible values of x?`,
+                answer: 'A',
+                options: options,
                 hint: 'Remember to flip the inequality sign when dividing by a negative number!',
                 solution: `<strong>Step 1: Subtract ${b}</strong><br>
                     ${a}x ≥ ${c - b}<br><br>
@@ -303,17 +366,31 @@ const satUnit1 = {
                 hard: true
             };
         },
-        // Type 6: Word problem - linear equation
+        // Type 6: Word problem - linear equation (MC)
         function() {
             const rate = randInt(2, 5);
             const initial = randInt(10, 50);
-            const target = initial + rate * randInt(5, 15);
-            const answer = (target - initial) / rate;
+            const numGB = randInt(5, 15);
+            const target = initial + rate * numGB;
+            const answer = numGB;
+
+            const wrongAnswers = [answer + 2, answer - 2, answer + 5].filter(w => w > 0 && w !== answer);
+            while (wrongAnswers.length < 3) {
+                const wrong = randInt(3, 20);
+                if (wrong !== answer && !wrongAnswers.includes(wrong)) {
+                    wrongAnswers.push(wrong);
+                }
+            }
+
+            const allAnswers = [answer, ...wrongAnswers.slice(0, 3)].sort((a, b) => a - b);
+            const correctIndex = allAnswers.indexOf(answer);
+            const letters = ['A', 'B', 'C', 'D'];
 
             return {
                 unit: 1,
                 question: `A phone plan costs $${initial} per month plus $${rate} per gigabyte of data. If a customer's bill was $${target}, how many gigabytes of data did they use?`,
-                answer: `${answer}`,
+                answer: letters[correctIndex],
+                options: allAnswers.map((val, i) => `${letters[i]}) ${val}`),
                 hint: 'Set up equation: Initial cost + (rate × gigabytes) = total',
                 solution: `<strong>Set up the equation:</strong><br>
                     Total = Initial + Rate × GB<br>
@@ -323,6 +400,59 @@ const satUnit1 = {
                     ${target - initial} = ${rate}g<br>
                     g = ${answer}<br><br>
                     <strong>Answer: ${answer} gigabytes</strong>`,
+                hard: false
+            };
+        },
+        // Type 7: Parallel/Perpendicular lines (Hard)
+        function() {
+            const m1 = randInt(1, 4);
+            const b1 = randInt(-5, 5);
+            const isParallel = Math.random() > 0.5;
+
+            const m2 = isParallel ? m1 : -1;  // For perpendicular, need negative reciprocal
+            const correctSlope = isParallel ? m1 : `-1/${m1}`;
+
+            const options = isParallel ?
+                [`A) ${m1}`, `B) ${-m1}`, `C) 1/${m1}`, `D) -1/${m1}`] :
+                [`A) ${m1}`, `B) ${-m1}`, `C) 1/${m1}`, `D) -1/${m1}`];
+
+            return {
+                unit: 1,
+                question: `A line has equation y = ${m1}x + ${b1}. What is the slope of a line ${isParallel ? 'parallel' : 'perpendicular'} to this line?`,
+                answer: isParallel ? 'A' : 'D',
+                options: options,
+                hint: isParallel ? 'Parallel lines have equal slopes.' : 'Perpendicular lines have slopes that are negative reciprocals.',
+                solution: `<strong>Original line slope:</strong> m = ${m1}<br><br>
+                    <strong>${isParallel ? 'Parallel' : 'Perpendicular'} line slope:</strong><br>
+                    ${isParallel ? `Same slope = <strong>${m1}</strong>` : `Negative reciprocal = <strong>-1/${m1}</strong>`}`,
+                hard: true
+            };
+        },
+        // Type 8: SAT-style word problem with context (Medium-Hard)
+        function() {
+            const contexts = [
+                { item: 'coffee drinks', rate: randInt(4, 7), unit: 'drink' },
+                { item: 'parking hours', rate: randInt(2, 5), unit: 'hour' },
+                { item: 'streaming movies', rate: randInt(3, 6), unit: 'movie' }
+            ];
+            const ctx = randChoice(contexts);
+            const quantity = randInt(3, 8);
+            const tip = randInt(2, 5);
+            const total = ctx.rate * quantity + tip;
+
+            const wrongAnswers = [quantity + 1, quantity - 1, quantity + 2].filter(w => w > 0);
+            const allAnswers = [quantity, ...wrongAnswers.slice(0, 3)].sort((a, b) => a - b);
+            const correctIndex = allAnswers.indexOf(quantity);
+            const letters = ['A', 'B', 'C', 'D'];
+
+            return {
+                unit: 1,
+                question: `At a café, each ${ctx.unit} costs $${ctx.rate}. If a customer paid $${total} including a $${tip} tip, how many ${ctx.item} did they order?`,
+                answer: letters[correctIndex],
+                options: allAnswers.map((val, i) => `${letters[i]}) ${val}`),
+                hint: 'Subtract the tip first, then divide by the price per item.',
+                solution: `<strong>Total without tip:</strong> $${total} - $${tip} = $${total - tip}<br><br>
+                    <strong>Number of items:</strong> $${total - tip} ÷ $${ctx.rate} = <strong>${quantity}</strong>`,
                 hard: false
             };
         }

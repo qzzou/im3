@@ -105,7 +105,7 @@ const satReadingUnit4 = {
                 "of rare stamps" is a prepositional phrase—NOT the subject<br><br>
                 Singular subject → singular verb<br><br>
                 <strong>Answer: A</strong> - was`,
-            hard: false
+            hard: true
         },
         {
             id: 'satr4-2',
@@ -120,7 +120,7 @@ const satReadingUnit4 = {
                 It takes singular pronouns<br><br>
                 <strong>Answer: B</strong> - their (modern accepted singular "their")<br><br>
                 Note: While traditionally "his or her" was required, "their" as a singular pronoun is now widely accepted.`,
-            hard: false
+            hard: true
         },
         {
             id: 'satr4-3',
@@ -135,7 +135,7 @@ const satReadingUnit4 = {
                 C) Two complete sentences joined by semicolon ✓<br>
                 D) Comma after "and" is incorrect ✗<br><br>
                 <strong>Answer: C</strong>`,
-            hard: false
+            hard: true
         },
         {
             id: 'satr4-4',
@@ -150,7 +150,7 @@ const satReadingUnit4 = {
                 C) "writing" (gerund), "edited" (past tense), "publishing" (gerund) - NOT parallel ✗<br>
                 D) "writing" (gerund), "editing" (gerund), "publishing" (gerund) - PARALLEL ✓<br><br>
                 <strong>Answer: D</strong>`,
-            hard: false
+            hard: true
         },
         {
             id: 'satr4-5',
@@ -223,7 +223,7 @@ const satReadingUnit4 = {
                 options: topic.options,
                 hint: 'Find the true subject and determine if it\'s singular or plural.',
                 solution: `<strong>Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong>`,
-                hard: false
+                hard: true
             };
         },
         // Type 2: Pronoun questions
@@ -263,7 +263,7 @@ const satReadingUnit4 = {
                 options: topic.options,
                 hint: 'Make sure the pronoun agrees with its antecedent in number.',
                 solution: `<strong>Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong>`,
-                hard: false
+                hard: true
             };
         },
         // Type 3: Punctuation questions
@@ -303,7 +303,7 @@ const satReadingUnit4 = {
                 options: topic.options,
                 hint: 'Apply the specific punctuation rule being tested.',
                 solution: `<strong>Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong>`,
-                hard: false
+                hard: true
             };
         },
         // Type 4: Parallel structure
@@ -337,7 +337,7 @@ const satReadingUnit4 = {
                 options: topic.options,
                 hint: 'Look for the option where all list items have the same grammatical form.',
                 solution: `<strong>Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong>`,
-                hard: false
+                hard: true
             };
         },
         // Type 5: Modifier placement
@@ -408,7 +408,7 @@ const satReadingUnit4 = {
                 options: topic.options,
                 hint: 'A complete sentence needs a subject and a verb that express a complete thought.',
                 solution: `<strong>Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong>`,
-                hard: false
+                hard: true
             };
         }
     ]

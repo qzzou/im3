@@ -239,7 +239,7 @@ const satReadingUnit1 = {
                 options: topic.options,
                 hint: 'Look for the answer that encompasses the ENTIRE passage, not just one part.',
                 solution: `<strong>Analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong>`,
-                hard: false
+                hard: true
             };
         },
         // Type 2: Detail questions
@@ -413,7 +413,7 @@ const satReadingUnit1 = {
                 options: topic.options,
                 hint: 'Ask yourself: WHY did the author include this specific detail or example?',
                 solution: `<strong>Purpose analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong>`,
-                hard: false
+                hard: true
             };
         },
         // Type 5: Tone/attitude questions
@@ -471,7 +471,7 @@ const satReadingUnit1 = {
                 options: topic.options,
                 hint: 'Look for word choices that reveal the author\'s attitude—positive, negative, or neutral?',
                 solution: `<strong>Tone analysis:</strong><br>${topic.explanation}<br><br><strong>Answer: ${topic.correct}</strong>`,
-                hard: false
+                hard: true
             };
         },
         // Type 6: Word-in-context questions
