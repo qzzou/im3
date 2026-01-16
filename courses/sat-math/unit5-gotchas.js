@@ -70,7 +70,7 @@ const satUnit5 = {
                 <p>Words can be deceiving. Pay attention to exact phrasing:</p>
                 <div class="formula-box">
                     <strong>"Per" means MULTIPLY, not add:</strong><br>
-                    • \\$5 per book $\\times$ 3 books $=$ \\$15 (not \\$8)<br><br>
+                    • \\$5 per book × 3 books = \\$15 (not \\$8)<br><br>
                     <strong>Order matters in subtraction:</strong><br>
                     • "5 less than $x$" $= x - 5$ (not $5 - x$)<br>
                     • "$x$ less than 5" $= 5 - x$<br><br>
@@ -265,21 +265,21 @@ const satUnit5 = {
             const letters = ['A', 'B', 'C', 'D'];
 
             const questionText = askForSalePrice
-                ? `A $${original} item is ${percent}% off. What is the sale price?`
-                : `A $${original} item is ${percent}% off. How much money do you save?`;
+                ? `A \\$${original} item is ${percent}% off. What is the sale price?`
+                : `A \\$${original} item is ${percent}% off. How much money do you save?`;
 
             return {
                 unit: 5,
                 question: questionText,
                 answer: letters[correctIndex],
-                options: allAnswers.map((val, i) => `${letters[i]}) $${val}`),
+                options: allAnswers.map((val, i) => `${letters[i]}) \\$${val}`),
                 hint: askForSalePrice
                     ? 'They want the FINAL price, not the discount amount!'
                     : 'They want the SAVINGS, not the final price!',
                 solution: `<strong>The Gotcha:</strong> ${askForSalePrice ? 'Don\'t give the discount amount!' : 'Don\'t give the sale price!'}<br><br>
-                    <strong>Discount amount:</strong> ${percent}% of $${original} = $${discount}<br>
-                    <strong>Sale price:</strong> $${original} - $${discount} = $${salePrice}<br><br>
-                    <strong>The question asked for:</strong> ${askForSalePrice ? 'sale price' : 'savings'} = <strong>$${answer}</strong>`,
+                    <strong>Discount amount:</strong> ${percent}% of \\$${original} = \\$${discount}<br>
+                    <strong>Sale price:</strong> \\$${original} - \\$${discount} = \\$${salePrice}<br><br>
+                    <strong>The question asked for:</strong> ${askForSalePrice ? 'sale price' : 'savings'} = <strong>\\$${answer}</strong>`,
                 hard: false
             };
         },
@@ -307,15 +307,15 @@ const satUnit5 = {
 
             return {
                 unit: 5,
-                question: `A stock worth $${original} increased by ${percent}%, then decreased by ${percent}%. What is its final value?`,
+                question: `A stock worth \\$${original} increased by ${percent}%, then decreased by ${percent}%. What is its final value?`,
                 answer: letters[correctIndex],
-                options: allAnswers.map((val, i) => `${letters[i]}) $${val}`),
+                options: allAnswers.map((val, i) => `${letters[i]}) \\$${val}`),
                 hint: 'The percent changes do NOT cancel out! The second change is based on the NEW value.',
                 solution: `<strong>The Classic Gotcha:</strong> Students assume +${percent}% then -${percent}% = back to original. WRONG!<br><br>
                     <strong>Step 1: ${percent}% increase</strong><br>
-                    $${original} × ${1 + percent/100} = $${afterIncrease}<br><br>
+                    \\$${original} × ${1 + percent/100} = \\$${afterIncrease}<br><br>
                     <strong>Step 2: ${percent}% decrease (of NEW value!)</strong><br>
-                    $${afterIncrease} × ${1 - percent/100} = <strong>$${finalAnswer}</strong><br><br>
+                    \\$${afterIncrease} × ${1 - percent/100} = <strong>\\$${finalAnswer}</strong><br><br>
                     <strong>Why it's less:</strong> You lose ${percent}% of a BIGGER number than you gained!`,
                 hard: true
             };
@@ -387,15 +387,15 @@ const satUnit5 = {
 
             return {
                 unit: 5,
-                question: `A ${ctx.place} charges a $${baseFee} ${ctx.base} plus $${pricePerItem} per ${ctx.item}. If a customer ${ctx.action} ${numItems} ${ctx.item}s, what is the total cost?`,
+                question: `A ${ctx.place} charges a \\$${baseFee} ${ctx.base} plus \\$${pricePerItem} per ${ctx.item}. If a customer ${ctx.action} ${numItems} ${ctx.item}s, what is the total cost?`,
                 answer: letters[correctIndex],
-                options: allAnswers.map((val, i) => `${letters[i]}) $${val}`),
+                options: allAnswers.map((val, i) => `${letters[i]}) \\$${val}`),
                 hint: '"Per" means MULTIPLY the rate by the quantity, then ADD the base fee.',
                 solution: `<strong>The Gotcha:</strong> "Per" means multiply, not add!<br><br>
                     <strong>Cost for ${numItems} ${ctx.item}s:</strong><br>
-                    $${pricePerItem} × ${numItems} = $${pricePerItem * numItems}<br><br>
+                    \\$${pricePerItem} × ${numItems} = \\$${pricePerItem * numItems}<br><br>
                     <strong>Total with base fee:</strong><br>
-                    $${baseFee} + $${pricePerItem * numItems} = <strong>$${total}</strong>`,
+                    \\$${baseFee} + \\$${pricePerItem * numItems} = <strong>\\$${total}</strong>`,
                 hard: false
             };
         },

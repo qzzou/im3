@@ -237,15 +237,15 @@ const satUnit2 = {
 
             return {
                 unit: 2,
-                question: `A product originally priced at $${original} is ${action} ${percent}% ${word}. What is the new price?`,
+                question: `A product originally priced at \\$${original} is ${action} ${percent}% ${word}. What is the new price?`,
                 answer: letters[correctIndex],
-                options: allAnswers.map((val, i) => `${letters[i]}) $${val}`),
-                hint: `Calculate ${percent}% of $${original}, then ${isDiscount ? 'subtract from' : 'add to'} the original.`,
+                options: allAnswers.map((val, i) => `${letters[i]}) \\$${val}`),
+                hint: `Calculate ${percent}% of \\$${original}, then ${isDiscount ? 'subtract from' : 'add to'} the original.`,
                 solution: `<strong>Calculate ${percent}%:</strong><br>
-                    ${percent}% of $${original} = ${percent/100} × ${original} = $${change}<br><br>
+                    ${percent}% of \\$${original} = ${percent/100} × ${original} = \\$${change}<br><br>
                     <strong>New price:</strong><br>
-                    $${original} ${isDiscount ? '-' : '+'} $${change} = <strong>$${answer}</strong><br><br>
-                    <strong>Common trap:</strong> Answer $${change} is just the discount amount, not the final price!`,
+                    \\$${original} ${isDiscount ? '-' : '+'} \\$${change} = <strong>\\$${answer}</strong><br><br>
+                    <strong>Common trap:</strong> Answer \\$${change} is just the discount amount, not the final price!`,
                 hard: false
             };
         },
@@ -473,15 +473,15 @@ const satUnit2 = {
 
             return {
                 unit: 2,
-                question: `A customer buys ${numItems} items at $${pricePerItem} each, plus ${taxPercent}% sales tax. How much is the tax?`,
+                question: `A customer buys ${numItems} items at \\$${pricePerItem} each, plus ${taxPercent}% sales tax. How much is the tax?`,
                 answer: letters[correctIndex],
-                options: allAnswers.map((val, i) => `${letters[i]}) $${val}`),
+                options: allAnswers.map((val, i) => `${letters[i]}) \\$${val}`),
                 hint: 'Read carefully: the question asks for the TAX amount, not the total!',
                 solution: `<strong>Step 1: Calculate subtotal</strong><br>
-                    ${numItems} × $${pricePerItem} = $${subtotal}<br><br>
+                    ${numItems} × \\$${pricePerItem} = \\$${subtotal}<br><br>
                     <strong>Step 2: Calculate tax</strong><br>
-                    $${subtotal} × ${taxPercent}% = $${subtotal} × ${taxPercent/100} = <strong>$${tax}</strong><br><br>
-                    <strong>Be careful:</strong> The question asks for the TAX ($${tax}), not the total ($${total})!`,
+                    \\$${subtotal} × ${taxPercent}% = \\$${subtotal} × ${taxPercent/100} = <strong>\\$${tax}</strong><br><br>
+                    <strong>Be careful:</strong> The question asks for the TAX (\\$${tax}), not the total (\\$${total})!`,
                 hard: true
             };
         },

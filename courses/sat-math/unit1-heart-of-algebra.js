@@ -388,16 +388,16 @@ const satUnit1 = {
 
             return {
                 unit: 1,
-                question: `A phone plan costs $${initial} per month plus $${rate} per gigabyte of data. If a customer's bill was $${target}, how many gigabytes of data did they use?`,
+                question: `A phone plan costs \\$${initial} per month plus \\$${rate} per gigabyte of data. If a customer's bill was \\$${target}, how many gigabytes of data did they use?`,
                 answer: letters[correctIndex],
                 options: allAnswers.map((val, i) => `${letters[i]}) ${val}`),
                 hint: 'Set up equation: Initial cost + (rate × gigabytes) = total',
                 solution: `<strong>Set up the equation:</strong><br>
                     Total = Initial + Rate × GB<br>
-                    ${target} = ${initial} + ${rate}g<br><br>
+                    \\$${target} = \\$${initial} + \\$${rate}g<br><br>
                     <strong>Solve for g:</strong><br>
-                    ${target} - ${initial} = ${rate}g<br>
-                    ${target - initial} = ${rate}g<br>
+                    \\$${target} - \\$${initial} = \\$${rate}g<br>
+                    \\$${target - initial} = \\$${rate}g<br>
                     g = ${answer}<br><br>
                     <strong>Answer: ${answer} gigabytes</strong>`,
                 hard: false
@@ -447,12 +447,12 @@ const satUnit1 = {
 
             return {
                 unit: 1,
-                question: `At a café, each ${ctx.unit} costs $${ctx.rate}. If a customer paid $${total} including a $${tip} tip, how many ${ctx.item} did they order?`,
+                question: `At a café, each ${ctx.unit} costs \\$${ctx.rate}. If a customer paid \\$${total} including a \\$${tip} tip, how many ${ctx.item} did they order?`,
                 answer: letters[correctIndex],
                 options: allAnswers.map((val, i) => `${letters[i]}) ${val}`),
                 hint: 'Subtract the tip first, then divide by the price per item.',
-                solution: `<strong>Total without tip:</strong> $${total} - $${tip} = $${total - tip}<br><br>
-                    <strong>Number of items:</strong> $${total - tip} ÷ $${ctx.rate} = <strong>${quantity}</strong>`,
+                solution: `<strong>Total without tip:</strong> \\$${total} - \\$${tip} = \\$${total - tip}<br><br>
+                    <strong>Number of items:</strong> \\$${total - tip} ÷ \\$${ctx.rate} = <strong>${quantity}</strong>`,
                 hard: false
             };
         },
