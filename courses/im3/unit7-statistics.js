@@ -12,11 +12,11 @@ const unit7 = {
             content: `
                 <div class="formula-box">
                     <strong>Mean (Average):</strong><br>
-                    x̄ = (Σxᵢ)/n = sum of all values / number of values<br><br>
+                    $\\bar{x} = \\frac{\\sum x_i}{n}$ = sum of all values / number of values<br><br>
                     <strong>Median:</strong><br>
                     Middle value when data is ordered<br>
-                    • Odd n: middle value<br>
-                    • Even n: average of two middle values<br><br>
+                    • Odd $n$: middle value<br>
+                    • Even $n$: average of two middle values<br><br>
                     <strong>Mode:</strong><br>
                     Most frequently occurring value(s)
                 </div>
@@ -27,13 +27,13 @@ const unit7 = {
             content: `
                 <div class="formula-box">
                     <strong>Range:</strong> max - min<br><br>
-                    <strong>Variance (σ²):</strong><br>
-                    σ² = Σ(xᵢ - x̄)² / n<br><br>
-                    <strong>Standard Deviation (σ):</strong><br>
-                    σ = √variance<br><br>
+                    <strong>Variance ($\\sigma^2$):</strong><br>
+                    $\\sigma^2 = \\frac{\\sum(x_i - \\bar{x})^2}{n}$<br><br>
+                    <strong>Standard Deviation ($\\sigma$):</strong><br>
+                    $\\sigma = \\sqrt{\\text{variance}}$<br><br>
                     <strong>Interpretation:</strong><br>
-                    • Low σ: data clustered near mean<br>
-                    • High σ: data spread out from mean
+                    • Low $\\sigma$: data clustered near mean<br>
+                    • High $\\sigma$: data spread out from mean
                 </div>
             `
         },
@@ -42,11 +42,11 @@ const unit7 = {
             content: `
                 <div class="formula-box">
                     <strong>Empirical Rule (68-95-99.7):</strong><br>
-                    • 68% of data within 1σ of mean<br>
-                    • 95% of data within 2σ of mean<br>
-                    • 99.7% of data within 3σ of mean<br><br>
+                    • 68% of data within $1\\sigma$ of mean<br>
+                    • 95% of data within $2\\sigma$ of mean<br>
+                    • 99.7% of data within $3\\sigma$ of mean<br><br>
                     <strong>Z-Score:</strong><br>
-                    z = (x - μ)/σ<br>
+                    $z = \\frac{x - \\mu}{\\sigma}$<br>
                     Tells how many standard deviations from mean
                 </div>
             `
@@ -56,13 +56,13 @@ const unit7 = {
             content: `
                 <div class="formula-box">
                     <strong>Basic Probability:</strong><br>
-                    P(A) = favorable outcomes / total outcomes<br><br>
-                    <strong>Complement:</strong> P(not A) = 1 - P(A)<br><br>
+                    $P(A) = \\frac{\\text{favorable outcomes}}{\\text{total outcomes}}$<br><br>
+                    <strong>Complement:</strong> $P(\\text{not } A) = 1 - P(A)$<br><br>
                     <strong>Addition Rule:</strong><br>
-                    P(A or B) = P(A) + P(B) - P(A and B)<br><br>
+                    $P(A \\text{ or } B) = P(A) + P(B) - P(A \\text{ and } B)$<br><br>
                     <strong>Multiplication Rule:</strong><br>
-                    • Independent: P(A and B) = P(A) · P(B)<br>
-                    • Dependent: P(A and B) = P(A) · P(B|A)
+                    • Independent: $P(A \\text{ and } B) = P(A) \\cdot P(B)$<br>
+                    • Dependent: $P(A \\text{ and } B) = P(A) \\cdot P(B|A)$
                 </div>
             `
         }
@@ -72,78 +72,78 @@ const unit7 = {
         {
             id: 'u7-1',
             unit: 7,
-            question: 'Find the mean of: 12, 15, 18, 21, 24',
-            answer: '18',
-            hint: 'Add all values and divide by 5.',
-            solution: `<strong>Formula:</strong> Mean = (Σx)/n<br><br>
-                Mean = (12 + 15 + 18 + 21 + 24)/5<br>
-                = 90/5<br>
-                = <strong>18</strong>`,
+            question: 'Find the mean of: $12, 15, 18, 21, 24$',
+            answer: '$18$',
+            hint: 'Add all values and divide by $5$.',
+            solution: `<strong>Formula:</strong> Mean $= \\frac{\\sum x}{n}$<br><br>
+                Mean $= \\frac{12 + 15 + 18 + 21 + 24}{5}$<br>
+                $= \\frac{90}{5}$<br>
+                $=$ <strong>$18$</strong>`,
             hard: false
         },
         {
             id: 'u7-2',
             unit: 7,
-            question: 'Find the median of: 7, 3, 9, 12, 5, 8',
-            answer: '7.5',
-            hint: 'First order the data, then find the middle. With 6 values, average the 3rd and 4th.',
+            question: 'Find the median of: $7, 3, 9, 12, 5, 8$',
+            answer: '$7.5$',
+            hint: 'First order the data, then find the middle. With $6$ values, average the 3rd and 4th.',
             solution: `<strong>Step 1: Order the data</strong><br>
-                3, 5, 7, 8, 9, 12<br><br>
+                $3, 5, 7, 8, 9, 12$<br><br>
                 <strong>Step 2: Find middle</strong><br>
-                6 values (even), so average 3rd and 4th<br>
-                (7 + 8)/2 = <strong>7.5</strong>`,
+                $6$ values (even), so average 3rd and 4th<br>
+                $\\frac{7 + 8}{2} =$ <strong>$7.5$</strong>`,
             hard: false
         },
         {
             id: 'u7-3',
             unit: 7,
-            question: 'A dataset has mean 50 and standard deviation 8. What is the z-score for x = 66?',
-            answer: '2',
-            hint: 'Use z = (x - μ)/σ.',
-            solution: `<strong>Formula:</strong> z = (x - μ)/σ<br><br>
-                z = (66 - 50)/8<br>
-                = 16/8<br>
-                = <strong>2</strong>`,
+            question: 'A dataset has mean $50$ and standard deviation $8$. What is the z-score for $x = 66$?',
+            answer: '$2$',
+            hint: 'Use $z = \\frac{x - \\mu}{\\sigma}$.',
+            solution: `<strong>Formula:</strong> $z = \\frac{x - \\mu}{\\sigma}$<br><br>
+                $z = \\frac{66 - 50}{8}$<br>
+                $= \\frac{16}{8}$<br>
+                $=$ <strong>$2$</strong>`,
             hard: false
         },
         {
             id: 'u7-4',
             unit: 7,
-            question: 'Using the empirical rule: If μ = 100 and σ = 15, what percent of data falls between 70 and 130?',
-            answer: '95%',
-            hint: '70 = 100 - 2(15) and 130 = 100 + 2(15). How many σ from the mean?',
+            question: 'Using the empirical rule: If $\\mu = 100$ and $\\sigma = 15$, what percent of data falls between $70$ and $130$?',
+            answer: '$95\\%$',
+            hint: '$70 = 100 - 2(15)$ and $130 = 100 + 2(15)$. How many $\\sigma$ from the mean?',
             solution: `<strong>Step 1: Find distance from mean</strong><br>
-                70 = 100 - 30 = μ - 2σ<br>
-                130 = 100 + 30 = μ + 2σ<br><br>
+                $70 = 100 - 30 = \\mu - 2\\sigma$<br>
+                $130 = 100 + 30 = \\mu + 2\\sigma$<br><br>
                 <strong>Step 2: Apply empirical rule</strong><br>
-                Within 2σ of mean → <strong>95%</strong>`,
+                Within $2\\sigma$ of mean $\\rightarrow$ <strong>$95\\%$</strong>`,
             hard: false
         },
         {
             id: 'u7-5',
             unit: 7,
-            question: 'A bag has 5 red and 3 blue marbles. What is P(red, then blue) if drawing without replacement?',
-            answer: '15/56',
-            hint: 'First draw: P(red) = 5/8. Second draw: P(blue) = 3/7. Multiply.',
+            question: 'A bag has $5$ red and $3$ blue marbles. What is $P(\\text{red, then blue})$ if drawing without replacement?',
+            answer: '$\\frac{15}{56}$',
+            hint: 'First draw: $P(\\text{red}) = \\frac{5}{8}$. Second draw: $P(\\text{blue}) = \\frac{3}{7}$. Multiply.',
             solution: `<strong>Step 1: P(red first)</strong><br>
-                P(R) = 5/8<br><br>
+                $P(R) = \\frac{5}{8}$<br><br>
                 <strong>Step 2: P(blue second | red first)</strong><br>
-                After removing red: 4 red, 3 blue left<br>
-                P(B|R) = 3/7<br><br>
+                After removing red: $4$ red, $3$ blue left<br>
+                $P(B|R) = \\frac{3}{7}$<br><br>
                 <strong>Step 3: Multiply</strong><br>
-                P(R then B) = (5/8)(3/7) = <strong>15/56</strong>`,
+                $P(R \\text{ then } B) = \\frac{5}{8} \\cdot \\frac{3}{7} =$ <strong>$\\frac{15}{56}$</strong>`,
             hard: true
         },
         {
             id: 'u7-6',
             unit: 7,
-            question: 'If P(A) = 0.3, P(B) = 0.5, and P(A and B) = 0.1, find P(A or B).',
-            answer: '0.7',
-            hint: 'Use the addition rule: P(A or B) = P(A) + P(B) - P(A and B).',
+            question: 'If $P(A) = 0.3$, $P(B) = 0.5$, and $P(A \\text{ and } B) = 0.1$, find $P(A \\text{ or } B)$.',
+            answer: '$0.7$',
+            hint: 'Use the addition rule: $P(A \\text{ or } B) = P(A) + P(B) - P(A \\text{ and } B)$.',
             solution: `<strong>Addition Rule:</strong><br>
-                P(A or B) = P(A) + P(B) - P(A and B)<br><br>
-                P(A or B) = 0.3 + 0.5 - 0.1<br>
-                = <strong>0.7</strong>`,
+                $P(A \\text{ or } B) = P(A) + P(B) - P(A \\text{ and } B)$<br><br>
+                $P(A \\text{ or } B) = 0.3 + 0.5 - 0.1$<br>
+                $=$ <strong>$0.7$</strong>`,
             hard: false
         }
     ],
@@ -164,13 +164,13 @@ const unit7 = {
 
             return {
                 unit: 7,
-                question: `Find the mean of: ${data.join(', ')}`,
-                answer: `${mean}`,
-                hint: `Add all ${n} values and divide by ${n}.`,
-                solution: `<strong>Formula:</strong> Mean = (Σx)/n<br><br>
-                    Mean = (${data.join(' + ')})/${n}<br>
-                    = ${sum}/${n}<br>
-                    = <strong>${mean}</strong>`,
+                question: `Find the mean of: $${data.join(', ')}$`,
+                answer: `$${mean}$`,
+                hint: `Add all $${n}$ values and divide by $${n}$.`,
+                solution: `<strong>Formula:</strong> Mean $= \\frac{\\sum x}{n}$<br><br>
+                    Mean $= \\frac{${data.join(' + ')}}{${n}}$<br>
+                    $= \\frac{${sum}}{${n}}$<br>
+                    $=$ <strong>$${mean}$</strong>`,
                 hard: false
             };
         },
@@ -192,14 +192,14 @@ const unit7 = {
 
             return {
                 unit: 7,
-                question: `Find the median of: ${data.join(', ')}`,
-                answer: `${median}`,
+                question: `Find the median of: $${data.join(', ')}$`,
+                answer: `$${median}$`,
                 hint: `First order the data, then find the middle value${n % 2 === 0 ? 's and average them' : ''}.`,
                 solution: `<strong>Step 1: Order the data</strong><br>
-                    ${sorted.join(', ')}<br><br>
+                    $${sorted.join(', ')}$<br><br>
                     <strong>Step 2: Find middle</strong><br>
-                    ${n % 2 === 1 ? `${n} values (odd), middle is position ${Math.floor(n/2) + 1}` : `${n} values (even), average positions ${n/2} and ${n/2 + 1}`}<br>
-                    Median = <strong>${median}</strong>`,
+                    ${n % 2 === 1 ? `$${n}$ values (odd), middle is position $${Math.floor(n/2) + 1}$` : `$${n}$ values (even), average positions $${n/2}$ and $${n/2 + 1}$`}<br>
+                    Median $=$ <strong>$${median}$</strong>`,
                 hard: false
             };
         },
@@ -212,13 +212,13 @@ const unit7 = {
 
             return {
                 unit: 7,
-                question: `A dataset has mean ${mu} and standard deviation ${sigma}. What is the z-score for x = ${x}?`,
-                answer: `${z}`,
-                hint: `Use z = (x - μ)/σ.`,
-                solution: `<strong>Formula:</strong> z = (x - μ)/σ<br><br>
-                    z = (${x} - ${mu})/${sigma}<br>
-                    = ${x - mu}/${sigma}<br>
-                    = <strong>${z}</strong>`,
+                question: `A dataset has mean $${mu}$ and standard deviation $${sigma}$. What is the z-score for $x = ${x}$?`,
+                answer: `$${z}$`,
+                hint: `Use $z = \\frac{x - \\mu}{\\sigma}$.`,
+                solution: `<strong>Formula:</strong> $z = \\frac{x - \\mu}{\\sigma}$<br><br>
+                    $z = \\frac{${x} - ${mu}}{${sigma}}$<br>
+                    $= \\frac{${x - mu}}{${sigma}}$<br>
+                    $=$ <strong>$${z}$</strong>`,
                 hard: false
             };
         },
@@ -227,21 +227,21 @@ const unit7 = {
             const mu = randChoice([50, 75, 100, 200]);
             const sigma = randChoice([5, 10, 15, 20]);
             const numSigma = randChoice([1, 2, 3]);
-            const percent = numSigma === 1 ? '68%' : (numSigma === 2 ? '95%' : '99.7%');
+            const percent = numSigma === 1 ? '68\\%' : (numSigma === 2 ? '95\\%' : '99.7\\%');
 
             const low = mu - numSigma * sigma;
             const high = mu + numSigma * sigma;
 
             return {
                 unit: 7,
-                question: `Using the empirical rule: If μ = ${mu} and σ = ${sigma}, what percent of data falls between ${low} and ${high}?`,
-                answer: percent,
-                hint: `${low} = ${mu} - ${numSigma}(${sigma}) and ${high} = ${mu} + ${numSigma}(${sigma}). This is ${numSigma}σ from the mean.`,
+                question: `Using the empirical rule: If $\\mu = ${mu}$ and $\\sigma = ${sigma}$, what percent of data falls between $${low}$ and $${high}$?`,
+                answer: `$${percent}$`,
+                hint: `$${low} = ${mu} - ${numSigma}(${sigma})$ and $${high} = ${mu} + ${numSigma}(${sigma})$. This is $${numSigma}\\sigma$ from the mean.`,
                 solution: `<strong>Step 1: Find distance from mean</strong><br>
-                    ${low} = ${mu} - ${numSigma * sigma} = μ - ${numSigma}σ<br>
-                    ${high} = ${mu} + ${numSigma * sigma} = μ + ${numSigma}σ<br><br>
+                    $${low} = ${mu} - ${numSigma * sigma} = \\mu - ${numSigma}\\sigma$<br>
+                    $${high} = ${mu} + ${numSigma * sigma} = \\mu + ${numSigma}\\sigma$<br><br>
                     <strong>Step 2: Apply empirical rule</strong><br>
-                    Within ${numSigma}σ of mean → <strong>${percent}</strong>`,
+                    Within $${numSigma}\\sigma$ of mean $\\rightarrow$ <strong>$${percent}$</strong>`,
                 hard: false
             };
         },
@@ -265,16 +265,16 @@ const unit7 = {
 
             return {
                 unit: 7,
-                question: `A bag has ${n1} ${color1} and ${n2} ${color2} marbles. What is P(${color1}, then ${color2}) if drawing without replacement?`,
-                answer: `${ansNum}/${ansDen}`,
-                hint: `First draw: P(${color1}) = ${n1}/${total}. After removing one ${color1}, find P(${color2}). Multiply.`,
+                question: `A bag has $${n1}$ ${color1} and $${n2}$ ${color2} marbles. What is $P(\\text{${color1}, then ${color2}})$ if drawing without replacement?`,
+                answer: `$\\frac{${ansNum}}{${ansDen}}$`,
+                hint: `First draw: $P(\\text{${color1}}) = \\frac{${n1}}{${total}}$. After removing one ${color1}, find $P(\\text{${color2}})$. Multiply.`,
                 solution: `<strong>Step 1: P(${color1} first)</strong><br>
-                    P(${color1}) = ${n1}/${total}<br><br>
+                    $P(\\text{${color1}}) = \\frac{${n1}}{${total}}$<br><br>
                     <strong>Step 2: P(${color2} second | ${color1} first)</strong><br>
-                    After removing ${color1}: ${n1-1} ${color1}, ${n2} ${color2} left<br>
-                    P(${color2}|${color1}) = ${n2}/${total-1}<br><br>
+                    After removing ${color1}: $${n1-1}$ ${color1}, $${n2}$ ${color2} left<br>
+                    $P(\\text{${color2}}|\\text{${color1}}) = \\frac{${n2}}{${total-1}}$<br><br>
                     <strong>Step 3: Multiply</strong><br>
-                    P(${color1} then ${color2}) = (${n1}/${total})(${n2}/${total-1}) = ${num}/${den} = <strong>${ansNum}/${ansDen}</strong>`,
+                    $P(\\text{${color1} then ${color2}}) = \\frac{${n1}}{${total}} \\cdot \\frac{${n2}}{${total-1}} = \\frac{${num}}{${den}} =$ <strong>$\\frac{${ansNum}}{${ansDen}}$</strong>`,
                 hard: true
             };
         },
@@ -292,13 +292,13 @@ const unit7 = {
 
             return {
                 unit: 7,
-                question: `If P(A) = ${pA}, P(B) = ${pB}, and P(A and B) = ${pAandB}, find P(A or B).`,
-                answer: `${pAorB}`,
-                hint: `Use the addition rule: P(A or B) = P(A) + P(B) - P(A and B).`,
+                question: `If $P(A) = ${pA}$, $P(B) = ${pB}$, and $P(A \\text{ and } B) = ${pAandB}$, find $P(A \\text{ or } B)$.`,
+                answer: `$${pAorB}$`,
+                hint: `Use the addition rule: $P(A \\text{ or } B) = P(A) + P(B) - P(A \\text{ and } B)$.`,
                 solution: `<strong>Addition Rule:</strong><br>
-                    P(A or B) = P(A) + P(B) - P(A and B)<br><br>
-                    P(A or B) = ${pA} + ${pB} - ${pAandB}<br>
-                    = <strong>${pAorB}</strong>`,
+                    $P(A \\text{ or } B) = P(A) + P(B) - P(A \\text{ and } B)$<br><br>
+                    $P(A \\text{ or } B) = ${pA} + ${pB} - ${pAandB}$<br>
+                    $=$ <strong>$${pAorB}$</strong>`,
                 hard: false
             };
         }

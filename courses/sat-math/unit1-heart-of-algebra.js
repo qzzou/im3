@@ -12,20 +12,20 @@ const satUnit1 = {
             content: `
                 <p>The SAT frequently tests your ability to solve linear equations. Key strategies:</p>
                 <ul>
-                    <li><strong>Isolate the variable:</strong> Get all terms with x on one side</li>
+                    <li><strong>Isolate the variable:</strong> Get all terms with $x$ on one side</li>
                     <li><strong>Combine like terms:</strong> Simplify before solving</li>
-                    <li><strong>Check for special cases:</strong> No solution (0 = 5) or infinite solutions (0 = 0)</li>
+                    <li><strong>Check for special cases:</strong> No solution ($0 = 5$) or infinite solutions ($0 = 0$)</li>
                 </ul>
                 <div class="formula-box">
-                    <strong>Standard Form:</strong> ax + b = c<br>
-                    <strong>Solution:</strong> x = (c - b) / a
+                    <strong>Standard Form:</strong> $ax + b = c$<br>
+                    <strong>Solution:</strong> $x = \\frac{c - b}{a}$
                 </div>
                 <div class="example">
                     <h4>SAT Example:</h4>
-                    <p>If 3(x - 4) = 2x + 5, what is the value of x?</p>
+                    <p>If $3(x - 4) = 2x + 5$, what is the value of $x$?</p>
                     <div class="solution">
-                        3x - 12 = 2x + 5<br>
-                        x = 17
+                        $3x - 12 = 2x + 5$<br>
+                        $x = 17$
                     </div>
                 </div>
             `
@@ -33,15 +33,15 @@ const satUnit1 = {
         {
             title: '1.2 Linear Equations in Two Variables',
             content: `
-                <p><strong>Slope-Intercept Form:</strong> y = mx + b</p>
+                <p><strong>Slope-Intercept Form:</strong> $y = mx + b$</p>
                 <ul>
-                    <li>m = slope (rise/run)</li>
-                    <li>b = y-intercept</li>
+                    <li>$m$ = slope (rise/run)</li>
+                    <li>$b$ = y-intercept</li>
                 </ul>
                 <div class="formula-box">
-                    <strong>Slope Formula:</strong> m = (y₂ - y₁) / (x₂ - x₁)<br><br>
-                    <strong>Point-Slope Form:</strong> y - y₁ = m(x - x₁)<br><br>
-                    <strong>Standard Form:</strong> Ax + By = C
+                    <strong>Slope Formula:</strong> $m = \\frac{y_2 - y_1}{x_2 - x_1}$<br><br>
+                    <strong>Point-Slope Form:</strong> $y - y_1 = m(x - x_1)$<br><br>
+                    <strong>Standard Form:</strong> $Ax + By = C$
                 </div>
                 <p><strong>SAT Tip:</strong> Parallel lines have equal slopes. Perpendicular lines have slopes that are negative reciprocals.</p>
             `
@@ -72,13 +72,13 @@ const satUnit1 = {
                 </div>
                 <div class="example">
                     <h4>SAT Example:</h4>
-                    <p>Solve: -2x + 5 > 11</p>
+                    <p>Solve: $-2x + 5 > 11$</p>
                     <div class="solution">
-                        -2x > 6<br>
-                        x < -3 (flip the sign!)
+                        $-2x > 6$<br>
+                        $x < -3$ (flip the sign!)
                     </div>
                 </div>
-                <p><strong>Compound Inequalities:</strong> -3 < 2x + 1 ≤ 7 means solve both parts simultaneously.</p>
+                <p><strong>Compound Inequalities:</strong> $-3 < 2x + 1 \\leq 7$ means solve both parts simultaneously.</p>
             `
         }
     ],
@@ -87,96 +87,96 @@ const satUnit1 = {
         {
             id: 'sat1-1',
             unit: 1,
-            question: 'If 4(x - 3) + 2 = 3x + 5, what is the value of x?',
+            question: 'If $4(x - 3) + 2 = 3x + 5$, what is the value of $x$?',
             answer: 'C',
             options: ['A) 7', 'B) 11', 'C) 15', 'D) 19'],
-            hint: 'Distribute the 4, combine like terms, then isolate x.',
+            hint: 'Distribute the 4, combine like terms, then isolate $x$.',
             solution: `<strong>Step 1: Distribute</strong><br>
-                4x - 12 + 2 = 3x + 5<br>
-                4x - 10 = 3x + 5<br><br>
+                $4x - 12 + 2 = 3x + 5$<br>
+                $4x - 10 = 3x + 5$<br><br>
                 <strong>Step 2: Isolate x</strong><br>
-                4x - 3x = 5 + 10<br>
-                x = <strong>15</strong>`,
+                $4x - 3x = 5 + 10$<br>
+                $x = $ <strong>15</strong>`,
             hard: false
         },
         {
             id: 'sat1-2',
             unit: 1,
-            question: 'A line passes through points (2, 5) and (4, 11). What is the slope of this line?',
+            question: 'A line passes through points $(2, 5)$ and $(4, 11)$. What is the slope of this line?',
             answer: 'B',
             options: ['A) 2', 'B) 3', 'C) 4', 'D) 6'],
-            hint: 'Use the slope formula: m = (y₂ - y₁) / (x₂ - x₁)',
+            hint: 'Use the slope formula: $m = \\frac{y_2 - y_1}{x_2 - x_1}$',
             solution: `<strong>Slope Formula:</strong><br>
-                m = (y₂ - y₁) / (x₂ - x₁)<br>
-                m = (11 - 5) / (4 - 2)<br>
-                m = 6 / 2<br>
-                m = <strong>3</strong>`,
+                $m = \\frac{y_2 - y_1}{x_2 - x_1}$<br>
+                $m = \\frac{11 - 5}{4 - 2}$<br>
+                $m = \\frac{6}{2}$<br>
+                $m = $ <strong>3</strong>`,
             hard: false
         },
         {
             id: 'sat1-3',
             unit: 1,
-            question: 'If 2x + 3y = 12 and x - y = 1, what is the value of x + y?',
+            question: 'If $2x + 3y = 12$ and $x - y = 1$, what is the value of $x + y$?',
             answer: 'C',
             options: ['A) 3', 'B) 4', 'C) 5', 'D) 6'],
-            hint: 'Use elimination or substitution to find x and y, then add them.',
+            hint: 'Use elimination or substitution to find $x$ and $y$, then add them.',
             solution: `<strong>Method: Elimination</strong><br>
-                From x - y = 1: x = y + 1<br><br>
+                From $x - y = 1$: $x = y + 1$<br><br>
                 <strong>Substitute into first equation:</strong><br>
-                2(y + 1) + 3y = 12<br>
-                2y + 2 + 3y = 12<br>
-                5y = 10<br>
-                y = 2<br><br>
-                <strong>Find x:</strong> x = 2 + 1 = 3<br><br>
-                <strong>Answer:</strong> x + y = 3 + 2 = <strong>5</strong>`,
+                $2(y + 1) + 3y = 12$<br>
+                $2y + 2 + 3y = 12$<br>
+                $5y = 10$<br>
+                $y = 2$<br><br>
+                <strong>Find x:</strong> $x = 2 + 1 = 3$<br><br>
+                <strong>Answer:</strong> $x + y = 3 + 2 = $ <strong>5</strong>`,
             hard: false
         },
         {
             id: 'sat1-4',
             unit: 1,
-            question: 'What is the y-intercept of the line 3x - 2y = 8?',
+            question: 'What is the y-intercept of the line $3x - 2y = 8$?',
             answer: 'A',
-            options: ['A) -4', 'B) -2', 'C) 2', 'D) 4'],
-            hint: 'Rewrite in slope-intercept form (y = mx + b) and identify b.',
+            options: ['A) $-4$', 'B) $-2$', 'C) $2$', 'D) $4$'],
+            hint: 'Rewrite in slope-intercept form ($y = mx + b$) and identify $b$.',
             solution: `<strong>Convert to slope-intercept form:</strong><br>
-                3x - 2y = 8<br>
-                -2y = -3x + 8<br>
-                y = (3/2)x - 4<br><br>
-                <strong>The y-intercept is b = -4</strong>`,
+                $3x - 2y = 8$<br>
+                $-2y = -3x + 8$<br>
+                $y = \\frac{3}{2}x - 4$<br><br>
+                <strong>The y-intercept is $b = -4$</strong>`,
             hard: false
         },
         {
             id: 'sat1-5',
             unit: 1,
-            question: 'For what value of k will the system have no solution?<br>2x + 3y = 7<br>4x + ky = 10',
+            question: 'For what value of $k$ will the system have no solution?<br>$2x + 3y = 7$<br>$4x + ky = 10$',
             answer: 'C',
             options: ['A) 3', 'B) 4', 'C) 6', 'D) 8'],
             hint: 'For no solution, the lines must be parallel (same slope, different y-intercept).',
             solution: `<strong>For no solution, lines must be parallel (same slope).</strong><br><br>
                 <strong>Rewrite first equation:</strong><br>
-                y = (-2/3)x + 7/3 → slope = -2/3<br><br>
+                $y = -\\frac{2}{3}x + \\frac{7}{3}$ → slope $= -\\frac{2}{3}$<br><br>
                 <strong>Rewrite second equation:</strong><br>
-                y = (-4/k)x + 10/k → slope = -4/k<br><br>
+                $y = -\\frac{4}{k}x + \\frac{10}{k}$ → slope $= -\\frac{4}{k}$<br><br>
                 <strong>Set slopes equal:</strong><br>
-                -2/3 = -4/k<br>
-                -2k = -12<br>
-                k = <strong>6</strong><br><br>
-                <strong>Verify y-intercepts differ:</strong> 7/3 ≠ 10/6 ✓`,
+                $-\\frac{2}{3} = -\\frac{4}{k}$<br>
+                $-2k = -12$<br>
+                $k = $ <strong>6</strong><br><br>
+                <strong>Verify y-intercepts differ:</strong> $\\frac{7}{3} \\neq \\frac{10}{6}$ ✓`,
             hard: true
         },
         {
             id: 'sat1-6',
             unit: 1,
-            question: 'If -3x + 7 ≥ 22, which of the following represents all possible values of x?',
+            question: 'If $-3x + 7 \\geq 22$, which of the following represents all possible values of $x$?',
             answer: 'A',
-            options: ['A) x ≤ -5', 'B) x ≥ -5', 'C) x ≤ 5', 'D) x ≥ 5'],
+            options: ['A) $x \\leq -5$', 'B) $x \\geq -5$', 'C) $x \\leq 5$', 'D) $x \\geq 5$'],
             hint: 'Solve like an equation, but remember to flip the sign when dividing by a negative.',
             solution: `<strong>Step 1: Isolate the x term</strong><br>
-                -3x + 7 ≥ 22<br>
-                -3x ≥ 15<br><br>
-                <strong>Step 2: Divide by -3 (FLIP the inequality!)</strong><br>
-                x ≤ -5<br><br>
-                <strong>Answer: x ≤ -5</strong>`,
+                $-3x + 7 \\geq 22$<br>
+                $-3x \\geq 15$<br><br>
+                <strong>Step 2: Divide by $-3$ (FLIP the inequality!)</strong><br>
+                $x \\leq -5$<br><br>
+                <strong>Answer: $x \\leq -5$</strong>`,
             hard: true
         }
     ],
@@ -210,17 +210,17 @@ const satUnit1 = {
 
             return {
                 unit: 1,
-                question: `If ${a}(x - ${b}) = ${c}x + ${d}, what is the value of x?`,
+                question: `If $${a}(x - ${b}) = ${c}x + ${d}$, what is the value of $x$?`,
                 answer: letters[correctIndex],
                 options: allAnswers.map((val, i) => `${letters[i]}) ${val}`),
-                hint: `Distribute ${a}, then collect x terms on one side.`,
+                hint: `Distribute ${a}, then collect $x$ terms on one side.`,
                 solution: `<strong>Step 1: Distribute</strong><br>
-                    ${a}x - ${a * b} = ${c}x + ${d}<br><br>
+                    $${a}x - ${a * b} = ${c}x + ${d}$<br><br>
                     <strong>Step 2: Collect x terms</strong><br>
-                    ${a}x - ${c}x = ${d} + ${a * b}<br>
-                    ${a - c}x = ${d + a * b}<br><br>
+                    $${a}x - ${c}x = ${d} + ${a * b}$<br>
+                    $${a - c}x = ${d + a * b}$<br><br>
                     <strong>Step 3: Solve</strong><br>
-                    x = ${d + a * b} / ${a - c} = <strong>${answer}</strong>`,
+                    $x = \\frac{${d + a * b}}{${a - c}} = $ <strong>${answer}</strong>`,
                 hard: false
             };
         },
@@ -249,15 +249,15 @@ const satUnit1 = {
 
             return {
                 unit: 1,
-                question: `A line passes through points (${x1}, ${y1}) and (${x2}, ${y2}). What is the slope of this line?`,
+                question: `A line passes through points $(${x1}, ${y1})$ and $(${x2}, ${y2})$. What is the slope of this line?`,
                 answer: letters[correctIndex],
                 options: allAnswers.map((val, i) => `${letters[i]}) ${val}`),
-                hint: 'Use the slope formula: m = (y₂ - y₁) / (x₂ - x₁)',
+                hint: 'Use the slope formula: $m = \\frac{y_2 - y_1}{x_2 - x_1}$',
                 solution: `<strong>Slope Formula:</strong><br>
-                    m = (y₂ - y₁) / (x₂ - x₁)<br>
-                    m = (${y2} - ${y1}) / (${x2} - ${x1})<br>
-                    m = ${y2 - y1} / ${x2 - x1}<br>
-                    m = <strong>${m}</strong>`,
+                    $m = \\frac{y_2 - y_1}{x_2 - x_1}$<br>
+                    $m = \\frac{${y2} - ${y1}}{${x2} - ${x1}}$<br>
+                    $m = \\frac{${y2 - y1}}{${x2 - x1}}$<br>
+                    $m = $ <strong>${m}</strong>`,
                 hard: false
             };
         },
@@ -287,15 +287,15 @@ const satUnit1 = {
 
             return {
                 unit: 1,
-                question: `If ${a1}x + ${b1}y = ${c1} and ${a2}x ${b2 >= 0 ? '+' : '-'} ${Math.abs(b2)}y = ${c2}, what is the value of x?`,
+                question: `If $${a1}x + ${b1}y = ${c1}$ and $${a2}x ${b2 >= 0 ? '+' : '-'} ${Math.abs(b2)}y = ${c2}$, what is the value of $x$?`,
                 answer: letters[correctIndex],
                 options: allAnswers.map((val, i) => `${letters[i]}) ${val}`),
                 hint: 'Use elimination: multiply equations to make coefficients match, then add/subtract.',
                 solution: `<strong>System:</strong><br>
-                    ${a1}x + ${b1}y = ${c1}<br>
-                    ${a2}x ${b2 >= 0 ? '+' : '-'} ${Math.abs(b2)}y = ${c2}<br><br>
+                    $${a1}x + ${b1}y = ${c1}$<br>
+                    $${a2}x ${b2 >= 0 ? '+' : '-'} ${Math.abs(b2)}y = ${c2}$<br><br>
                     <strong>Using elimination or substitution:</strong><br>
-                    x = <strong>${x}</strong>, y = ${y}`,
+                    $x = $ <strong>${x}</strong>, $y = ${y}$`,
                 hard: true
             };
         },
@@ -324,15 +324,15 @@ const satUnit1 = {
 
             return {
                 unit: 1,
-                question: `What is the y-intercept of the line ${a}x ${bSign} ${Math.abs(b)}y = ${c}?`,
+                question: `What is the y-intercept of the line $${a}x ${bSign} ${Math.abs(b)}y = ${c}$?`,
                 answer: letters[correctIndex],
                 options: allAnswers.map((val, i) => `${letters[i]}) ${val}`),
-                hint: 'Convert to slope-intercept form (y = mx + b) by solving for y.',
+                hint: 'Convert to slope-intercept form ($y = mx + b$) by solving for $y$.',
                 solution: `<strong>Solve for y:</strong><br>
-                    ${a}x ${bSign} ${Math.abs(b)}y = ${c}<br>
-                    ${Math.abs(b)}y = ${b > 0 ? '-' : ''}${a}x + ${c}<br>
-                    y = ${-a/b}x + ${c/b}<br><br>
-                    <strong>Y-intercept = ${yInt}</strong>`,
+                    $${a}x ${bSign} ${Math.abs(b)}y = ${c}$<br>
+                    $${Math.abs(b)}y = ${b > 0 ? '-' : ''}${a}x + ${c}$<br>
+                    $y = ${-a/b}x + ${c/b}$<br><br>
+                    <strong>Y-intercept $= ${yInt}$</strong>`,
                 hard: false
             };
         },
@@ -346,23 +346,23 @@ const satUnit1 = {
             if (!Number.isInteger(solution)) return satUnit1.generators[4]();
 
             const options = [
-                `A) x ≤ ${solution}`,
-                `B) x ≥ ${solution}`,
-                `C) x ≤ ${-solution}`,
-                `D) x ≥ ${-solution}`
+                `A) $x \\leq ${solution}$`,
+                `B) $x \\geq ${solution}$`,
+                `C) $x \\leq ${-solution}$`,
+                `D) $x \\geq ${-solution}$`
             ];
 
             return {
                 unit: 1,
-                question: `If ${a}x + ${b} ≥ ${c}, which represents all possible values of x?`,
+                question: `If $${a}x + ${b} \\geq ${c}$, which represents all possible values of $x$?`,
                 answer: 'A',
                 options: options,
                 hint: 'Remember to flip the inequality sign when dividing by a negative number!',
                 solution: `<strong>Step 1: Subtract ${b}</strong><br>
-                    ${a}x ≥ ${c - b}<br><br>
+                    $${a}x \\geq ${c - b}$<br><br>
                     <strong>Step 2: Divide by ${a} (FLIP the sign!)</strong><br>
-                    x ≤ ${solution}<br><br>
-                    <strong>Answer: x ≤ ${solution}</strong>`,
+                    $x \\leq ${solution}$<br><br>
+                    <strong>Answer: $x \\leq ${solution}$</strong>`,
                 hard: true
             };
         },
@@ -413,18 +413,18 @@ const satUnit1 = {
             const correctSlope = isParallel ? m1 : `-1/${m1}`;
 
             const options = isParallel ?
-                [`A) ${m1}`, `B) ${-m1}`, `C) 1/${m1}`, `D) -1/${m1}`] :
-                [`A) ${m1}`, `B) ${-m1}`, `C) 1/${m1}`, `D) -1/${m1}`];
+                [`A) $${m1}$`, `B) $${-m1}$`, `C) $\\frac{1}{${m1}}$`, `D) $-\\frac{1}{${m1}}$`] :
+                [`A) $${m1}$`, `B) $${-m1}$`, `C) $\\frac{1}{${m1}}$`, `D) $-\\frac{1}{${m1}}$`];
 
             return {
                 unit: 1,
-                question: `A line has equation y = ${m1}x + ${b1}. What is the slope of a line ${isParallel ? 'parallel' : 'perpendicular'} to this line?`,
+                question: `A line has equation $y = ${m1}x + ${b1}$. What is the slope of a line ${isParallel ? 'parallel' : 'perpendicular'} to this line?`,
                 answer: isParallel ? 'A' : 'D',
                 options: options,
                 hint: isParallel ? 'Parallel lines have equal slopes.' : 'Perpendicular lines have slopes that are negative reciprocals.',
-                solution: `<strong>Original line slope:</strong> m = ${m1}<br><br>
+                solution: `<strong>Original line slope:</strong> $m = ${m1}$<br><br>
                     <strong>${isParallel ? 'Parallel' : 'Perpendicular'} line slope:</strong><br>
-                    ${isParallel ? `Same slope = <strong>${m1}</strong>` : `Negative reciprocal = <strong>-1/${m1}</strong>`}`,
+                    ${isParallel ? `Same slope $= $ <strong>${m1}</strong>` : `Negative reciprocal $= $ <strong>$-\\frac{1}{${m1}}$</strong>`}`,
                 hard: true
             };
         },
@@ -506,40 +506,40 @@ const satUnit1 = {
             const numberToAsk = askAboutRate ? ctx.rate : ctx.initial;
 
             // Build the function string
-            const funcString = `f(${ctx.variable}) = ${ctx.initial} + ${ctx.rate}${ctx.variable}`;
+            const funcString = `$f(${ctx.variable}) = ${ctx.initial} + ${ctx.rate}${ctx.variable}$`;
 
             // Generate options based on what we're asking about
             let options, correctAnswer;
             if (askAboutRate) {
                 options = [
-                    `A) ${ctx.rateInterpret} $${ctx.rate}.`,
-                    `B) ${ctx.initialInterpret} $${ctx.rate}.`,
-                    `C) After 1 ${ctx.varMeaning.split(' ')[0]}, the amount was $${ctx.rate}.`,
-                    `D) The total after all ${ctx.varMeaning} was $${ctx.rate}.`
+                    `A) ${ctx.rateInterpret} \\$${ctx.rate}.`,
+                    `B) ${ctx.initialInterpret} \\$${ctx.rate}.`,
+                    `C) After 1 ${ctx.varMeaning.split(' ')[0]}, the amount was \\$${ctx.rate}.`,
+                    `D) The total after all ${ctx.varMeaning} was \\$${ctx.rate}.`
                 ];
                 correctAnswer = 'A';
             } else {
                 options = [
-                    `A) ${ctx.rateInterpret} $${ctx.initial}.`,
-                    `B) ${ctx.initialInterpret} $${ctx.initial}.`,
-                    `C) After ${ctx.initial} ${ctx.varMeaning}, the total was $${ctx.initial}.`,
-                    `D) The maximum amount was $${ctx.initial}.`
+                    `A) ${ctx.rateInterpret} \\$${ctx.initial}.`,
+                    `B) ${ctx.initialInterpret} \\$${ctx.initial}.`,
+                    `C) After ${ctx.initial} ${ctx.varMeaning}, the total was \\$${ctx.initial}.`,
+                    `D) The maximum amount was \\$${ctx.initial}.`
                 ];
                 correctAnswer = 'B';
             }
 
             return {
                 unit: 1,
-                question: `The function ${funcString} gives the ${ctx.functionDesc} ${ctx.variable} ${ctx.varMeaning}. What is the best interpretation of ${numberToAsk} in this context?`,
+                question: `The function ${funcString} gives the ${ctx.functionDesc} $${ctx.variable}$ ${ctx.varMeaning}. What is the best interpretation of ${numberToAsk} in this context?`,
                 answer: correctAnswer,
                 options: options,
-                hint: `In f(${ctx.variable}) = b + m${ctx.variable}, the number multiplied by ${ctx.variable} is the rate of change (slope), and the constant is the starting value (y-intercept).`,
-                solution: `<strong>Linear Function Form:</strong> f(${ctx.variable}) = initial + rate × ${ctx.variable}<br><br>
+                hint: `In $f(${ctx.variable}) = b + m${ctx.variable}$, the number multiplied by $${ctx.variable}$ is the rate of change (slope), and the constant is the starting value (y-intercept).`,
+                solution: `<strong>Linear Function Form:</strong> $f(${ctx.variable}) = \\text{initial} + \\text{rate} \\times ${ctx.variable}$<br><br>
                     <strong>In ${funcString}:</strong><br>
                     • ${ctx.initial} = y-intercept (starting value)<br>
                     • ${ctx.rate} = slope (rate of change per ${ctx.varMeaning.split(' ')[0]})<br><br>
                     <strong>${numberToAsk} represents:</strong><br>
-                    ${askAboutRate ? ctx.rateInterpret : ctx.initialInterpret} $${numberToAsk}.<br><br>
+                    ${askAboutRate ? ctx.rateInterpret : ctx.initialInterpret} \\$${numberToAsk}.<br><br>
                     <strong>Answer: ${correctAnswer}</strong>`,
                 hard: false
             };
@@ -586,14 +586,14 @@ const satUnit1 = {
                 question: `A ${scenario.vehicle} can carry a ${scenario.container} if the combined weight of the ${scenario.container} and the ${scenario.item} it contains is no more than ${maxWeight.toLocaleString()} ${scenario.unit}. What is the maximum number of ${scenario.item} this ${scenario.vehicle} can carry in a ${scenario.container} with a weight of ${containerWeight} ${scenario.unit} if each ${scenario.item.slice(0, -1)} weighs ${itemWeight} ${scenario.unit}?`,
                 answer: letters[correctIndex],
                 options: allAnswers.map((val, i) => `${letters[i]}) ${val}`),
-                hint: 'Set up an inequality: container + (items × weight per item) ≤ limit. Solve, then round DOWN since you can\'t exceed the limit.',
+                hint: 'Set up an inequality: container + (items × weight per item) $\\leq$ limit. Solve, then round DOWN since you can\'t exceed the limit.',
                 solution: `<strong>Set up the inequality:</strong><br>
-                    ${containerWeight} + ${itemWeight}x ≤ ${maxWeight}<br><br>
+                    $${containerWeight} + ${itemWeight}x \\leq ${maxWeight}$<br><br>
                     <strong>Solve:</strong><br>
-                    ${itemWeight}x ≤ ${remainingCapacity}<br>
-                    x ≤ ${exactAnswer.toFixed(2)}...<br><br>
+                    $${itemWeight}x \\leq ${remainingCapacity}$<br>
+                    $x \\leq ${exactAnswer.toFixed(2)}...$<br><br>
                     <strong>Round DOWN (not up!):</strong><br>
-                    x = <strong>${answer}</strong><br><br>
+                    $x = $ <strong>${answer}</strong><br><br>
                     <strong>Why not ${roundUpTrap}?</strong><br>
                     ${roundUpTrap} ${scenario.item} would weigh ${containerWeight + roundUpTrap * itemWeight} ${scenario.unit}, which EXCEEDS the ${maxWeight} limit!`,
                 hard: true
@@ -636,15 +636,15 @@ const satUnit1 = {
                 question: `A report stated that ${multiplier} times as many ${scenario.item} ${scenario.groupA} as ${scenario.groupB}. Another source reported that ${difference.toLocaleString()} more ${scenario.item} ${scenario.groupA} than ${scenario.groupB}. Based on these data, how many ${scenario.item} ${scenario.groupB}?`,
                 answer: letters[correctIndex],
                 options: allAnswers.map((val, i) => `${letters[i]}) ${val.toLocaleString()}`),
-                hint: `Let x = ${scenario.item} who ${scenario.groupB}. Then ${multiplier}x = ${scenario.item} who ${scenario.groupA}. Use the difference to solve.`,
+                hint: `Let $x$ = ${scenario.item} who ${scenario.groupB}. Then $${multiplier}x$ = ${scenario.item} who ${scenario.groupA}. Use the difference to solve.`,
                 solution: `<strong>Set up variables:</strong><br>
-                    Let x = ${scenario.item} who ${scenario.groupB}<br>
-                    Then ${multiplier}x = ${scenario.item} who ${scenario.groupA}<br><br>
+                    Let $x$ = ${scenario.item} who ${scenario.groupB}<br>
+                    Then $${multiplier}x$ = ${scenario.item} who ${scenario.groupA}<br><br>
                     <strong>Use the difference:</strong><br>
-                    ${multiplier}x - x = ${difference.toLocaleString()}<br>
-                    ${multiplier - 1}x = ${difference.toLocaleString()}<br>
-                    x = ${difference.toLocaleString()} ÷ ${multiplier - 1}<br>
-                    x = <strong>${answer.toLocaleString()}</strong><br><br>
+                    $${multiplier}x - x = ${difference.toLocaleString()}$<br>
+                    $${multiplier - 1}x = ${difference.toLocaleString()}$<br>
+                    $x = ${difference.toLocaleString()} \\div ${multiplier - 1}$<br>
+                    $x = $ <strong>${answer.toLocaleString()}</strong><br><br>
                     <strong>Common traps:</strong><br>
                     • ${difference.toLocaleString()} is the difference, not the answer<br>
                     • ${largeGroup.toLocaleString()} is how many ${scenario.groupA} (not what was asked)<br>

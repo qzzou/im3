@@ -13,16 +13,16 @@ const satUnit5 = {
                 <p><strong>The #1 SAT Trap:</strong> Not answering what they actually asked!</p>
                 <div class="formula-box">
                     <strong>Common Traps:</strong><br>
-                    • Solving for x when they ask for 2x + 1<br>
+                    • Solving for $x$ when they ask for $2x + 1$<br>
                     • Finding the total when they ask for the tax<br>
                     • Calculating the discount instead of the sale price<br>
                     • Finding one variable when they want the sum of two
                 </div>
                 <div class="example">
                     <h4>Example Trap:</h4>
-                    <p>"If 3x = 12, what is x + 5?"</p>
-                    <p>Wrong answer: 4 (that's just x!)</p>
-                    <p>Right answer: 9 (x + 5 = 4 + 5)</p>
+                    <p>"If $3x = 12$, what is $x + 5$?"</p>
+                    <p>Wrong answer: 4 (that's just $x$!)</p>
+                    <p>Right answer: 9 ($x + 5 = 4 + 5$)</p>
                 </div>
                 <p><strong>Strategy:</strong> Circle or underline exactly what the question asks for BEFORE solving.</p>
             `
@@ -54,11 +54,11 @@ const satUnit5 = {
                 <div class="formula-box">
                     <strong>Classic Percent Traps:</strong><br><br>
                     <strong>Trap 1: Successive changes DON'T cancel</strong><br>
-                    • 20% increase then 20% decrease ≠ back to original<br>
-                    • 100 → 120 → 96 (not 100!)<br><br>
+                    • 20% increase then 20% decrease $\\neq$ back to original<br>
+                    • $100 \\rightarrow 120 \\rightarrow 96$ (not 100!)<br><br>
                     <strong>Trap 2: Percent OF vs. Percent MORE/LESS</strong><br>
-                    • "30% of 50" = 15<br>
-                    • "30% more than 50" = 65<br><br>
+                    • "30% of 50" $= 15$<br>
+                    • "30% more than 50" $= 65$<br><br>
                     <strong>Trap 3: Which base to use?</strong><br>
                     • Percent change always uses the ORIGINAL as base
                 </div>
@@ -70,18 +70,18 @@ const satUnit5 = {
                 <p>Words can be deceiving. Pay attention to exact phrasing:</p>
                 <div class="formula-box">
                     <strong>"Per" means MULTIPLY, not add:</strong><br>
-                    • $5 per book × 3 books = $15 (not $8)<br><br>
+                    • \\$5 per book $\\times$ 3 books $=$ \\$15 (not \\$8)<br><br>
                     <strong>Order matters in subtraction:</strong><br>
-                    • "5 less than x" = x - 5 (not 5 - x)<br>
-                    • "x less than 5" = 5 - x<br><br>
+                    • "5 less than $x$" $= x - 5$ (not $5 - x$)<br>
+                    • "$x$ less than 5" $= 5 - x$<br><br>
                     <strong>Parentheses matter:</strong><br>
-                    • "Twice the sum of x and 3" = 2(x + 3)<br>
-                    • "Twice x, plus 3" = 2x + 3
+                    • "Twice the sum of $x$ and 3" $= 2(x + 3)$<br>
+                    • "Twice $x$, plus 3" $= 2x + 3$
                 </div>
                 <div class="example">
                     <h4>Translation Trap:</h4>
                     <p>"John is 5 years older than twice Mary's age."</p>
-                    <p>If Mary is m: John = 2m + 5 (not 2(m + 5)!)</p>
+                    <p>If Mary is $m$: John $= 2m + 5$ (not $2(m + 5)$!)</p>
                 </div>
             `
         },
@@ -110,16 +110,16 @@ const satUnit5 = {
         {
             id: 'sat5-1',
             unit: 5,
-            question: 'If 3x - 7 = 14, what is the value of 6x - 14?',
+            question: 'If $3x - 7 = 14$, what is the value of $6x - 14$?',
             answer: 'C',
             options: ['A) 7', 'B) 21', 'C) 28', 'D) 42'],
-            hint: 'Don\'t solve for x! Look for a shortcut using the original equation.',
-            solution: `<strong>The Gotcha:</strong> Many students find x = 7 and stop, or find 6x alone.<br><br>
-                <strong>Shortcut:</strong> Notice that 6x - 14 = 2(3x - 7)<br>
-                Since 3x - 7 = 14:<br>
-                6x - 14 = 2(14) = <strong>28</strong><br><br>
-                <strong>OR solve for x:</strong> 3x = 21, x = 7<br>
-                Then 6(7) - 14 = 42 - 14 = <strong>28</strong>`,
+            hint: 'Don\'t solve for $x$! Look for a shortcut using the original equation.',
+            solution: `<strong>The Gotcha:</strong> Many students find $x = 7$ and stop, or find $6x$ alone.<br><br>
+                <strong>Shortcut:</strong> Notice that $6x - 14 = 2(3x - 7)$<br>
+                Since $3x - 7 = 14$:<br>
+                $6x - 14 = 2(14) = $ <strong>28</strong><br><br>
+                <strong>OR solve for x:</strong> $3x = 21$, $x = 7$<br>
+                Then $6(7) - 14 = 42 - 14 = $ <strong>28</strong>`,
             hard: true
         },
         {
@@ -139,16 +139,16 @@ const satUnit5 = {
         {
             id: 'sat5-3',
             unit: 5,
-            question: 'A price increased by 20%, then decreased by 20%. If the original price was $100, what is the final price?',
+            question: 'A price increased by 20%, then decreased by 20%. If the original price was \\$100, what is the final price?',
             answer: 'B',
-            options: ['A) $100', 'B) $96', 'C) $104', 'D) $80'],
+            options: ['A) \\$100', 'B) \\$96', 'C) \\$104', 'D) \\$80'],
             hint: 'The changes do NOT cancel out! Calculate each step.',
-            solution: `<strong>The Gotcha:</strong> Students assume +20% and -20% cancel to give $100.<br><br>
+            solution: `<strong>The Gotcha:</strong> Students assume +20% and -20% cancel to give \\$100.<br><br>
                 <strong>Step 1: 20% increase</strong><br>
-                $100 × 1.20 = $120<br><br>
+                $\\$100 \\times 1.20 = \\$120$<br><br>
                 <strong>Step 2: 20% decrease (of the NEW price!)</strong><br>
-                $120 × 0.80 = <strong>$96</strong><br><br>
-                <strong>Why it doesn't cancel:</strong> The 20% decrease is taken from $120, not $100!`,
+                $\\$120 \\times 0.80 = $ <strong>\\$96</strong><br><br>
+                <strong>Why it doesn't cancel:</strong> The 20% decrease is taken from \\$120, not \\$100!`,
             hard: true
         },
         {
@@ -173,12 +173,12 @@ const satUnit5 = {
             answer: 'C',
             options: ['A) 14', 'B) 20', 'C) 24', 'D) 28'],
             hint: 'Translate carefully: "4 years older than twice" means add 4 AFTER doubling.',
-            solution: `<strong>The Gotcha:</strong> Is it 2(10 + 4) or 2(10) + 4?<br><br>
+            solution: `<strong>The Gotcha:</strong> Is it $2(10 + 4)$ or $2(10) + 4$?<br><br>
                 <strong>Parse the phrase:</strong><br>
                 "4 years older than" → add 4<br>
-                "twice Sara's age" → 2 × 10 = 20<br><br>
-                <strong>Tom's age:</strong> 2(10) + 4 = 20 + 4 = <strong>24</strong><br><br>
-                <strong>Common error:</strong> 2(10 + 4) = 28 — but "older than twice" means add AFTER doubling.`,
+                "twice Sara's age" → $2 \\times 10 = 20$<br><br>
+                <strong>Tom's age:</strong> $2(10) + 4 = 20 + 4 = $ <strong>24</strong><br><br>
+                <strong>Common error:</strong> $2(10 + 4) = 28$ — but "older than twice" means add AFTER doubling.`,
             hard: true
         },
         {
@@ -228,17 +228,17 @@ const satUnit5 = {
 
             return {
                 unit: 5,
-                question: `If ${a}x + ${b} = ${c}, what is the value of ${multiplier}x + ${addend}?`,
+                question: `If $${a}x + ${b} = ${c}$, what is the value of $${multiplier}x + ${addend}$?`,
                 answer: letters[correctIndex],
                 options: allAnswers.map((val, i) => `${letters[i]}) ${val}`),
-                hint: `Don't just solve for x! The question asks for ${multiplier}x + ${addend}.`,
-                solution: `<strong>The Gotcha:</strong> Many students solve for x = ${x} and stop!<br><br>
+                hint: `Don't just solve for $x$! The question asks for $${multiplier}x + ${addend}$.`,
+                solution: `<strong>The Gotcha:</strong> Many students solve for $x = ${x}$ and stop!<br><br>
                     <strong>Step 1: Solve for x</strong><br>
-                    ${a}x + ${b} = ${c}<br>
-                    ${a}x = ${c - b}<br>
-                    x = ${x}<br><br>
+                    $${a}x + ${b} = ${c}$<br>
+                    $${a}x = ${c - b}$<br>
+                    $x = ${x}$<br><br>
                     <strong>Step 2: Find what they ASKED for</strong><br>
-                    ${multiplier}x + ${addend} = ${multiplier}(${x}) + ${addend} = <strong>${answer}</strong>`,
+                    $${multiplier}x + ${addend} = ${multiplier}(${x}) + ${addend} = $ <strong>${answer}</strong>`,
                 hard: true
             };
         },

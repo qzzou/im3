@@ -12,17 +12,17 @@ const satUnit2 = {
             content: `
                 <p>SAT problems frequently involve ratios and proportions:</p>
                 <div class="formula-box">
-                    <strong>Ratio:</strong> a : b means a/b<br><br>
-                    <strong>Proportion:</strong> a/b = c/d → Cross multiply: ad = bc<br><br>
+                    <strong>Ratio:</strong> $a : b$ means $\\frac{a}{b}$<br><br>
+                    <strong>Proportion:</strong> $\\frac{a}{b} = \\frac{c}{d}$ → Cross multiply: $ad = bc$<br><br>
                     <strong>Unit Rate:</strong> Amount per 1 unit (e.g., miles per hour)
                 </div>
                 <div class="example">
                     <h4>SAT Example:</h4>
                     <p>If the ratio of boys to girls is 3:5 and there are 24 boys, how many girls are there?</p>
                     <div class="solution">
-                        3/5 = 24/x<br>
-                        3x = 120<br>
-                        x = 40 girls
+                        $\\frac{3}{5} = \\frac{24}{x}$<br>
+                        $3x = 120$<br>
+                        $x = 40$ girls
                     </div>
                 </div>
             `
@@ -32,16 +32,16 @@ const satUnit2 = {
             content: `
                 <p>Percentage problems are everywhere on the SAT!</p>
                 <div class="formula-box">
-                    <strong>Basic Formula:</strong> Part = (Percent/100) × Whole<br><br>
-                    <strong>Percent Change:</strong> ((New - Old) / Old) × 100%<br><br>
+                    <strong>Basic Formula:</strong> $\\text{Part} = \\frac{\\text{Percent}}{100} \\times \\text{Whole}$<br><br>
+                    <strong>Percent Change:</strong> $\\frac{\\text{New} - \\text{Old}}{\\text{Old}} \\times 100\\%$<br><br>
                     <strong>Successive Percent Changes:</strong><br>
-                    Multiply by (1 + rate) or (1 - rate) for each change
+                    Multiply by $(1 + \\text{rate})$ or $(1 - \\text{rate})$ for each change
                 </div>
                 <p><strong>SAT Tip:</strong> 20% increase followed by 20% decrease does NOT return to the original value!</p>
                 <div class="example">
                     <h4>Example:</h4>
-                    <p>$100 increased by 20% = $120</p>
-                    <p>$120 decreased by 20% = $96 (not $100!)</p>
+                    <p>\\$100 increased by 20% = \\$120</p>
+                    <p>\\$120 decreased by 20% = \\$96 (not \\$100!)</p>
                 </div>
             `
         },
@@ -84,27 +84,27 @@ const satUnit2 = {
             question: 'If the ratio of cats to dogs at a shelter is 4:7, and there are 28 dogs, how many cats are there?',
             answer: 'B',
             options: ['A) 12', 'B) 16', 'C) 20', 'D) 24'],
-            hint: 'Set up a proportion: 4/7 = x/28 and solve for x.',
+            hint: 'Set up a proportion: $\\frac{4}{7} = \\frac{x}{28}$ and solve for $x$.',
             solution: `<strong>Set up proportion:</strong><br>
-                4/7 = x/28<br><br>
+                $\\frac{4}{7} = \\frac{x}{28}$<br><br>
                 <strong>Cross multiply:</strong><br>
-                7x = 4 × 28<br>
-                7x = 112<br>
-                x = <strong>16 cats</strong>`,
+                $7x = 4 \\times 28$<br>
+                $7x = 112$<br>
+                $x = $ <strong>16 cats</strong>`,
             hard: false
         },
         {
             id: 'sat2-2',
             unit: 2,
-            question: 'A shirt originally priced at $40 is on sale for 25% off. What is the sale price?',
+            question: 'A shirt originally priced at \\$40 is on sale for 25% off. What is the sale price?',
             answer: 'C',
-            options: ['A) $10', 'B) $25', 'C) $30', 'D) $35'],
-            hint: 'Calculate 25% of $40, then subtract from the original price.',
+            options: ['A) \\$10', 'B) \\$25', 'C) \\$30', 'D) \\$35'],
+            hint: 'Calculate 25% of \\$40, then subtract from the original price.',
             solution: `<strong>Method 1: Calculate discount</strong><br>
-                25% of $40 = 0.25 × 40 = $10<br>
-                Sale price = $40 - $10 = <strong>$30</strong><br><br>
+                25% of \\$40 $= 0.25 \\times 40 = $ \\$10<br>
+                Sale price $= $ \\$40 $-$ \\$10 $= $ <strong>\\$30</strong><br><br>
                 <strong>Method 2: Direct calculation</strong><br>
-                Sale price = $40 × (1 - 0.25) = $40 × 0.75 = <strong>$30</strong>`,
+                Sale price $= $ \\$40 $\\times (1 - 0.25) = $ \\$40 $\\times 0.75 = $ <strong>\\$30</strong>`,
             hard: false
         },
         {
@@ -113,14 +113,14 @@ const satUnit2 = {
             question: 'The mean of 5 numbers is 12. If four of the numbers are 8, 10, 14, and 15, what is the fifth number?',
             answer: 'B',
             options: ['A) 11', 'B) 13', 'C) 15', 'D) 17'],
-            hint: 'Mean × count = sum. Find the total sum, then subtract the known values.',
+            hint: 'Mean $\\times$ count $=$ sum. Find the total sum, then subtract the known values.',
             solution: `<strong>Step 1: Find total sum</strong><br>
-                Mean × Count = Sum<br>
-                12 × 5 = 60<br><br>
+                $\\text{Mean} \\times \\text{Count} = \\text{Sum}$<br>
+                $12 \\times 5 = 60$<br><br>
                 <strong>Step 2: Subtract known values</strong><br>
-                Fifth number = 60 - (8 + 10 + 14 + 15)<br>
-                = 60 - 47<br>
-                = <strong>13</strong>`,
+                Fifth number $= 60 - (8 + 10 + 14 + 15)$<br>
+                $= 60 - 47$<br>
+                $= $ <strong>13</strong>`,
             hard: false
         },
         {
@@ -144,11 +144,11 @@ const satUnit2 = {
             options: ['A) 1000', 'B) 1050', 'C) 1080', 'D) 1100'],
             hint: 'Apply each percent change in sequence: multiply by 1.20, then by 0.90.',
             solution: `<strong>Year 1: 20% increase</strong><br>
-                1000 × 1.20 = 1200<br><br>
+                $1000 \\times 1.20 = 1200$<br><br>
                 <strong>Year 2: 10% decrease</strong><br>
-                1200 × 0.90 = <strong>1080</strong><br><br>
+                $1200 \\times 0.90 = $ <strong>1080</strong><br><br>
                 <strong>Key Insight:</strong> Successive percent changes multiply!<br>
-                1000 × 1.20 × 0.90 = 1000 × 1.08 = 1080<br><br>
+                $1000 \\times 1.20 \\times 0.90 = 1000 \\times 1.08 = 1080$<br><br>
                 <strong>Common trap:</strong> Answer A (1000) assumes the changes cancel out—they don't!`,
             hard: true
         },
@@ -202,13 +202,13 @@ const satUnit2 = {
                 question: `If the ratio of ${items[0]} to ${items[1]} is ${a}:${b}, and there are ${given} ${items[1]}, how many ${items[0]} are there?`,
                 answer: letters[correctIndex],
                 options: allAnswers.map((val, i) => `${letters[i]}) ${val}`),
-                hint: `Set up a proportion: ${a}/${b} = x/${given} and cross multiply.`,
+                hint: `Set up a proportion: $\\frac{${a}}{${b}} = \\frac{x}{${given}}$ and cross multiply.`,
                 solution: `<strong>Set up proportion:</strong><br>
-                    ${a}/${b} = x/${given}<br><br>
+                    $\\frac{${a}}{${b}} = \\frac{x}{${given}}$<br><br>
                     <strong>Cross multiply:</strong><br>
-                    ${b}x = ${a} × ${given}<br>
-                    ${b}x = ${a * given}<br>
-                    x = <strong>${answer}</strong>`,
+                    $${b}x = ${a} \\times ${given}$<br>
+                    $${b}x = ${a * given}$<br>
+                    $x = $ <strong>${answer}</strong>`,
                 hard: false
             };
         },
@@ -401,13 +401,13 @@ const satUnit2 = {
                 question: `A quantity changed from ${original} to ${newValue}. What is the percent ${isIncrease ? 'increase' : 'decrease'}?`,
                 answer: letters[correctIndex],
                 options: allAnswers.map((val, i) => `${letters[i]}) ${val}%`),
-                hint: 'Percent change = ((New - Old) / Old) × 100',
+                hint: 'Percent change $= \\frac{\\text{New} - \\text{Old}}{\\text{Old}} \\times 100$',
                 solution: `<strong>Percent Change Formula:</strong><br>
-                    % change = ((New - Old) / Old) × 100<br><br>
+                    $\\% \\text{ change} = \\frac{\\text{New} - \\text{Old}}{\\text{Old}} \\times 100$<br><br>
                     <strong>Calculate:</strong><br>
-                    = ((${newValue} - ${original}) / ${original}) × 100<br>
-                    = (${newValue - original} / ${original}) × 100<br>
-                    = <strong>${changePercent}%</strong>`,
+                    $= \\frac{${newValue} - ${original}}{${original}} \\times 100$<br>
+                    $= \\frac{${newValue - original}}{${original}} \\times 100$<br>
+                    $= $ <strong>${changePercent}%</strong>`,
                 hard: false
             };
         },
@@ -513,11 +513,11 @@ const satUnit2 = {
                 question: `To estimate the proportion of a population that has a certain characteristic, a random sample was selected. Based on the sample, it is estimated that the proportion is ${estimate}, with an associated margin of error of ${marginOfError}. Based on this estimate and margin of error, which of the following is the most appropriate conclusion?`,
                 answer: 'A',
                 options: options.map((val, i) => `${letters[i]}) ${val}`),
-                hint: 'Margin of error creates an interval: estimate ± margin of error. The true value plausibly lies within this range.',
+                hint: 'Margin of error creates an interval: estimate $\\pm$ margin of error. The true value plausibly lies within this range.',
                 solution: `<strong>Confidence Interval:</strong><br>
-                    Estimate ± Margin of Error<br>
-                    = ${estimate} ± ${marginOfError}<br>
-                    = <strong>(${lowerBound}, ${upperBound})</strong><br><br>
+                    $\\text{Estimate} \\pm \\text{Margin of Error}$<br>
+                    $= ${estimate} \\pm ${marginOfError}$<br>
+                    $= $ <strong>(${lowerBound}, ${upperBound})</strong><br><br>
                     <strong>Interpretation:</strong><br>
                     The true proportion plausibly falls within this interval.<br><br>
                     <strong>Why other answers are wrong:</strong><br>

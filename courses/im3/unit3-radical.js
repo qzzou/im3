@@ -10,19 +10,19 @@ const unit3 = {
         {
             title: '3.1 Simplifying Radicals',
             content: `
-                <p>A <strong>radical expression</strong> contains a root (√, ∛, etc.).</p>
+                <p>A <strong>radical expression</strong> contains a root ($\\sqrt{}$, $\\sqrt[3]{}$, etc.).</p>
                 <div class="formula-box">
                     <strong>Key Properties:</strong><br>
-                    • √(ab) = √a · √b<br>
-                    • √(a/b) = √a / √b<br>
-                    • ⁿ√(aᵐ) = a^(m/n)<br>
-                    • √a · √a = a (for a ≥ 0)<br>
-                    • (√a)² = a
+                    • $\\sqrt{ab} = \\sqrt{a} \\cdot \\sqrt{b}$<br>
+                    • $\\sqrt{\\frac{a}{b}} = \\frac{\\sqrt{a}}{\\sqrt{b}}$<br>
+                    • $\\sqrt[n]{a^m} = a^{m/n}$<br>
+                    • $\\sqrt{a} \\cdot \\sqrt{a} = a$ (for $a \\geq 0$)<br>
+                    • $(\\sqrt{a})^2 = a$
                 </div>
                 <div class="example">
-                    <h4>Example: Simplify √72</h4>
+                    <h4>Example: Simplify $\\sqrt{72}$</h4>
                     <div class="solution">
-                        √72 = √(36 · 2) = √36 · √2 = <strong>6√2</strong>
+                        $\\sqrt{72} = \\sqrt{36 \\cdot 2} = \\sqrt{36} \\cdot \\sqrt{2} = $ <strong>$6\\sqrt{2}$</strong>
                     </div>
                 </div>
             `
@@ -33,14 +33,14 @@ const unit3 = {
                 <div class="formula-box">
                     <strong>Adding/Subtracting:</strong><br>
                     Only combine like radicals (same index and radicand)<br>
-                    3√5 + 7√5 = 10√5 ✓<br>
-                    3√5 + 7√3 = cannot combine ✗<br><br>
+                    $3\\sqrt{5} + 7\\sqrt{5} = 10\\sqrt{5}$ ✓<br>
+                    $3\\sqrt{5} + 7\\sqrt{3}$ = cannot combine ✗<br><br>
                     <strong>Multiplying:</strong><br>
-                    √a · √b = √(ab)<br>
-                    (a + √b)(a - √b) = a² - b (conjugates!)<br><br>
+                    $\\sqrt{a} \\cdot \\sqrt{b} = \\sqrt{ab}$<br>
+                    $(a + \\sqrt{b})(a - \\sqrt{b}) = a^2 - b$ (conjugates!)<br><br>
                     <strong>Rationalizing Denominators:</strong><br>
-                    • Simple: 1/√a = √a/a<br>
-                    • Conjugate: 1/(a + √b) = (a - √b)/(a² - b)
+                    • Simple: $\\frac{1}{\\sqrt{a}} = \\frac{\\sqrt{a}}{a}$<br>
+                    • Conjugate: $\\frac{1}{a + \\sqrt{b}} = \\frac{a - \\sqrt{b}}{a^2 - b}$
                 </div>
             `
         },
@@ -55,11 +55,11 @@ const unit3 = {
                     4. CHECK all solutions (squaring can introduce extraneous solutions!)
                 </div>
                 <div class="example">
-                    <h4>Example: Solve √(x + 3) = x - 1</h4>
+                    <h4>Example: Solve $\\sqrt{x + 3} = x - 1$</h4>
                     <div class="solution">
-                        Square both sides: x + 3 = (x - 1)²<br>
-                        x + 3 = x² - 2x + 1<br>
-                        0 = x² - 3x - 2<br>
+                        Square both sides: $x + 3 = (x - 1)^2$<br>
+                        $x + 3 = x^2 - 2x + 1$<br>
+                        $0 = x^2 - 3x - 2$<br>
                         Check both solutions in original!
                     </div>
                 </div>
@@ -70,13 +70,13 @@ const unit3 = {
             content: `
                 <div class="formula-box">
                     <strong>Parent Functions:</strong><br>
-                    • f(x) = √x : Domain [0, ∞), starts at origin<br>
-                    • f(x) = ∛x : Domain (-∞, ∞), passes through origin<br><br>
-                    <strong>Transformations y = a√(x - h) + k:</strong><br>
-                    • h: horizontal shift (right if h > 0)<br>
-                    • k: vertical shift (up if k > 0)<br>
-                    • a: vertical stretch/compression, reflection if negative<br><br>
-                    <strong>Domain:</strong> For √(expression), set expression ≥ 0
+                    • $f(x) = \\sqrt{x}$: Domain $[0, \\infty)$, starts at origin<br>
+                    • $f(x) = \\sqrt[3]{x}$: Domain $(-\\infty, \\infty)$, passes through origin<br><br>
+                    <strong>Transformations $y = a\\sqrt{x - h} + k$:</strong><br>
+                    • $h$: horizontal shift (right if $h > 0$)<br>
+                    • $k$: vertical shift (up if $k > 0$)<br>
+                    • $a$: vertical stretch/compression, reflection if negative<br><br>
+                    <strong>Domain:</strong> For $\\sqrt{\\text{expression}}$, set expression $\\geq 0$
                 </div>
             `
         }
@@ -86,97 +86,97 @@ const unit3 = {
         {
             id: 'u3-1',
             unit: 3,
-            question: 'Simplify: √128',
-            answer: '8√2',
+            question: 'Simplify: $\\sqrt{128}$',
+            answer: '$8\\sqrt{2}$',
             hint: 'Find the largest perfect square that divides 128. Try 64.',
             solution: `<strong>Step 1: Find perfect square factor</strong><br>
-                128 = 64 × 2<br>
-                64 is a perfect square (8²)<br><br>
-                <strong>Step 2: Apply √(ab) = √a · √b</strong><br>
-                √128 = √(64 × 2)<br>
-                = √64 · √2<br>
-                = <strong>8√2</strong>`,
+                $128 = 64 \\times 2$<br>
+                64 is a perfect square ($8^2$)<br><br>
+                <strong>Step 2: Apply $\\sqrt{ab} = \\sqrt{a} \\cdot \\sqrt{b}$</strong><br>
+                $\\sqrt{128} = \\sqrt{64 \\times 2}$<br>
+                $= \\sqrt{64} \\cdot \\sqrt{2}$<br>
+                $= $ <strong>$8\\sqrt{2}$</strong>`,
             hard: false
         },
         {
             id: 'u3-2',
             unit: 3,
-            question: 'Simplify: 3√20 + 2√45',
-            answer: '12√5',
+            question: 'Simplify: $3\\sqrt{20} + 2\\sqrt{45}$',
+            answer: '$12\\sqrt{5}$',
             hint: 'Simplify each radical first, then combine like terms.',
-            solution: `<strong>Step 1: Simplify √20</strong><br>
-                √20 = √(4 × 5) = 2√5<br><br>
-                <strong>Step 2: Simplify √45</strong><br>
-                √45 = √(9 × 5) = 3√5<br><br>
+            solution: `<strong>Step 1: Simplify $\\sqrt{20}$</strong><br>
+                $\\sqrt{20} = \\sqrt{4 \\times 5} = 2\\sqrt{5}$<br><br>
+                <strong>Step 2: Simplify $\\sqrt{45}$</strong><br>
+                $\\sqrt{45} = \\sqrt{9 \\times 5} = 3\\sqrt{5}$<br><br>
                 <strong>Step 3: Substitute and combine</strong><br>
-                3√20 + 2√45 = 3(2√5) + 2(3√5)<br>
-                = 6√5 + 6√5<br>
-                = <strong>12√5</strong>`,
+                $3\\sqrt{20} + 2\\sqrt{45} = 3(2\\sqrt{5}) + 2(3\\sqrt{5})$<br>
+                $= 6\\sqrt{5} + 6\\sqrt{5}$<br>
+                $= $ <strong>$12\\sqrt{5}$</strong>`,
             hard: false
         },
         {
             id: 'u3-3',
             unit: 3,
-            question: 'Rationalize the denominator: 6/(√3 + 1)',
-            answer: '3√3-3',
-            hint: 'Multiply by the conjugate (√3 - 1)/(√3 - 1).',
+            question: 'Rationalize the denominator: $\\frac{6}{\\sqrt{3} + 1}$',
+            answer: '$3\\sqrt{3}-3$',
+            hint: 'Multiply by the conjugate $\\frac{\\sqrt{3} - 1}{\\sqrt{3} - 1}$.',
             solution: `<strong>Step 1: Multiply by conjugate</strong><br>
-                6/(√3 + 1) × (√3 - 1)/(√3 - 1)<br><br>
+                $\\frac{6}{\\sqrt{3} + 1} \\times \\frac{\\sqrt{3} - 1}{\\sqrt{3} - 1}$<br><br>
                 <strong>Step 2: Expand</strong><br>
-                Numerator: 6(√3 - 1) = 6√3 - 6<br>
-                Denominator: (√3)² - 1² = 3 - 1 = 2<br><br>
+                Numerator: $6(\\sqrt{3} - 1) = 6\\sqrt{3} - 6$<br>
+                Denominator: $(\\sqrt{3})^2 - 1^2 = 3 - 1 = 2$<br><br>
                 <strong>Step 3: Simplify</strong><br>
-                (6√3 - 6)/2 = <strong>3√3 - 3</strong>`,
+                $\\frac{6\\sqrt{3} - 6}{2} = $ <strong>$3\\sqrt{3} - 3$</strong>`,
             hard: true
         },
         {
             id: 'u3-4',
             unit: 3,
-            question: 'Solve: √(2x + 1) = 5',
+            question: 'Solve: $\\sqrt{2x + 1} = 5$',
             answer: '12',
-            hint: 'Square both sides and solve for x.',
+            hint: 'Square both sides and solve for $x$.',
             solution: `<strong>Step 1: Square both sides</strong><br>
-                (√(2x + 1))² = 5²<br>
-                2x + 1 = 25<br><br>
+                $(\\sqrt{2x + 1})^2 = 5^2$<br>
+                $2x + 1 = 25$<br><br>
                 <strong>Step 2: Solve</strong><br>
-                2x = 24<br>
-                x = 12<br><br>
+                $2x = 24$<br>
+                $x = 12$<br><br>
                 <strong>Step 3: Check</strong><br>
-                √(2(12) + 1) = √25 = 5 ✓<br>
-                <strong>x = 12</strong>`,
+                $\\sqrt{2(12) + 1} = \\sqrt{25} = 5$ ✓<br>
+                <strong>$x = 12$</strong>`,
             hard: false
         },
         {
             id: 'u3-5',
             unit: 3,
-            question: 'Solve: √(x + 7) = x + 1',
+            question: 'Solve: $\\sqrt{x + 7} = x + 1$',
             answer: '2',
             hint: 'Square both sides, solve the quadratic, then check for extraneous solutions!',
             solution: `<strong>Step 1: Square both sides</strong><br>
-                x + 7 = (x + 1)²<br>
-                x + 7 = x² + 2x + 1<br><br>
+                $x + 7 = (x + 1)^2$<br>
+                $x + 7 = x^2 + 2x + 1$<br><br>
                 <strong>Step 2: Rearrange</strong><br>
-                0 = x² + x - 6<br>
-                0 = (x + 3)(x - 2)<br>
-                x = -3 or x = 2<br><br>
+                $0 = x^2 + x - 6$<br>
+                $0 = (x + 3)(x - 2)$<br>
+                $x = -3$ or $x = 2$<br><br>
                 <strong>Step 3: Check both</strong><br>
-                x = -3: √(-3+7) = √4 = 2, but -3+1 = -2 ✗<br>
-                x = 2: √(2+7) = √9 = 3, and 2+1 = 3 ✓<br><br>
-                <strong>x = 2</strong> (x = -3 is extraneous)`,
+                $x = -3$: $\\sqrt{-3+7} = \\sqrt{4} = 2$, but $-3+1 = -2$ ✗<br>
+                $x = 2$: $\\sqrt{2+7} = \\sqrt{9} = 3$, and $2+1 = 3$ ✓<br><br>
+                <strong>$x = 2$</strong> ($x = -3$ is extraneous)`,
             hard: true
         },
         {
             id: 'u3-6',
             unit: 3,
-            question: 'Find the domain of f(x) = √(3x - 12)',
-            answer: 'x≥4',
-            hint: 'For √(expression) to be real, the expression must be ≥ 0.',
-            solution: `<strong>Step 1: Set radicand ≥ 0</strong><br>
-                3x - 12 ≥ 0<br><br>
+            question: 'Find the domain of $f(x) = \\sqrt{3x - 12}$',
+            answer: '$x \\geq 4$',
+            hint: 'For $\\sqrt{\\text{expression}}$ to be real, the expression must be $\\geq 0$.',
+            solution: `<strong>Step 1: Set radicand $\\geq 0$</strong><br>
+                $3x - 12 \\geq 0$<br><br>
                 <strong>Step 2: Solve inequality</strong><br>
-                3x ≥ 12<br>
-                x ≥ 4<br><br>
-                <strong>Domain: x ≥ 4</strong> or [4, ∞)`,
+                $3x \\geq 12$<br>
+                $x \\geq 4$<br><br>
+                <strong>Domain: $x \\geq 4$</strong> or $[4, \\infty)$`,
             hard: false
         }
     ],
@@ -191,16 +191,16 @@ const unit3 = {
 
             return {
                 unit: 3,
-                question: `Simplify: √${n}`,
-                answer: `${mult}√${base}`,
+                question: `Simplify: $\\sqrt{${n}}$`,
+                answer: `$${mult}\\sqrt{${base}}$`,
                 hint: `Find the largest perfect square that divides ${n}.`,
                 solution: `<strong>Step 1: Find perfect square factor</strong><br>
-                    ${n} = ${mult*mult} × ${base}<br>
-                    ${mult*mult} is a perfect square (${mult}²)<br><br>
-                    <strong>Step 2: Apply √(ab) = √a · √b</strong><br>
-                    √${n} = √(${mult*mult} × ${base})<br>
-                    = √${mult*mult} · √${base}<br>
-                    = <strong>${mult}√${base}</strong>`,
+                    $${n} = ${mult*mult} \\times ${base}$<br>
+                    ${mult*mult} is a perfect square ($${mult}^2$)<br><br>
+                    <strong>Step 2: Apply $\\sqrt{ab} = \\sqrt{a} \\cdot \\sqrt{b}$</strong><br>
+                    $\\sqrt{${n}} = \\sqrt{${mult*mult} \\times ${base}}$<br>
+                    $= \\sqrt{${mult*mult}} \\cdot \\sqrt{${base}}$<br>
+                    $= $ <strong>$${mult}\\sqrt{${base}}$</strong>`,
                 hard: false
             };
         },
@@ -218,17 +218,17 @@ const unit3 = {
 
             return {
                 unit: 3,
-                question: `Simplify: ${c1}√${n1} + ${c2}√${n2}`,
-                answer: `${result}√${base}`,
+                question: `Simplify: $${c1}\\sqrt{${n1}} + ${c2}\\sqrt{${n2}}$`,
+                answer: `$${result}\\sqrt{${base}}$`,
                 hint: `Simplify each radical first to get like radicals, then combine.`,
-                solution: `<strong>Step 1: Simplify √${n1}</strong><br>
-                    √${n1} = √(${m1*m1} × ${base}) = ${m1}√${base}<br><br>
-                    <strong>Step 2: Simplify √${n2}</strong><br>
-                    √${n2} = √(${m2*m2} × ${base}) = ${m2}√${base}<br><br>
+                solution: `<strong>Step 1: Simplify $\\sqrt{${n1}}$</strong><br>
+                    $\\sqrt{${n1}} = \\sqrt{${m1*m1} \\times ${base}} = ${m1}\\sqrt{${base}}$<br><br>
+                    <strong>Step 2: Simplify $\\sqrt{${n2}}$</strong><br>
+                    $\\sqrt{${n2}} = \\sqrt{${m2*m2} \\times ${base}} = ${m2}\\sqrt{${base}}$<br><br>
                     <strong>Step 3: Substitute and combine</strong><br>
-                    ${c1}√${n1} + ${c2}√${n2} = ${c1}(${m1}√${base}) + ${c2}(${m2}√${base})<br>
-                    = ${c1*m1}√${base} + ${c2*m2}√${base}<br>
-                    = <strong>${result}√${base}</strong>`,
+                    $${c1}\\sqrt{${n1}} + ${c2}\\sqrt{${n2}} = ${c1}(${m1}\\sqrt{${base}}) + ${c2}(${m2}\\sqrt{${base}})$<br>
+                    $= ${c1*m1}\\sqrt{${base}} + ${c2*m2}\\sqrt{${base}}$<br>
+                    $= $ <strong>$${result}\\sqrt{${base}}$</strong>`,
                 hard: false
             };
         },
@@ -256,16 +256,16 @@ const unit3 = {
 
             return {
                 unit: 3,
-                question: `Rationalize: ${a}/(√${b} ${sign} ${c})`,
-                answer: `${Math.abs(numCoeff)}√${b}${signResult}${Math.abs(constCoeff)}`,
-                hint: `Multiply by the conjugate (√${b} ${oppSign} ${c})/(√${b} ${oppSign} ${c}).`,
+                question: `Rationalize: $\\frac{${a}}{\\sqrt{${b}} ${sign} ${c}}$`,
+                answer: `$${Math.abs(numCoeff)}\\sqrt{${b}} ${signResult} ${Math.abs(constCoeff)}$`,
+                hint: `Multiply by the conjugate $\\frac{\\sqrt{${b}} ${oppSign} ${c}}{\\sqrt{${b}} ${oppSign} ${c}}$.`,
                 solution: `<strong>Step 1: Multiply by conjugate</strong><br>
-                    ${a}/(√${b} ${sign} ${c}) × (√${b} ${oppSign} ${c})/(√${b} ${oppSign} ${c})<br><br>
+                    $\\frac{${a}}{\\sqrt{${b}} ${sign} ${c}} \\times \\frac{\\sqrt{${b}} ${oppSign} ${c}}{\\sqrt{${b}} ${oppSign} ${c}}$<br><br>
                     <strong>Step 2: Expand</strong><br>
-                    Numerator: ${a}(√${b} ${oppSign} ${c}) = ${a}√${b} ${oppSign} ${a*c}<br>
-                    Denominator: (√${b})² - ${c}² = ${b} - ${c*c} = ${denom}<br><br>
+                    Numerator: $${a}(\\sqrt{${b}} ${oppSign} ${c}) = ${a}\\sqrt{${b}} ${oppSign} ${a*c}$<br>
+                    Denominator: $(\\sqrt{${b}})^2 - ${c}^2 = ${b} - ${c*c} = ${denom}$<br><br>
                     <strong>Step 3: Simplify</strong><br>
-                    = <strong>${Math.abs(numCoeff)}√${b} ${signResult} ${Math.abs(constCoeff)}</strong>`,
+                    $= $ <strong>$${Math.abs(numCoeff)}\\sqrt{${b}} ${signResult} ${Math.abs(constCoeff)}$</strong>`,
                 hard: true
             };
         },
@@ -284,18 +284,18 @@ const unit3 = {
 
             return {
                 unit: 3,
-                question: `Solve: √(${a}x ${bSign} ${Math.abs(b)}) = ${c}`,
-                answer: `${result}`,
-                hint: `Square both sides and solve for x. Don't forget to check!`,
+                question: `Solve: $\\sqrt{${a}x ${bSign} ${Math.abs(b)}} = ${c}$`,
+                answer: `$x = ${result}$`,
+                hint: `Square both sides and solve for $x$. Don't forget to check!`,
                 solution: `<strong>Step 1: Square both sides</strong><br>
-                    (√(${a}x ${bSign} ${Math.abs(b)}))² = ${c}²<br>
-                    ${a}x ${bSign} ${Math.abs(b)} = ${c*c}<br><br>
+                    $(\\sqrt{${a}x ${bSign} ${Math.abs(b)}})^2 = ${c}^2$<br>
+                    $${a}x ${bSign} ${Math.abs(b)} = ${c*c}$<br><br>
                     <strong>Step 2: Solve</strong><br>
-                    ${a}x = ${c*c - b}<br>
-                    x = ${result}<br><br>
+                    $${a}x = ${c*c - b}$<br>
+                    $x = ${result}$<br><br>
                     <strong>Step 3: Check</strong><br>
-                    √(${a}(${result}) ${bSign} ${Math.abs(b)}) = √${c*c} = ${c} ✓<br>
-                    <strong>x = ${result}</strong>`,
+                    $\\sqrt{${a}(${result}) ${bSign} ${Math.abs(b)}} = \\sqrt{${c*c}} = ${c}$ ✓<br>
+                    <strong>$x = ${result}$</strong>`,
                 hard: false
             };
         },
@@ -324,18 +324,18 @@ const unit3 = {
 
             return {
                 unit: 3,
-                question: `Solve: √(x + ${a}) = x ${b >= 0 ? '+' : '-'} ${Math.abs(b)}`,
-                answer: `${validRoot}`,
+                question: `Solve: $\\sqrt{x + ${a}} = x ${b >= 0 ? '+' : '-'} ${Math.abs(b)}$`,
+                answer: `$x = ${validRoot}$`,
                 hint: `Square both sides, solve the quadratic, and check BOTH solutions. One may be extraneous!`,
                 solution: `<strong>Step 1: Square both sides</strong><br>
-                    x + ${a} = (x ${b >= 0 ? '+' : '-'} ${Math.abs(b)})²<br>
-                    x + ${a} = x² ${2*b >= 0 ? '+' : '-'} ${Math.abs(2*b)}x + ${b*b}<br><br>
+                    $x + ${a} = (x ${b >= 0 ? '+' : '-'} ${Math.abs(b)})^2$<br>
+                    $x + ${a} = x^2 ${2*b >= 0 ? '+' : '-'} ${Math.abs(2*b)}x + ${b*b}$<br><br>
                     <strong>Step 2: Rearrange</strong><br>
-                    0 = x² ${2*b - 1 >= 0 ? '+' : '-'} ${Math.abs(2*b - 1)}x ${b*b - a >= 0 ? '+' : '-'} ${Math.abs(b*b - a)}<br><br>
+                    $0 = x^2 ${2*b - 1 >= 0 ? '+' : '-'} ${Math.abs(2*b - 1)}x ${b*b - a >= 0 ? '+' : '-'} ${Math.abs(b*b - a)}$<br><br>
                     <strong>Step 3: Solve and check both roots</strong><br>
-                    x = ${validRoot}: √(${validRoot}+${a}) = ${sqrtVal}, ${validRoot}${b >= 0 ? '+' : ''}${b} = ${sqrtVal} ✓<br>
+                    $x = ${validRoot}$: $\\sqrt{${validRoot}+${a}} = ${sqrtVal}$, $${validRoot}${b >= 0 ? '+' : ''}${b} = ${sqrtVal}$ ✓<br>
                     Check other root: extraneous (negative under radical or sides don't match)<br><br>
-                    <strong>x = ${validRoot}</strong>`,
+                    <strong>$x = ${validRoot}$</strong>`,
                 hard: true
             };
         },
@@ -350,15 +350,15 @@ const unit3 = {
 
             return {
                 unit: 3,
-                question: `Find the domain of f(x) = √(${a}x - ${b})`,
-                answer: `x≥${result}`,
-                hint: `For the square root to be real, the radicand must be ≥ 0.`,
-                solution: `<strong>Step 1: Set radicand ≥ 0</strong><br>
-                    ${a}x - ${b} ≥ 0<br><br>
+                question: `Find the domain of $f(x) = \\sqrt{${a}x - ${b}}$`,
+                answer: `$x \\geq ${result}$`,
+                hint: `For the square root to be real, the radicand must be $\\geq 0$.`,
+                solution: `<strong>Step 1: Set radicand $\\geq 0$</strong><br>
+                    $${a}x - ${b} \\geq 0$<br><br>
                     <strong>Step 2: Solve inequality</strong><br>
-                    ${a}x ≥ ${b}<br>
-                    x ≥ ${result}<br><br>
-                    <strong>Domain: x ≥ ${result}</strong> or [${result}, ∞)`,
+                    $${a}x \\geq ${b}$<br>
+                    $x \\geq ${result}$<br><br>
+                    <strong>Domain: $x \\geq ${result}$</strong> or $[${result}, \\infty)$`,
                 hard: false
             };
         }

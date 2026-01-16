@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Math Learning Hub</title>
+    <!-- KaTeX for math rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -1195,6 +1199,7 @@
 
             html += '</div>';
             container.innerHTML = html;
+            renderMath();
         }
 
         // ============================================
@@ -1328,6 +1333,7 @@
             });
 
             container.innerHTML = html;
+            renderMath();
             updateProgress();
         }
 
@@ -1762,9 +1768,28 @@
                 newProblem.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
 
+            // Render math expressions with KaTeX
+            renderMath();
+
             // Save generated problems to localStorage
             saveState();
             updateProgress();
+        }
+
+        // ============================================
+        // MATH RENDERING (KaTeX)
+        // ============================================
+
+        function renderMath() {
+            if (typeof renderMathInElement !== 'undefined') {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: '$$', right: '$$', display: true},
+                        {left: '$', right: '$', display: false}
+                    ],
+                    throwOnError: false
+                });
+            }
         }
 
         function updateProgress() {
@@ -2000,6 +2025,12 @@
 
         // Initialize on load
         init();
+
+        // Render math after KaTeX loads (deferred scripts)
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wait a bit for deferred scripts to load
+            setTimeout(renderMath, 100);
+        });
 
         // Attach click handler
         document.getElementById('generateBtn').addEventListener('click', generateMoreProblems);
